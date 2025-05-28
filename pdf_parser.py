@@ -9,7 +9,7 @@ from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser, PDFSyntaxError # For specific PDF errors
-from pdfminer.psparser import PSError # For PostScript errors, which can occur with PDFs
+from pdfminer.pdftypes import PSError # Corrected import for PSError
 
 def extract_text_from_pdf(pdf_path):
     """
