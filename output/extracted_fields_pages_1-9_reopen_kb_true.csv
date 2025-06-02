@@ -1,0 +1,270 @@
+Section,Field Name,Field Description
+FORMDSUBMISSION,ACCESSIONNUMBER,The 20-character string f
+FORMDSUBMISSION,from,the 18-digit number assigned (nnnnnn
+FORMDSUBMISSION,by,the Commission to each EDGAR nnnnnn)
+FORMDSUBMISSION,submission.,
+FORMDSUBMISSION,FILE_NUM,File Number provided by
+FORMDSUBMISSION,Commission,for the submission. The
+FORMDSUBMISSION,File,Number is sourced from
+FORMDSUBMISSION,EDGAR.,
+FORMDSUBMISSION,FILING_DATE,Date filed with the Commi
+FORMDSUBMISSION,Filing,Date is sourced from EDGAR.
+FORMDSUBMISSION,SIC_CODE,Standard Industrial Class
+FORMDSUBMISSION,Codes.,These codes are also used
+FORMDSUBMISSION,as,a basis for assigning review
+FORMDSUBMISSION,responsibility,for the company's
+FORMDSUBMISSION,filings.,
+FORMDSUBMISSION,SUBMISSIONTYPE,Submission type A
+FORMDSUBMISSION,OVER100PERSONSFLAG,"Yes, if over 100 perso"
+FORMDSUBMISSION,OVER100ISSUERFLAG,"Yes, if over 100 issuer"
+FORMDSUBMISSION,Note:,To access the complete submission fi
+FORMDSUBMISSION,The,Commission website folder https://www.
+FORMDSUBMISSION,contain,all the data sets for a given subm
+FORMDSUBMISSION,FORMDSUBMISSION,"data set, simply substitut"
+FORMDSUBMISSION,{accession},with the ACCESSIONNUMBER field
+FORMDSUBMISSION,5.,ISSUERS
+FORMDSUBMISSION,The,ISSUERS data file contains specified i
+ISSUERS,ACCESSIONNUMBER,The 20-character s
+ISSUERS,from,the 18-digit number (nnnnnnnnnn-
+ISSUERS,assigned,by the Commission to nn-nnnnnn)
+ISSUERS,each,EDGAR submission.
+ISSUERS,IS_PRIMARYISSUER_FLAG,"Yes, if primary is"
+ISSUERS,ISSUER_SEQ_KEY,Issuer index key.
+ISSUERS,CIK,Central index key
+ISSUERS,issuer,submitting the filing.
+ISSUERS,ENTITYNAME,Name of Issuer
+ISSUERS,STREET,Street Address 1
+ISSUERS,STREET,Street Address 2
+ISSUERS,CITY,City
+ISSUERS,STATEORCOUNTRY,State/Province/Cou
+ISSUERS,STATEORCOUNTRYDESCRIPTION,Full name of t
+ISSUERS,state,
+ISSUERS,ZIPCODE,Zip/Postal Code
+ISSUERS,ISSUERPHONENUMBER,Phone No. of Issue
+ISSUERS,JURISDICTIONOFINC,Jurisdiction of
+ISSUERS,Incorporation/Organization,
+ISSUERS,ISSUER_PREVIOUSNAME_,Issuer Previous Na
+ISSUERS,ISSUER_PREVIOUSNAME_,Issuer Previous Na
+ISSUERS,ISSUER_PREVIOUSNAME_,Issuer Previous Na
+ISSUERS,EDGAR_PREVIOUSNAME_,EDGAR Previous Na
+ISSUERS,EDGAR_PREVIOUSNAME_,EDGAR Previous Na
+ISSUERS,EDGAR_PREVIOUSNAME_,EDGAR Previous Na
+ISSUERS,ENTITYTYPE,Entity type
+ISSUERS,ENTITYTYPEOTHERDESC,Description of Ent
+ISSUERS,indicated,as 'Other' in Entity
+ISSUERS,Type,
+ISSUERS,YEAROFINC_TIMESPAN_CHOICE,Year of
+ISSUERS,Incorporation/Organization,
+ISSUERS,Years,(Specify Year)
+ISSUERS,YEAROFINC_VALUE_ENTERED,Year of Incorpor
+ISSUERS,entered,
+ISSUERS,5.,OFFERING
+ISSUERS,The,OFFERING data file contains informati
+OFFERING,ACCESSIONNUMBER,The 20-char
+OFFERING,formed,from the 18- (nnnnnnnnnn-
+OFFERING,digit,number assigned nn-nnnnnn)
+OFFERING,by,the Commission to
+OFFERING,each,EDGAR
+OFFERING,submission.,
+OFFERING,INDUSTRYGROUPTYPE,Type of Ind
+OFFERING,INVESTMENTFUNDTYPE,Type of Sec
+OFFERING,Offered,
+OFFERING,IS40ACT,Flag to ind
+OFFERING,whether,the issuer
+OFFERING,registered,as an
+OFFERING,investment,
+OFFERING,company,under the
+OFFERING,Investment,Company
+OFFERING,Act,of 1940
+OFFERING,REVENUERANGE,Revenue Ran
+OFFERING,AGGREGATENETASSETVALUERANGE,Aggregate
+OFFERING,Value,Range
+OFFERING,FEDERALEXEMPTIONS_ITEMS_LIST,List of e
+OFFERING,under,Securities Act
+OFFERING,ISAMENDMENT,New Notice
+OFFERING,/Amendment,
+OFFERING,PREVIOUSACCESSIONNUMBER,Previous Ac
+OFFERING,Number;,The 20-
+OFFERING,character,string formed
+OFFERING,from,the 18-digit
+OFFERING,number,assigned by
+OFFERING,the,Commission to
+OFFERING,each,EDGAR
+OFFERING,submission.,
+OFFERING,SALE_DATE,Sale Date
+OFFERING,YETTOOCCUR,First Sale
+OFFERING,MORETHANONEYEAR,Duration of
+OFFERING,more,than one year
+OFFERING,ISEQUITYTYPE,Equity
+OFFERING,ISDEBTTYPE,Debt
+OFFERING,ISOPTIONTOACQUIRETYPE,"Option, War"
+OFFERING,Other,Right to Acquire
+OFFERING,Another,Security
+OFFERING,ISSECURITYTOBEACQUIREDTYPE,Security to
+OFFERING,Upon,Exercise of
+OFFERING,"Option,",Warrant or
+OFFERING,Other,Right to Acquire
+OFFERING,Security,
+OFFERING,Max,May be
+OFFERING,Field,Name Field Description
+OFFERING,ISPOOLEDINVESTMENTFUNDTYPE,Pooled Inve
+OFFERING,Fund,Interests
+OFFERING,ISTENANTINCOMMONTYPE,Tenant-in-C
+OFFERING,Securities,
+OFFERING,ISMINERALPROPERTYTYPE,Mineral Pro
+OFFERING,Securities,
+OFFERING,ISOTHERTYPE,Other (desc
+OFFERING,DESCRIPTIONOFOTHERTYPE,Description
+OFFERING,Investment,Type when
+OFFERING,indicated,as 'Other' in
+OFFERING,'OtherType',as Pooled
+OFFERING,Investment,Type
+OFFERING,ISBUSINESSCOMBINATIONTRANS,Is this off
+OFFERING,made,in connection
+OFFERING,with,a business
+OFFERING,combination,
+OFFERING,"transaction,",such as a
+OFFERING,"merger,","acquisition, or"
+OFFERING,exchange,offer?
+OFFERING,BUSCOMBCLARIFICATIONOFRESP,Clarificati
+OFFERING,Response,(if
+OFFERING,Necessary),
+OFFERING,MINIMUMINVESTMENTACCEPTED,Minimum inv
+OFFERING,accepted,from any
+OFFERING,outside,investor
+OFFERING,OVER100RECIPIENTFLAG,Over 100 re
+OFFERING,TOTALOFFERINGAMOUNT,Total offer
+OFFERING,TOTALAMOUNTSOLD,Total amoun
+OFFERING,TOTALREMAINING,Total remai
+OFFERING,sold,
+OFFERING,SALESAMTCLARIFICATIONOFRESP,Clarificat
+OFFERING,Response,(if
+OFFERING,Necessary),
+OFFERING,HASNONACCREDITEDINVESTORS,Select if s
+OFFERING,the,offering have been
+OFFERING,or,may be sold to
+OFFERING,persons,who do not
+OFFERING,qualify,as accredited
+OFFERING,investors,
+OFFERING,NUMBERNONACCREDITEDINVESTORS,Number of
+OFFERING,accredited,investors
+OFFERING,who,already have
+OFFERING,invested,in the offering
+OFFERING,Max,May be
+OFFERING,Field,Name Field Description
+OFFERING,TOTALNUMBERALREADYINVESTED,Regardless
+OFFERING,securities,in the
+OFFERING,offering,have been or
+OFFERING,may,be sold to persons
+OFFERING,who,do not qualify as
+OFFERING,accredited,"investors,"
+OFFERING,enter,the total number
+OFFERING,of,investors who
+OFFERING,already,have invested
+OFFERING,in,the offering.
+OFFERING,SALESCOMM_DOLLARAMOUNT,Sales Commi
+OFFERING,USD,
+OFFERING,SALESCOMM_ISESTIMATE,Estimate
+OFFERING,FINDERSFEE_DOLLARAMOUNT,Finders Fe
+OFFERING,FINDERSFEE_ISESTIMATE,Estimate
+OFFERING,FINDERFEECLARIFICATIONOFRESP,Clarifica
+OFFERING,Response,(if
+OFFERING,Necessary),
+OFFERING,GROSSPROCEEDSUSED_DOLLARAMOUNT,Provide
+OFFERING,the,gross proceeds of
+OFFERING,the,offering that has
+OFFERING,been,or is proposed to
+OFFERING,be,used for payments
+OFFERING,to,any of the persons
+OFFERING,required,to be named
+OFFERING,as,"executive officers,"
+OFFERING,"directors,",or promoters
+OFFERING,in,response to Item 3
+OFFERING,above.,If the amount is
+OFFERING,"unknown,",provide an
+OFFERING,estimate,and check the
+OFFERING,box,next to the
+OFFERING,amount.,USD
+OFFERING,GROSSPROCEEDSUSED_ISESTIMATE,Estimate
+OFFERING,GROSSPROCEEDSUSED_CLAROFRESP,Clarifica
+OFFERING,Response,(if
+OFFERING,Necessary),
+OFFERING,AUTHORIZEDREPRESENTATIVE,I also am a
+OFFERING,authorized,
+OFFERING,representative,of the
+OFFERING,other,Issuer(s) in Item
+OFFERING,to,sign on their behalf.
+OFFERING,5.,RECIPIENTS
+OFFERING,The,RECIPIENTS data file contains the r
+RECIPIENTS,ACCESSIONNUMBER,The 20-character
+RECIPIENTS,formed,from the 18-digit (nnnnnnnnnn-nn
+RECIPIENTS,number,assigned by the nnnnnn)
+RECIPIENTS,Commission,to each EDGAR
+RECIPIENTS,submission.,
+RECIPIENTS,RECIPIENT_SEQ_KEY,Recipient index k
+RECIPIENTS,RECIPIENTNAME,Recipient
+RECIPIENTS,RECIPIENTCRDNUMBER,Recipient CRD Num
+RECIPIENTS,ASSOCIATEDBDNAME,(Associated) Brok
+RECIPIENTS,ASSOCIATEDBDCRDNUMBER,(Associated) Brok
+RECIPIENTS,CRD,Number
+RECIPIENTS,STREET,Street Address 1
+RECIPIENTS,STREET,Street Address 2
+RECIPIENTS,CITY,City
+RECIPIENTS,STATEORCOUNTRY,State/Province/Co
+RECIPIENTS,STATEORCOUNTRYDESCRIPTION,Full name of
+RECIPIENTS,state,
+RECIPIENTS,ZIPCODE,Zip/Postal Code
+RECIPIENTS,STATES_OR_VALUE_LIST,List of States or
+RECIPIENTS,Recipients,
+RECIPIENTS,DESCRIPTIONS_LIST,Full name of Stat
+RECIPIENTS,Countries,of Recipients
+RECIPIENTS,FOREIGNSOLICITATION,Selected if the r
+RECIPIENTS,solicited,sales in foreign
+RECIPIENTS,countries.,
+RECIPIENTS,5.,RELATEDPERSONS
+RECIPIENTS,The,RELATEDPERSONS data file provides in
+RELATEDPERSONS,ACCESSIONNUMBER,The 20-character
+RELATEDPERSONS,formed,from the 18-digit (nnnnnnnnnn-nn
+RELATEDPERSONS,number,assigned by the nnnnnn)
+RELATEDPERSONS,Commission,to each EDGAR
+RELATEDPERSONS,submission.,
+RELATEDPERSONS,RELATEDPERSON_SEQ_KEY,Related person in
+RELATEDPERSONS,FIRSTNAME,First Name
+RELATEDPERSONS,MIDDLENAME,Middle Name
+RELATEDPERSONS,Max,May be
+RELATEDPERSONS,Field,Name Field Description
+RELATEDPERSONS,LASTNAME,Last Name
+RELATEDPERSONS,STREET,Street Address 1
+RELATEDPERSONS,STREET,Street Address 2
+RELATEDPERSONS,CITY,City
+RELATEDPERSONS,STATEORCOUNTRY,State/Province/Co
+RELATEDPERSONS,STATEORCOUNTRYDESCRIPTION,Full name of
+RELATEDPERSONS,state,
+RELATEDPERSONS,ZIPCODE,Zip/Postal Code
+RELATEDPERSONS,RELATIONSHIP_,Relationship of r
+RELATEDPERSONS,to,issuer consisting of
+RELATEDPERSONS,Executive,"Officer, Director, or"
+RELATEDPERSONS,Promoter.,
+RELATEDPERSONS,RELATIONSHIP_,Relationship of r
+RELATEDPERSONS,to,issuer consisting of
+RELATEDPERSONS,Executive,"Officer, Director, or"
+RELATEDPERSONS,Promoter.,
+RELATEDPERSONS,RELATIONSHIP_,Relationship of r
+RELATEDPERSONS,to,issuer consisting of
+RELATEDPERSONS,Executive,"Officer, Director, or"
+RELATEDPERSONS,Promoter.,
+RELATEDPERSONS,RELATIONSHIPCLARIFICATION,Clarification
+RELATEDPERSONS,Necessary),
+RELATEDPERSONS,5.,SIGNATURES
+RELATEDPERSONS,The,SIGNATURES data file provides data f
+SIGNATURES,ACCESSIONNUMBER,The 20-character string
+SIGNATURES,from,the 18-digit number assigned (nnnnn
+SIGNATURES,by,the Commission to each EDGAR nnnnnn)
+SIGNATURES,submission.,
+SIGNATURES,SIGNATURE_SEQ_KEY,Signature index key.
+SIGNATURES,ISSUERNAME,Name of Issuer A
+SIGNATURES,SIGNATURENAME,Name of signature A
+SIGNATURES,NAMEOFSIGNER,Full name of person signi
+SIGNATURES,form.,
+SIGNATURES,SIGNATURETITLE,Title of person signing t
+SIGNATURES,SIGNATUREDATE,Date of signature. A
