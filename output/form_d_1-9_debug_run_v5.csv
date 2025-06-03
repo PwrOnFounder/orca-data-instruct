@@ -1,0 +1,123 @@
+Section,Field Name,Field Description
+FORMDSUBMISSION,ACCESSIONNUMBER,
+FORMDSUBMISSION,FILE_NUM,
+FORMDSUBMISSION,FILING_DATE,
+FORMDSUBMISSION,SIC_CODE,The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission. File Number provided by Commission for the submission. The File Number is sourced from EDGAR.
+FORMDSUBMISSION,NULL,
+FORMDSUBMISSION,SUBMISSIONTYPE,Submission type
+FORMDSUBMISSION,OVER100PERSONSFLAG,"Yes, if over 100 persons."
+FORMDSUBMISSION,OVER100ISSUERFLAG,"Yes, if over 100 issuers."
+FORMDSUBMISSION,FORMDSUBMISSION,"data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace {accession} with the ACCESSIONNUMBER field (after removing the dash character). 5.2       ISSUERS The ISSUERS data file contains specified information for the issuer provided in the submission."
+ISSUERS,ACCESSIONNUMBER,The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.
+ISSUERS,IS_PRIMARYISSUER_FLAG,"Yes, if primary issuer; No if not"
+ISSUERS,ISSUER_SEQ_KEY,Issuer index key.
+ISSUERS,CIK,
+ISSUERS,ENTITYNAME,
+ISSUERS,STREET1,
+ISSUERS,STREET2,
+ISSUERS,CITY,Central index key (CIK) of issuer submitting the filing.
+ISSUERS,STATEORCOUNTRY,State/Province/Country
+ISSUERS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+ISSUERS,NULL,Key
+ISSUERS,ZIPCODE,state Zip/Postal Code
+ISSUERS,ISSUERPHONENUMBER,Phone No. of Issuer
+ISSUERS,JURISDICTIONOFINC,Jurisdiction of Incorporation/Organization
+ISSUERS,ISSUER_PREVIOUSNAME_1,Issuer Previous Name 1
+ISSUERS,ISSUER_PREVIOUSNAME_2,Issuer Previous Name 2
+ISSUERS,ISSUER_PREVIOUSNAME_3,Issuer Previous Name 3
+ISSUERS,EDGAR_PREVIOUSNAME_1,
+ISSUERS,EDGAR,Previous Name 1
+ISSUERS,EDGAR_PREVIOUSNAME_2,
+ISSUERS,EDGAR,Previous Name 2
+ISSUERS,EDGAR_PREVIOUSNAME_3,
+ISSUERS,EDGAR,Previous Name 3
+ISSUERS,ENTITYTYPE,Entity type
+ISSUERS,ENTITYTYPEOTHERDESC,
+ISSUERS,YEAROFINC_TIMESPAN_CHOICE,
+ISSUERS,YEAROFINC_VALUE_ENTERED,Description of Entity Type when indicated as 'Other' in Entity Type Year of Incorporation/Organization (Specify Year) Within Last Five Years (Specify Year) Year of Incorporation value entered
+OFFERING,ACCESSIONNUMBER,
+OFFERING,INDUSTRYGROUPTYPE,
+OFFERING,INVESTMENTFUNDTYPE,
+OFFERING,IS40ACT,The 20-character string formed from the 18- digit number assigned by the Commission to each EDGAR submission.
+OFFERING,NULL,Key
+OFFERING,REVENUERANGE,Revenue Range
+OFFERING,AGGREGATENETASSETVALUERANGE,
+OFFERING,FEDERALEXEMPTIONS_ITEMS_LIST,
+OFFERING,ISAMENDMENT,
+OFFERING,PREVIOUSACCESSIONNUMBER,
+OFFERING,SALE_DATE,
+OFFERING,YETTOOCCUR,
+OFFERING,MORETHANONEYEAR,
+OFFERING,ISEQUITYTYPE,
+OFFERING,ISDEBTTYPE,
+OFFERING,ISOPTIONTOACQUIRETYPE,
+OFFERING,ISSECURITYTOBEACQUIREDTYPE,Field Name Field Description Format Max Size May be
+OFFERING,NULL,Key
+OFFERING,ISPOOLEDINVESTMENTFUNDTYPE,
+OFFERING,ISTENANTINCOMMONTYPE,
+OFFERING,ISMINERALPROPERTYTYPE,Pooled Investment Fund Interests Tenant-in-Common Securities Mineral Property Securities
+OFFERING,ISOTHERTYPE,Other (describe)
+OFFERING,DESCRIPTIONOFOTHERTYPE,
+OFFERING,ISBUSINESSCOMBINATIONTRANS,
+OFFERING,BUSCOMBCLARIFICATIONOFRESP,
+OFFERING,MINIMUMINVESTMENTACCEPTED,"Description of Pooled Investment Type when indicated as 'Other' in 'OtherType' as Pooled Investment Type Is this offering being made in connection with a business combination transaction, such as a merger, acquisition, or exchange offer? Clarification of Response (if Necessary) Minimum investment accepted from any outside investor"
+OFFERING,OVER100RECIPIENTFLAG,Over 100 recipients
+OFFERING,TOTALOFFERINGAMOUNT,Total offering amount
+OFFERING,TOTALAMOUNTSOLD,
+OFFERING,TOTALREMAINING,
+OFFERING,SALESAMTCLARIFICATIONOFRESP,
+OFFERING,HASNONACCREDITEDINVESTORS,
+OFFERING,NUMBERNONACCREDITEDINVESTORS,
+OFFERING,SALESCOMM_ISESTIMATE,Estimate
+OFFERING,FINDERSFEE_DOLLARAMOUNT,Finders  Fee USD
+OFFERING,TOTALNUMBERALREADYINVESTED,
+OFFERING,SALESCOMM_DOLLARAMOUNT,"Regardless of whether securities in the offering have been or may be sold to persons who do not qualify as accredited investors, enter the total number of investors who already have invested in the offering. Sales Commissions,"
+OFFERING,USD,
+OFFERING,FINDERSFEE_ISESTIMATE,
+OFFERING,FINDERFEECLARIFICATIONOFRESP,Estimate Clarification of Response (if Necessary)
+OFFERING,GROSSPROCEEDSUSED_DOLLARAMOUNT,"Provide the amount of the gross proceeds of the offering that has been or is proposed to be used for payments to any of the persons required to be named as executive officers, directors, or promoters in response to Item 3 above. If the amount is unknown, provide an estimate and check the box next to the amount. USD"
+OFFERING,GROSSPROCEEDSUSED_CLAROFRESP,
+OFFERING,AUTHORIZEDREPRESENTATIVE,Clarification of Response (if Necessary) I also am a duly authorized representative of the other Issuer(s) in Item
+OFFERING,GROSSPROCEEDSUSED_ISESTIMATE,Estimate
+RECIPIENTS,ACCESSIONNUMBER,The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.
+RECIPIENTS,NULL,Key
+RECIPIENTS,RECIPIENT_SEQ_KEY,Recipient index key.
+RECIPIENTS,RECIPIENTNAME,Recipient
+RECIPIENTS,RECIPIENTCRDNUMBER,Recipient CRD Number
+RECIPIENTS,ASSOCIATEDBDNAME,(Associated) Broker or Dealer
+RECIPIENTS,ASSOCIATEDBDCRDNUMBER,(Associated) Broker or Dealer
+RECIPIENTS,CRD,Number
+RECIPIENTS,STREET1,
+RECIPIENTS,STREET2,
+RECIPIENTS,CITY,Street Address 1 Street Address 2 City
+RECIPIENTS,STATEORCOUNTRY,State/Province/Country
+RECIPIENTS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+RECIPIENTS,ZIPCODE,Zip/Postal Code
+RECIPIENTS,STATES_OR_VALUE_LIST,
+RECIPIENTS,DESCRIPTIONS_LIST,
+RECIPIENTS,FOREIGNSOLICITATION,List of States or Countries of Recipients Full name of States or Countries of Recipients Selected if the recipient has solicited sales in foreign countries.
+RELATEDPERSONS,ACCESSIONNUMBER,The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.
+RELATEDPERSONS,NULL,Key
+RELATEDPERSONS,RELATEDPERSON_SEQ_KEY,Related person index key.
+RELATEDPERSONS,FIRSTNAME,
+RELATEDPERSONS,MIDDLENAME,First Name Middle Name
+RELATEDPERSONS,LASTNAME,
+RELATEDPERSONS,STREET1,
+RELATEDPERSONS,STREET2,
+RELATEDPERSONS,CITY,Last Name Street Address 1 Street Address 2 City
+RELATEDPERSONS,STATEORCOUNTRY,State/Province/Country
+RELATEDPERSONS,NULL,Key
+RELATEDPERSONS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+RELATEDPERSONS,ZIPCODE,
+RELATEDPERSONS,RELATIONSHIP_1,
+RELATEDPERSONS,RELATIONSHIP_2,
+RELATEDPERSONS,RELATIONSHIP_3,
+RELATEDPERSONS,RELATIONSHIPCLARIFICATION,"Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Clarification of Response (if Necessary)"
+SIGNATURES,ACCESSIONNUMBER,The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.
+SIGNATURES,NULL,
+SIGNATURES,SIGNATURE_SEQ_KEY,Signature index key.
+SIGNATURES,ISSUERNAME,Name of Issuer
+SIGNATURES,SIGNATURENAME,Name of signature
+SIGNATURES,NAMEOFSIGNER,Full name of person signing the form.
+SIGNATURES,SIGNATURETITLE,Title of person signing the form.
+SIGNATURES,SIGNATUREDATE,

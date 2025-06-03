@@ -1,0 +1,2336 @@
+Extracting text from 'Form_D_pages_1-9.pdf'...
+
+Parsing fields from extracted text...
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'FILE_NUM'
+DEBUG: Line 6: first_word='FILE_NUM', rest_of_line=''
+DEBUG: Line 6: Finalizing previous field: 'ACCESSIONNUMBER' with description parts: []
+DEBUG: Line 6: New current_field_name='FILE_NUM'
+DEBUG: Line 8: Raw Stripped Line: 'FILING_DATE'
+DEBUG: Line 8: first_word='FILING_DATE', rest_of_line=''
+DEBUG: Line 8: Finalizing previous field: 'FILE_NUM' with description parts: []
+DEBUG: Line 8: New current_field_name='FILING_DATE'
+DEBUG: Line 10: Raw Stripped Line: 'SIC_CODE'
+DEBUG: Line 10: first_word='SIC_CODE', rest_of_line=''
+DEBUG: Line 10: Finalizing previous field: 'FILING_DATE' with description parts: []
+DEBUG: Line 10: New current_field_name='SIC_CODE'
+DEBUG: Line 12: Raw Stripped Line: 'The 20-character string formed'
+DEBUG: Line 12: first_word='The', rest_of_line='20-character string formed'
+DEBUG: Line 12: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 12: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed']
+DEBUG: Line 13: Raw Stripped Line: 'from the 18-digit number assigned'
+DEBUG: Line 13: first_word='from', rest_of_line='the 18-digit number assigned'
+DEBUG: Line 13: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 13: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned']
+DEBUG: Line 14: Raw Stripped Line: 'by the Commission to each EDGAR'
+DEBUG: Line 14: first_word='by', rest_of_line='the Commission to each EDGAR'
+DEBUG: Line 14: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 14: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR']
+DEBUG: Line 15: Raw Stripped Line: 'submission.'
+DEBUG: Line 15: first_word='submission.', rest_of_line=''
+DEBUG: Line 15: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 15: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.']
+DEBUG: Line 17: Raw Stripped Line: 'File Number provided by'
+DEBUG: Line 17: first_word='File', rest_of_line='Number provided by'
+DEBUG: Line 17: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 17: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.', 'File Number provided by']
+DEBUG: Line 18: Raw Stripped Line: 'Commission for the submission. The'
+DEBUG: Line 18: first_word='Commission', rest_of_line='for the submission. The'
+DEBUG: Line 18: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 18: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.', 'File Number provided by', 'Commission for the submission. The']
+DEBUG: Line 19: Raw Stripped Line: 'File Number is sourced from'
+DEBUG: Line 19: first_word='File', rest_of_line='Number is sourced from'
+DEBUG: Line 19: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 19: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.', 'File Number provided by', 'Commission for the submission. The', 'File Number is sourced from']
+DEBUG: Line 20: Raw Stripped Line: 'EDGAR.'
+DEBUG: Line 20: first_word='EDGAR.', rest_of_line=''
+DEBUG: Line 20: Scenario 3 triggered. Appending to description of 'SIC_CODE'.
+DEBUG: Line 20: current_description_parts for 'SIC_CODE' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.', 'File Number provided by', 'Commission for the submission. The', 'File Number is sourced from', 'EDGAR.']
+DEBUG: Line 22: Raw Stripped Line: 'Date filed with the Commission. The'
+DEBUG: Line 22: first_word='Date', rest_of_line='filed with the Commission. The'
+DEBUG: Line 22: Scenario 2 triggered for line starting with 'Date'. Finalizing field 'SIC_CODE'.
+DEBUG: Line 22: Finalizing field: 'SIC_CODE' with description parts: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.', 'File Number provided by', 'Commission for the submission. The', 'File Number is sourced from', 'EDGAR.']
+DEBUG: Line 22: Adding to section_fields (Scenario 2 - with desc): {'Section': 'FORMDSUBMISSION', 'Field Name': 'SIC_CODE', 'Field Description': 'The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission. File Number provided by Commission for the submission. The File Number is sourced from EDGAR.'}
+DEBUG: Line 23: Raw Stripped Line: 'Filing Date is sourced from EDGAR.'
+DEBUG: Line 23: first_word='Filing', rest_of_line='Date is sourced from EDGAR.'
+DEBUG: Line 25: Raw Stripped Line: 'Standard Industrial Classification'
+DEBUG: Line 25: first_word='Standard', rest_of_line='Industrial Classification'
+DEBUG: Line 26: Raw Stripped Line: 'Codes. These codes are also used'
+DEBUG: Line 26: first_word='Codes.', rest_of_line='These codes are also used'
+DEBUG: Line 27: Raw Stripped Line: 'as a basis for assigning review'
+DEBUG: Line 27: first_word='as', rest_of_line='a basis for assigning review'
+DEBUG: Line 28: Raw Stripped Line: 'responsibility for the company's'
+DEBUG: Line 28: first_word='responsibility', rest_of_line='for the company's'
+DEBUG: Line 29: Raw Stripped Line: 'filings.'
+DEBUG: Line 29: first_word='filings.', rest_of_line=''
+DEBUG: Line 31: Raw Stripped Line: 'Max'
+DEBUG: Line 31: first_word='Max', rest_of_line=''
+DEBUG: Line 32: Raw Stripped Line: 'Size'
+DEBUG: Line 32: first_word='Size', rest_of_line=''
+DEBUG: Line 34: Raw Stripped Line: '20'
+DEBUG: Line 34: first_word='20', rest_of_line=''
+DEBUG: Line 36: Raw Stripped Line: 'May be'
+DEBUG: Line 36: first_word='May', rest_of_line='be'
+DEBUG: Line 37: Raw Stripped Line: 'NULL'
+DEBUG: Line 37: first_word='NULL', rest_of_line=''
+DEBUG: Line 37: New current_field_name='NULL'
+DEBUG: Line 39: Raw Stripped Line: 'No'
+DEBUG: Line 39: first_word='No', rest_of_line=''
+DEBUG: Line 39: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 39: Finalizing field: 'NULL' with description parts: []
+DEBUG: Line 39: Adding to section_fields (Scenario 2 - no desc): {'Section': 'FORMDSUBMISSION', 'Field Name': 'NULL', 'Field Description': ''}
+DEBUG: Line 41: Raw Stripped Line: 'Key'
+DEBUG: Line 41: first_word='Key', rest_of_line=''
+DEBUG: Line 43: Raw Stripped Line: '*'
+DEBUG: Line 43: first_word='*', rest_of_line=''
+DEBUG: Line 45: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 45: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 46: Raw Stripped Line: '(nnnnnnnnnn-nn-'
+DEBUG: Line 46: first_word='(nnnnnnnnnn-nn-', rest_of_line=''
+DEBUG: Line 47: Raw Stripped Line: 'nnnnnn)'
+DEBUG: Line 47: first_word='nnnnnn)', rest_of_line=''
+DEBUG: Line 49: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 49: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 51: Raw Stripped Line: '30'
+DEBUG: Line 51: first_word='30', rest_of_line=''
+DEBUG: Line 53: Raw Stripped Line: 'Yes'
+DEBUG: Line 53: first_word='Yes', rest_of_line=''
+DEBUG: Line 55: Raw Stripped Line: 'DATE (DD-MMM-YY)'
+DEBUG: Line 55: first_word='DATE', rest_of_line='(DD-MMM-YY)'
+DEBUG: Line 57: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 57: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 59: Raw Stripped Line: '8'
+DEBUG: Line 59: first_word='8', rest_of_line=''
+DEBUG: Line 61: Raw Stripped Line: '4'
+DEBUG: Line 61: first_word='4', rest_of_line=''
+DEBUG: Line 63: Raw Stripped Line: 'Yes'
+DEBUG: Line 63: first_word='Yes', rest_of_line=''
+DEBUG: Line 65: Raw Stripped Line: 'Yes'
+DEBUG: Line 65: first_word='Yes', rest_of_line=''
+DEBUG: Line 67: Raw Stripped Line: 'SUBMISSIONTYPE'
+DEBUG: Line 67: first_word='SUBMISSIONTYPE', rest_of_line=''
+DEBUG: Line 67: New current_field_name='SUBMISSIONTYPE'
+DEBUG: Line 69: Raw Stripped Line: 'Submission type'
+DEBUG: Line 69: first_word='Submission', rest_of_line='type'
+DEBUG: Line 69: Scenario 3 triggered. Appending to description of 'SUBMISSIONTYPE'.
+DEBUG: Line 69: current_description_parts for 'SUBMISSIONTYPE' after appending stripped_line: ['Submission type']
+DEBUG: Line 71: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 71: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 71: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'SUBMISSIONTYPE'.
+DEBUG: Line 71: Finalizing field: 'SUBMISSIONTYPE' with description parts: ['Submission type']
+DEBUG: Line 71: Adding to section_fields (Scenario 2 - with desc): {'Section': 'FORMDSUBMISSION', 'Field Name': 'SUBMISSIONTYPE', 'Field Description': 'Submission type'}
+DEBUG: Line 73: Raw Stripped Line: '255'
+DEBUG: Line 73: first_word='255', rest_of_line=''
+DEBUG: Line 75: Raw Stripped Line: 'OVER100PERSONSFLAG  Yes, if over 100 persons.'
+DEBUG: Line 75: first_word='OVER100PERSONSFLAG', rest_of_line='Yes, if over 100 persons.'
+DEBUG: Line 75: New current_field_name='OVER100PERSONSFLAG'
+DEBUG: Line 75: Processing rest_of_line for field 'OVER100PERSONSFLAG': 'Yes, if over 100 persons.'
+DEBUG: Line 75: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 75: description_segment from rest_of_line='Yes, if over 100 persons.'
+DEBUG: Line 75: current_description_parts for 'OVER100PERSONSFLAG' after rest_of_line processing: ['Yes, if over 100 persons.']
+DEBUG: Line 77: Raw Stripped Line: 'OVER100ISSUERFLAG'
+DEBUG: Line 77: first_word='OVER100ISSUERFLAG', rest_of_line=''
+DEBUG: Line 77: Adding to section_fields (before new field): {'Section': 'FORMDSUBMISSION', 'Field Name': 'OVER100PERSONSFLAG', 'Field Description': 'Yes, if over 100 persons.'}
+DEBUG: Line 77: Finalizing previous field: 'OVER100PERSONSFLAG' with description parts: ['Yes, if over 100 persons.']
+DEBUG: Line 77: New current_field_name='OVER100ISSUERFLAG'
+DEBUG: Line 79: Raw Stripped Line: 'Yes, if over 100 issuers.'
+DEBUG: Line 79: first_word='Yes,', rest_of_line='if over 100 issuers.'
+DEBUG: Line 79: Scenario 3 triggered. Appending to description of 'OVER100ISSUERFLAG'.
+DEBUG: Line 79: current_description_parts for 'OVER100ISSUERFLAG' after appending stripped_line: ['Yes, if over 100 issuers.']
+DEBUG: Line 81: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 81: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 81: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'OVER100ISSUERFLAG'.
+DEBUG: Line 81: Finalizing field: 'OVER100ISSUERFLAG' with description parts: ['Yes, if over 100 issuers.']
+DEBUG: Line 81: Adding to section_fields (Scenario 2 - with desc): {'Section': 'FORMDSUBMISSION', 'Field Name': 'OVER100ISSUERFLAG', 'Field Description': 'Yes, if over 100 issuers.'}
+DEBUG: Line 83: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 83: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 85: Raw Stripped Line: '5'
+DEBUG: Line 85: first_word='5', rest_of_line=''
+DEBUG: Line 87: Raw Stripped Line: '5'
+DEBUG: Line 87: first_word='5', rest_of_line=''
+DEBUG: Line 89: Raw Stripped Line: 'No'
+DEBUG: Line 89: first_word='No', rest_of_line=''
+DEBUG: Line 91: Raw Stripped Line: 'Yes'
+DEBUG: Line 91: first_word='Yes', rest_of_line=''
+DEBUG: Line 93: Raw Stripped Line: 'Yes'
+DEBUG: Line 93: first_word='Yes', rest_of_line=''
+DEBUG: Line 95: Raw Stripped Line: 'Note: To access the complete submission files for a given filing, please see the Commission EDGAR website.'
+DEBUG: Line 95: first_word='Note:', rest_of_line='To access the complete submission files for a given filing, please see the Commission EDGAR website.'
+DEBUG: Line 96: Raw Stripped Line: 'The Commission website folder https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/ will always'
+DEBUG: Line 96: first_word='The', rest_of_line='Commission website folder https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/ will always'
+DEBUG: Line 97: Raw Stripped Line: 'contain all the data sets for a given submission. To assemble the folder address to any filing referenced in the'
+DEBUG: Line 97: first_word='contain', rest_of_line='all the data sets for a given submission. To assemble the folder address to any filing referenced in the'
+DEBUG: Line 98: Raw Stripped Line: 'FORMDSUBMISSION data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace'
+DEBUG: Line 98: first_word='FORMDSUBMISSION', rest_of_line='data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace'
+DEBUG: Line 98: New current_field_name='FORMDSUBMISSION'
+DEBUG: Line 98: Processing rest_of_line for field 'FORMDSUBMISSION': 'data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace'
+DEBUG: Line 98: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 98: description_segment from rest_of_line='data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace'
+DEBUG: Line 98: current_description_parts for 'FORMDSUBMISSION' after rest_of_line processing: ['data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace']
+DEBUG: Line 99: Raw Stripped Line: '{accession} with the ACCESSIONNUMBER field (after removing the dash character).'
+DEBUG: Line 99: first_word='{accession}', rest_of_line='with the ACCESSIONNUMBER field (after removing the dash character).'
+DEBUG: Line 99: Scenario 3 triggered. Appending to description of 'FORMDSUBMISSION'.
+DEBUG: Line 99: current_description_parts for 'FORMDSUBMISSION' after appending stripped_line: ['data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace', '{accession} with the ACCESSIONNUMBER field (after removing the dash character).']
+DEBUG: Line 101: Raw Stripped Line: '5.2       ISSUERS'
+DEBUG: Line 101: first_word='5.2', rest_of_line='ISSUERS'
+DEBUG: Line 101: Scenario 3 triggered. Appending to description of 'FORMDSUBMISSION'.
+DEBUG: Line 101: current_description_parts for 'FORMDSUBMISSION' after appending stripped_line: ['data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace', '{accession} with the ACCESSIONNUMBER field (after removing the dash character).', '5.2       ISSUERS']
+DEBUG: Line 111: Raw Stripped Line: 'The ISSUERS data file contains specified information for the issuer provided in the submission.'
+DEBUG: Line 111: first_word='The', rest_of_line='ISSUERS data file contains specified information for the issuer provided in the submission.'
+DEBUG: Line 111: Scenario 3 triggered. Appending to description of 'FORMDSUBMISSION'.
+DEBUG: Line 111: current_description_parts for 'FORMDSUBMISSION' after appending stripped_line: ['data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace', '{accession} with the ACCESSIONNUMBER field (after removing the dash character).', '5.2       ISSUERS', 'The ISSUERS data file contains specified information for the issuer provided in the submission.']
+DEBUG: End of Section 'FORMDSUBMISSION': Finalizing pending field 'FORMDSUBMISSION' with description parts: ['data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace', '{accession} with the ACCESSIONNUMBER field (after removing the dash character).', '5.2       ISSUERS', 'The ISSUERS data file contains specified information for the issuer provided in the submission.']
+DEBUG: End of Section 'FORMDSUBMISSION': Adding to section_fields (end of loop - with desc): {'Section': 'FORMDSUBMISSION', 'Field Name': 'FORMDSUBMISSION', 'Field Description': 'data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace {accession} with the ACCESSIONNUMBER field (after removing the dash character). 5.2       ISSUERS The ISSUERS data file contains specified information for the issuer provided in the submission.'}
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'The 20-character string formed'
+DEBUG: Line 6: first_word='The', rest_of_line='20-character string formed'
+DEBUG: Line 6: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 6: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed']
+DEBUG: Line 7: Raw Stripped Line: 'from the 18-digit number'
+DEBUG: Line 7: first_word='from', rest_of_line='the 18-digit number'
+DEBUG: Line 7: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 7: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number']
+DEBUG: Line 8: Raw Stripped Line: 'assigned by the Commission to'
+DEBUG: Line 8: first_word='assigned', rest_of_line='by the Commission to'
+DEBUG: Line 8: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 8: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number', 'assigned by the Commission to']
+DEBUG: Line 9: Raw Stripped Line: 'each EDGAR submission.'
+DEBUG: Line 9: first_word='each', rest_of_line='EDGAR submission.'
+DEBUG: Line 9: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 9: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number', 'assigned by the Commission to', 'each EDGAR submission.']
+DEBUG: Line 11: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 11: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 11: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ACCESSIONNUMBER'.
+DEBUG: Line 11: Finalizing field: 'ACCESSIONNUMBER' with description parts: ['The 20-character string formed', 'from the 18-digit number', 'assigned by the Commission to', 'each EDGAR submission.']
+DEBUG: Line 11: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'ACCESSIONNUMBER', 'Field Description': 'The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.'}
+DEBUG: Line 12: Raw Stripped Line: '(nnnnnnnnnn-'
+DEBUG: Line 12: first_word='(nnnnnnnnnn-', rest_of_line=''
+DEBUG: Line 13: Raw Stripped Line: 'nn-nnnnnn)'
+DEBUG: Line 13: first_word='nn-nnnnnn)', rest_of_line=''
+DEBUG: Line 15: Raw Stripped Line: 'IS_PRIMARYISSUER_FLAG'
+DEBUG: Line 15: first_word='IS_PRIMARYISSUER_FLAG', rest_of_line=''
+DEBUG: Line 15: New current_field_name='IS_PRIMARYISSUER_FLAG'
+DEBUG: Line 17: Raw Stripped Line: 'Yes, if primary issuer; No if not  ALPHANUMERIC'
+DEBUG: Line 17: first_word='Yes,', rest_of_line='if primary issuer; No if not  ALPHANUMERIC'
+DEBUG: Line 17: Scenario 3 triggered. Appending to description of 'IS_PRIMARYISSUER_FLAG'.
+DEBUG: Line 17: current_description_parts for 'IS_PRIMARYISSUER_FLAG' after appending stripped_line: ['Yes, if primary issuer; No if not  ALPHANUMERIC']
+DEBUG: Line 19: Raw Stripped Line: 'ISSUER_SEQ_KEY'
+DEBUG: Line 19: first_word='ISSUER_SEQ_KEY', rest_of_line=''
+DEBUG: Line 19: Adding to section_fields (before new field): {'Section': 'ISSUERS', 'Field Name': 'IS_PRIMARYISSUER_FLAG', 'Field Description': 'Yes, if primary issuer; No if not  ALPHANUMERIC'}
+DEBUG: Line 19: Finalizing previous field: 'IS_PRIMARYISSUER_FLAG' with description parts: ['Yes, if primary issuer; No if not  ALPHANUMERIC']
+DEBUG: Line 19: New current_field_name='ISSUER_SEQ_KEY'
+DEBUG: Line 21: Raw Stripped Line: 'Issuer index key.'
+DEBUG: Line 21: first_word='Issuer', rest_of_line='index key.'
+DEBUG: Line 21: Scenario 3 triggered. Appending to description of 'ISSUER_SEQ_KEY'.
+DEBUG: Line 21: current_description_parts for 'ISSUER_SEQ_KEY' after appending stripped_line: ['Issuer index key.']
+DEBUG: Line 23: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 23: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 23: Scenario 2 triggered for line starting with 'NUMERIC'. Finalizing field 'ISSUER_SEQ_KEY'.
+DEBUG: Line 23: Finalizing field: 'ISSUER_SEQ_KEY' with description parts: ['Issuer index key.']
+DEBUG: Line 23: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'ISSUER_SEQ_KEY', 'Field Description': 'Issuer index key.'}
+DEBUG: Line 25: Raw Stripped Line: 'CIK'
+DEBUG: Line 25: first_word='CIK', rest_of_line=''
+DEBUG: Line 25: New current_field_name='CIK'
+DEBUG: Line 27: Raw Stripped Line: 'ENTITYNAME'
+DEBUG: Line 27: first_word='ENTITYNAME', rest_of_line=''
+DEBUG: Line 27: Finalizing previous field: 'CIK' with description parts: []
+DEBUG: Line 27: New current_field_name='ENTITYNAME'
+DEBUG: Line 29: Raw Stripped Line: 'STREET1'
+DEBUG: Line 29: first_word='STREET1', rest_of_line=''
+DEBUG: Line 29: Finalizing previous field: 'ENTITYNAME' with description parts: []
+DEBUG: Line 29: New current_field_name='STREET1'
+DEBUG: Line 31: Raw Stripped Line: 'STREET2'
+DEBUG: Line 31: first_word='STREET2', rest_of_line=''
+DEBUG: Line 31: Finalizing previous field: 'STREET1' with description parts: []
+DEBUG: Line 31: New current_field_name='STREET2'
+DEBUG: Line 33: Raw Stripped Line: 'CITY'
+DEBUG: Line 33: first_word='CITY', rest_of_line=''
+DEBUG: Line 33: Finalizing previous field: 'STREET2' with description parts: []
+DEBUG: Line 33: New current_field_name='CITY'
+DEBUG: Line 35: Raw Stripped Line: 'Central index key (CIK) of'
+DEBUG: Line 35: first_word='Central', rest_of_line='index key (CIK) of'
+DEBUG: Line 35: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 35: current_description_parts for 'CITY' after appending stripped_line: ['Central index key (CIK) of']
+DEBUG: Line 36: Raw Stripped Line: 'issuer submitting the filing.'
+DEBUG: Line 36: first_word='issuer', rest_of_line='submitting the filing.'
+DEBUG: Line 36: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 36: current_description_parts for 'CITY' after appending stripped_line: ['Central index key (CIK) of', 'issuer submitting the filing.']
+DEBUG: Line 38: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 38: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 38: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'CITY'.
+DEBUG: Line 38: Finalizing field: 'CITY' with description parts: ['Central index key (CIK) of', 'issuer submitting the filing.']
+DEBUG: Line 38: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'CITY', 'Field Description': 'Central index key (CIK) of issuer submitting the filing.'}
+DEBUG: Line 40: Raw Stripped Line: 'Name of Issuer'
+DEBUG: Line 40: first_word='Name', rest_of_line='of Issuer'
+DEBUG: Line 42: Raw Stripped Line: 'Street Address 1'
+DEBUG: Line 42: first_word='Street', rest_of_line='Address 1'
+DEBUG: Line 44: Raw Stripped Line: 'Street Address 2'
+DEBUG: Line 44: first_word='Street', rest_of_line='Address 2'
+DEBUG: Line 46: Raw Stripped Line: 'City'
+DEBUG: Line 46: first_word='City', rest_of_line=''
+DEBUG: Line 48: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 48: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 50: Raw Stripped Line: '150'
+DEBUG: Line 50: first_word='150', rest_of_line=''
+DEBUG: Line 52: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 52: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 54: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 54: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 56: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 56: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 58: Raw Stripped Line: '40'
+DEBUG: Line 58: first_word='40', rest_of_line=''
+DEBUG: Line 60: Raw Stripped Line: '40'
+DEBUG: Line 60: first_word='40', rest_of_line=''
+DEBUG: Line 62: Raw Stripped Line: '30'
+DEBUG: Line 62: first_word='30', rest_of_line=''
+DEBUG: Line 64: Raw Stripped Line: 'STATEORCOUNTRY'
+DEBUG: Line 64: first_word='STATEORCOUNTRY', rest_of_line=''
+DEBUG: Line 64: New current_field_name='STATEORCOUNTRY'
+DEBUG: Line 66: Raw Stripped Line: 'State/Province/Country'
+DEBUG: Line 66: first_word='State/Province/Country', rest_of_line=''
+DEBUG: Line 66: Scenario 3 triggered. Appending to description of 'STATEORCOUNTRY'.
+DEBUG: Line 66: current_description_parts for 'STATEORCOUNTRY' after appending stripped_line: ['State/Province/Country']
+DEBUG: Line 68: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 68: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 68: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRY'.
+DEBUG: Line 68: Finalizing field: 'STATEORCOUNTRY' with description parts: ['State/Province/Country']
+DEBUG: Line 68: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'STATEORCOUNTRY', 'Field Description': 'State/Province/Country'}
+DEBUG: Line 70: Raw Stripped Line: '255'
+DEBUG: Line 70: first_word='255', rest_of_line=''
+DEBUG: Line 72: Raw Stripped Line: 'STATEORCOUNTRYDESCRIPTION  Full name of the country or'
+DEBUG: Line 72: first_word='STATEORCOUNTRYDESCRIPTION', rest_of_line='Full name of the country or'
+DEBUG: Line 72: New current_field_name='STATEORCOUNTRYDESCRIPTION'
+DEBUG: Line 72: Processing rest_of_line for field 'STATEORCOUNTRYDESCRIPTION': 'Full name of the country or'
+DEBUG: Line 72: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 72: description_segment from rest_of_line='Full name of the country or'
+DEBUG: Line 72: current_description_parts for 'STATEORCOUNTRYDESCRIPTION' after rest_of_line processing: ['Full name of the country or']
+DEBUG: Line 74: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 74: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 74: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRYDESCRIPTION'.
+DEBUG: Line 74: Finalizing field: 'STATEORCOUNTRYDESCRIPTION' with description parts: ['Full name of the country or']
+DEBUG: Line 74: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'STATEORCOUNTRYDESCRIPTION', 'Field Description': 'Full name of the country or'}
+DEBUG: Line 76: Raw Stripped Line: '50'
+DEBUG: Line 76: first_word='50', rest_of_line=''
+DEBUG: Line 78: Raw Stripped Line: 'Yes'
+DEBUG: Line 78: first_word='Yes', rest_of_line=''
+DEBUG: Line 80: Raw Stripped Line: 'Max'
+DEBUG: Line 80: first_word='Max', rest_of_line=''
+DEBUG: Line 81: Raw Stripped Line: 'Size'
+DEBUG: Line 81: first_word='Size', rest_of_line=''
+DEBUG: Line 83: Raw Stripped Line: '20'
+DEBUG: Line 83: first_word='20', rest_of_line=''
+DEBUG: Line 85: Raw Stripped Line: 'May be'
+DEBUG: Line 85: first_word='May', rest_of_line='be'
+DEBUG: Line 86: Raw Stripped Line: 'NULL'
+DEBUG: Line 86: first_word='NULL', rest_of_line=''
+DEBUG: Line 86: New current_field_name='NULL'
+DEBUG: Line 88: Raw Stripped Line: 'Key'
+DEBUG: Line 88: first_word='Key', rest_of_line=''
+DEBUG: Line 88: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 88: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 90: Raw Stripped Line: 'No'
+DEBUG: Line 90: first_word='No', rest_of_line=''
+DEBUG: Line 90: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 90: Finalizing field: 'NULL' with description parts: ['Key']
+DEBUG: Line 90: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 92: Raw Stripped Line: '*'
+DEBUG: Line 92: first_word='*', rest_of_line=''
+DEBUG: Line 94: Raw Stripped Line: '3'
+DEBUG: Line 94: first_word='3', rest_of_line=''
+DEBUG: Line 96: Raw Stripped Line: '38'
+DEBUG: Line 96: first_word='38', rest_of_line=''
+DEBUG: Line 98: Raw Stripped Line: '10'
+DEBUG: Line 98: first_word='10', rest_of_line=''
+DEBUG: Line 100: Raw Stripped Line: '*'
+DEBUG: Line 100: first_word='*', rest_of_line=''
+DEBUG: Line 102: Raw Stripped Line: 'No'
+DEBUG: Line 102: first_word='No', rest_of_line=''
+DEBUG: Line 104: Raw Stripped Line: 'No'
+DEBUG: Line 104: first_word='No', rest_of_line=''
+DEBUG: Line 106: Raw Stripped Line: 'No'
+DEBUG: Line 106: first_word='No', rest_of_line=''
+DEBUG: Line 108: Raw Stripped Line: 'Yes'
+DEBUG: Line 108: first_word='Yes', rest_of_line=''
+DEBUG: Line 110: Raw Stripped Line: 'No'
+DEBUG: Line 110: first_word='No', rest_of_line=''
+DEBUG: Line 112: Raw Stripped Line: 'Yes'
+DEBUG: Line 112: first_word='Yes', rest_of_line=''
+DEBUG: Line 114: Raw Stripped Line: 'No'
+DEBUG: Line 114: first_word='No', rest_of_line=''
+DEBUG: Line 116: Raw Stripped Line: 'No'
+DEBUG: Line 116: first_word='No', rest_of_line=''
+DEBUG: Line 118: Raw Stripped Line: '10'
+DEBUG: Line 118: first_word='10', rest_of_line=''
+DEBUG: Line 120: Raw Stripped Line: '20'
+DEBUG: Line 120: first_word='20', rest_of_line=''
+DEBUG: Line 122: Raw Stripped Line: '50'
+DEBUG: Line 122: first_word='50', rest_of_line=''
+DEBUG: Line 124: Raw Stripped Line: '150'
+DEBUG: Line 124: first_word='150', rest_of_line=''
+DEBUG: Line 126: Raw Stripped Line: '150'
+DEBUG: Line 126: first_word='150', rest_of_line=''
+DEBUG: Line 128: Raw Stripped Line: '150'
+DEBUG: Line 128: first_word='150', rest_of_line=''
+DEBUG: Line 130: Raw Stripped Line: '150'
+DEBUG: Line 130: first_word='150', rest_of_line=''
+DEBUG: Line 132: Raw Stripped Line: '150'
+DEBUG: Line 132: first_word='150', rest_of_line=''
+DEBUG: Line 134: Raw Stripped Line: '150'
+DEBUG: Line 134: first_word='150', rest_of_line=''
+DEBUG: Line 136: Raw Stripped Line: '255'
+DEBUG: Line 136: first_word='255', rest_of_line=''
+DEBUG: Line 138: Raw Stripped Line: '255'
+DEBUG: Line 138: first_word='255', rest_of_line=''
+DEBUG: Line 140: Raw Stripped Line: 'No'
+DEBUG: Line 140: first_word='No', rest_of_line=''
+DEBUG: Line 142: Raw Stripped Line: 'No'
+DEBUG: Line 142: first_word='No', rest_of_line=''
+DEBUG: Line 144: Raw Stripped Line: 'Yes'
+DEBUG: Line 144: first_word='Yes', rest_of_line=''
+DEBUG: Line 146: Raw Stripped Line: 'Yes'
+DEBUG: Line 146: first_word='Yes', rest_of_line=''
+DEBUG: Line 148: Raw Stripped Line: 'Yes'
+DEBUG: Line 148: first_word='Yes', rest_of_line=''
+DEBUG: Line 150: Raw Stripped Line: 'Yes'
+DEBUG: Line 150: first_word='Yes', rest_of_line=''
+DEBUG: Line 152: Raw Stripped Line: 'Yes'
+DEBUG: Line 152: first_word='Yes', rest_of_line=''
+DEBUG: Line 154: Raw Stripped Line: 'Yes'
+DEBUG: Line 154: first_word='Yes', rest_of_line=''
+DEBUG: Line 156: Raw Stripped Line: 'Yes'
+DEBUG: Line 156: first_word='Yes', rest_of_line=''
+DEBUG: Line 158: Raw Stripped Line: 'No'
+DEBUG: Line 158: first_word='No', rest_of_line=''
+DEBUG: Line 160: Raw Stripped Line: 'Yes'
+DEBUG: Line 160: first_word='Yes', rest_of_line=''
+DEBUG: Line 162: Raw Stripped Line: 'ZIPCODE'
+DEBUG: Line 162: first_word='ZIPCODE', rest_of_line=''
+DEBUG: Line 162: New current_field_name='ZIPCODE'
+DEBUG: Line 164: Raw Stripped Line: 'state'
+DEBUG: Line 164: first_word='state', rest_of_line=''
+DEBUG: Line 164: Scenario 3 triggered. Appending to description of 'ZIPCODE'.
+DEBUG: Line 164: current_description_parts for 'ZIPCODE' after appending stripped_line: ['state']
+DEBUG: Line 166: Raw Stripped Line: 'Zip/Postal Code'
+DEBUG: Line 166: first_word='Zip/Postal', rest_of_line='Code'
+DEBUG: Line 166: Scenario 3 triggered. Appending to description of 'ZIPCODE'.
+DEBUG: Line 166: current_description_parts for 'ZIPCODE' after appending stripped_line: ['state', 'Zip/Postal Code']
+DEBUG: Line 168: Raw Stripped Line: 'ISSUERPHONENUMBER'
+DEBUG: Line 168: first_word='ISSUERPHONENUMBER', rest_of_line=''
+DEBUG: Line 168: Adding to section_fields (before new field): {'Section': 'ISSUERS', 'Field Name': 'ZIPCODE', 'Field Description': 'state Zip/Postal Code'}
+DEBUG: Line 168: Finalizing previous field: 'ZIPCODE' with description parts: ['state', 'Zip/Postal Code']
+DEBUG: Line 168: New current_field_name='ISSUERPHONENUMBER'
+DEBUG: Line 170: Raw Stripped Line: 'Phone No. of Issuer'
+DEBUG: Line 170: first_word='Phone', rest_of_line='No. of Issuer'
+DEBUG: Line 170: Scenario 3 triggered. Appending to description of 'ISSUERPHONENUMBER'.
+DEBUG: Line 170: current_description_parts for 'ISSUERPHONENUMBER' after appending stripped_line: ['Phone No. of Issuer']
+DEBUG: Line 172: Raw Stripped Line: 'JURISDICTIONOFINC'
+DEBUG: Line 172: first_word='JURISDICTIONOFINC', rest_of_line=''
+DEBUG: Line 172: Adding to section_fields (before new field): {'Section': 'ISSUERS', 'Field Name': 'ISSUERPHONENUMBER', 'Field Description': 'Phone No. of Issuer'}
+DEBUG: Line 172: Finalizing previous field: 'ISSUERPHONENUMBER' with description parts: ['Phone No. of Issuer']
+DEBUG: Line 172: New current_field_name='JURISDICTIONOFINC'
+DEBUG: Line 174: Raw Stripped Line: 'Jurisdiction of'
+DEBUG: Line 174: first_word='Jurisdiction', rest_of_line='of'
+DEBUG: Line 174: Scenario 3 triggered. Appending to description of 'JURISDICTIONOFINC'.
+DEBUG: Line 174: current_description_parts for 'JURISDICTIONOFINC' after appending stripped_line: ['Jurisdiction of']
+DEBUG: Line 175: Raw Stripped Line: 'Incorporation/Organization'
+DEBUG: Line 175: first_word='Incorporation/Organization', rest_of_line=''
+DEBUG: Line 175: Scenario 3 triggered. Appending to description of 'JURISDICTIONOFINC'.
+DEBUG: Line 175: current_description_parts for 'JURISDICTIONOFINC' after appending stripped_line: ['Jurisdiction of', 'Incorporation/Organization']
+DEBUG: Line 177: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 177: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 177: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'JURISDICTIONOFINC'.
+DEBUG: Line 177: Finalizing field: 'JURISDICTIONOFINC' with description parts: ['Jurisdiction of', 'Incorporation/Organization']
+DEBUG: Line 177: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'JURISDICTIONOFINC', 'Field Description': 'Jurisdiction of Incorporation/Organization'}
+DEBUG: Line 179: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 179: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 181: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 181: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 183: Raw Stripped Line: 'ISSUER_PREVIOUSNAME_1'
+DEBUG: Line 183: first_word='ISSUER_PREVIOUSNAME_1', rest_of_line=''
+DEBUG: Line 183: New current_field_name='ISSUER_PREVIOUSNAME_1'
+DEBUG: Line 185: Raw Stripped Line: 'Issuer Previous Name 1'
+DEBUG: Line 185: first_word='Issuer', rest_of_line='Previous Name 1'
+DEBUG: Line 185: Scenario 3 triggered. Appending to description of 'ISSUER_PREVIOUSNAME_1'.
+DEBUG: Line 185: current_description_parts for 'ISSUER_PREVIOUSNAME_1' after appending stripped_line: ['Issuer Previous Name 1']
+DEBUG: Line 187: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 187: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 187: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ISSUER_PREVIOUSNAME_1'.
+DEBUG: Line 187: Finalizing field: 'ISSUER_PREVIOUSNAME_1' with description parts: ['Issuer Previous Name 1']
+DEBUG: Line 187: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'ISSUER_PREVIOUSNAME_1', 'Field Description': 'Issuer Previous Name 1'}
+DEBUG: Line 189: Raw Stripped Line: 'ISSUER_PREVIOUSNAME_2'
+DEBUG: Line 189: first_word='ISSUER_PREVIOUSNAME_2', rest_of_line=''
+DEBUG: Line 189: New current_field_name='ISSUER_PREVIOUSNAME_2'
+DEBUG: Line 191: Raw Stripped Line: 'Issuer Previous Name 2'
+DEBUG: Line 191: first_word='Issuer', rest_of_line='Previous Name 2'
+DEBUG: Line 191: Scenario 3 triggered. Appending to description of 'ISSUER_PREVIOUSNAME_2'.
+DEBUG: Line 191: current_description_parts for 'ISSUER_PREVIOUSNAME_2' after appending stripped_line: ['Issuer Previous Name 2']
+DEBUG: Line 193: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 193: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 193: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ISSUER_PREVIOUSNAME_2'.
+DEBUG: Line 193: Finalizing field: 'ISSUER_PREVIOUSNAME_2' with description parts: ['Issuer Previous Name 2']
+DEBUG: Line 193: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'ISSUER_PREVIOUSNAME_2', 'Field Description': 'Issuer Previous Name 2'}
+DEBUG: Line 195: Raw Stripped Line: 'ISSUER_PREVIOUSNAME_3'
+DEBUG: Line 195: first_word='ISSUER_PREVIOUSNAME_3', rest_of_line=''
+DEBUG: Line 195: New current_field_name='ISSUER_PREVIOUSNAME_3'
+DEBUG: Line 197: Raw Stripped Line: 'Issuer Previous Name 3'
+DEBUG: Line 197: first_word='Issuer', rest_of_line='Previous Name 3'
+DEBUG: Line 197: Scenario 3 triggered. Appending to description of 'ISSUER_PREVIOUSNAME_3'.
+DEBUG: Line 197: current_description_parts for 'ISSUER_PREVIOUSNAME_3' after appending stripped_line: ['Issuer Previous Name 3']
+DEBUG: Line 199: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 199: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 199: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ISSUER_PREVIOUSNAME_3'.
+DEBUG: Line 199: Finalizing field: 'ISSUER_PREVIOUSNAME_3' with description parts: ['Issuer Previous Name 3']
+DEBUG: Line 199: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'ISSUER_PREVIOUSNAME_3', 'Field Description': 'Issuer Previous Name 3'}
+DEBUG: Line 201: Raw Stripped Line: 'EDGAR_PREVIOUSNAME_1'
+DEBUG: Line 201: first_word='EDGAR_PREVIOUSNAME_1', rest_of_line=''
+DEBUG: Line 201: New current_field_name='EDGAR_PREVIOUSNAME_1'
+DEBUG: Line 203: Raw Stripped Line: 'EDGAR  Previous Name 1'
+DEBUG: Line 203: first_word='EDGAR', rest_of_line='Previous Name 1'
+DEBUG: Line 203: Finalizing previous field: 'EDGAR_PREVIOUSNAME_1' with description parts: []
+DEBUG: Line 203: New current_field_name='EDGAR'
+DEBUG: Line 203: Processing rest_of_line for field 'EDGAR': 'Previous Name 1'
+DEBUG: Line 203: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 203: description_segment from rest_of_line='Previous Name 1'
+DEBUG: Line 203: current_description_parts for 'EDGAR' after rest_of_line processing: ['Previous Name 1']
+DEBUG: Line 205: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 205: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 205: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'EDGAR'.
+DEBUG: Line 205: Finalizing field: 'EDGAR' with description parts: ['Previous Name 1']
+DEBUG: Line 205: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'EDGAR', 'Field Description': 'Previous Name 1'}
+DEBUG: Line 207: Raw Stripped Line: 'EDGAR_PREVIOUSNAME_2'
+DEBUG: Line 207: first_word='EDGAR_PREVIOUSNAME_2', rest_of_line=''
+DEBUG: Line 207: New current_field_name='EDGAR_PREVIOUSNAME_2'
+DEBUG: Line 209: Raw Stripped Line: 'EDGAR  Previous Name 2'
+DEBUG: Line 209: first_word='EDGAR', rest_of_line='Previous Name 2'
+DEBUG: Line 209: Finalizing previous field: 'EDGAR_PREVIOUSNAME_2' with description parts: []
+DEBUG: Line 209: New current_field_name='EDGAR'
+DEBUG: Line 209: Processing rest_of_line for field 'EDGAR': 'Previous Name 2'
+DEBUG: Line 209: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 209: description_segment from rest_of_line='Previous Name 2'
+DEBUG: Line 209: current_description_parts for 'EDGAR' after rest_of_line processing: ['Previous Name 2']
+DEBUG: Line 211: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 211: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 211: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'EDGAR'.
+DEBUG: Line 211: Finalizing field: 'EDGAR' with description parts: ['Previous Name 2']
+DEBUG: Line 211: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'EDGAR', 'Field Description': 'Previous Name 2'}
+DEBUG: Line 213: Raw Stripped Line: 'EDGAR_PREVIOUSNAME_3'
+DEBUG: Line 213: first_word='EDGAR_PREVIOUSNAME_3', rest_of_line=''
+DEBUG: Line 213: New current_field_name='EDGAR_PREVIOUSNAME_3'
+DEBUG: Line 215: Raw Stripped Line: 'EDGAR  Previous Name 3'
+DEBUG: Line 215: first_word='EDGAR', rest_of_line='Previous Name 3'
+DEBUG: Line 215: Finalizing previous field: 'EDGAR_PREVIOUSNAME_3' with description parts: []
+DEBUG: Line 215: New current_field_name='EDGAR'
+DEBUG: Line 215: Processing rest_of_line for field 'EDGAR': 'Previous Name 3'
+DEBUG: Line 215: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 215: description_segment from rest_of_line='Previous Name 3'
+DEBUG: Line 215: current_description_parts for 'EDGAR' after rest_of_line processing: ['Previous Name 3']
+DEBUG: Line 217: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 217: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 217: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'EDGAR'.
+DEBUG: Line 217: Finalizing field: 'EDGAR' with description parts: ['Previous Name 3']
+DEBUG: Line 217: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'EDGAR', 'Field Description': 'Previous Name 3'}
+DEBUG: Line 219: Raw Stripped Line: 'ENTITYTYPE'
+DEBUG: Line 219: first_word='ENTITYTYPE', rest_of_line=''
+DEBUG: Line 219: New current_field_name='ENTITYTYPE'
+DEBUG: Line 221: Raw Stripped Line: 'Entity type'
+DEBUG: Line 221: first_word='Entity', rest_of_line='type'
+DEBUG: Line 221: Scenario 3 triggered. Appending to description of 'ENTITYTYPE'.
+DEBUG: Line 221: current_description_parts for 'ENTITYTYPE' after appending stripped_line: ['Entity type']
+DEBUG: Line 223: Raw Stripped Line: 'ENTITYTYPEOTHERDESC'
+DEBUG: Line 223: first_word='ENTITYTYPEOTHERDESC', rest_of_line=''
+DEBUG: Line 223: Adding to section_fields (before new field): {'Section': 'ISSUERS', 'Field Name': 'ENTITYTYPE', 'Field Description': 'Entity type'}
+DEBUG: Line 223: Finalizing previous field: 'ENTITYTYPE' with description parts: ['Entity type']
+DEBUG: Line 223: New current_field_name='ENTITYTYPEOTHERDESC'
+DEBUG: Line 225: Raw Stripped Line: 'YEAROFINC_TIMESPAN_CHOICE'
+DEBUG: Line 225: first_word='YEAROFINC_TIMESPAN_CHOICE', rest_of_line=''
+DEBUG: Line 225: Finalizing previous field: 'ENTITYTYPEOTHERDESC' with description parts: []
+DEBUG: Line 225: New current_field_name='YEAROFINC_TIMESPAN_CHOICE'
+DEBUG: Line 227: Raw Stripped Line: 'YEAROFINC_VALUE_ENTERED'
+DEBUG: Line 227: first_word='YEAROFINC_VALUE_ENTERED', rest_of_line=''
+DEBUG: Line 227: Finalizing previous field: 'YEAROFINC_TIMESPAN_CHOICE' with description parts: []
+DEBUG: Line 227: New current_field_name='YEAROFINC_VALUE_ENTERED'
+DEBUG: Line 229: Raw Stripped Line: 'Description of Entity Type when'
+DEBUG: Line 229: first_word='Description', rest_of_line='of Entity Type when'
+DEBUG: Line 229: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 229: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when']
+DEBUG: Line 230: Raw Stripped Line: 'indicated as 'Other' in Entity'
+DEBUG: Line 230: first_word='indicated', rest_of_line='as 'Other' in Entity'
+DEBUG: Line 230: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 230: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity"]
+DEBUG: Line 231: Raw Stripped Line: 'Type'
+DEBUG: Line 231: first_word='Type', rest_of_line=''
+DEBUG: Line 231: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 231: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type']
+DEBUG: Line 233: Raw Stripped Line: 'Year of'
+DEBUG: Line 233: first_word='Year', rest_of_line='of'
+DEBUG: Line 233: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 233: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of']
+DEBUG: Line 234: Raw Stripped Line: 'Incorporation/Organization'
+DEBUG: Line 234: first_word='Incorporation/Organization', rest_of_line=''
+DEBUG: Line 234: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 234: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization']
+DEBUG: Line 235: Raw Stripped Line: '(Specify Year) Within Last Five'
+DEBUG: Line 235: first_word='(Specify', rest_of_line='Year) Within Last Five'
+DEBUG: Line 235: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 235: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization', '(Specify Year) Within Last Five']
+DEBUG: Line 236: Raw Stripped Line: 'Years (Specify Year)'
+DEBUG: Line 236: first_word='Years', rest_of_line='(Specify Year)'
+DEBUG: Line 236: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 236: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization', '(Specify Year) Within Last Five', 'Years (Specify Year)']
+DEBUG: Line 238: Raw Stripped Line: 'Year of Incorporation value'
+DEBUG: Line 238: first_word='Year', rest_of_line='of Incorporation value'
+DEBUG: Line 238: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 238: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization', '(Specify Year) Within Last Five', 'Years (Specify Year)', 'Year of Incorporation value']
+DEBUG: Line 239: Raw Stripped Line: 'entered'
+DEBUG: Line 239: first_word='entered', rest_of_line=''
+DEBUG: Line 239: Scenario 3 triggered. Appending to description of 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 239: current_description_parts for 'YEAROFINC_VALUE_ENTERED' after appending stripped_line: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization', '(Specify Year) Within Last Five', 'Years (Specify Year)', 'Year of Incorporation value', 'entered']
+DEBUG: Line 241: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 241: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 241: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'YEAROFINC_VALUE_ENTERED'.
+DEBUG: Line 241: Finalizing field: 'YEAROFINC_VALUE_ENTERED' with description parts: ['Description of Entity Type when', "indicated as 'Other' in Entity", 'Type', 'Year of', 'Incorporation/Organization', '(Specify Year) Within Last Five', 'Years (Specify Year)', 'Year of Incorporation value', 'entered']
+DEBUG: Line 241: Adding to section_fields (Scenario 2 - with desc): {'Section': 'ISSUERS', 'Field Name': 'YEAROFINC_VALUE_ENTERED', 'Field Description': "Description of Entity Type when indicated as 'Other' in Entity Type Year of Incorporation/Organization (Specify Year) Within Last Five Years (Specify Year) Year of Incorporation value entered"}
+DEBUG: Line 243: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 243: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 245: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 245: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 247: Raw Stripped Line: '150'
+DEBUG: Line 247: first_word='150', rest_of_line=''
+DEBUG: Line 249: Raw Stripped Line: 'No'
+DEBUG: Line 249: first_word='No', rest_of_line=''
+DEBUG: Line 251: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 251: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 253: Raw Stripped Line: '4'
+DEBUG: Line 253: first_word='4', rest_of_line=''
+DEBUG: Line 255: Raw Stripped Line: 'Yes'
+DEBUG: Line 255: first_word='Yes', rest_of_line=''
+DEBUG: Line 257: Raw Stripped Line: '5.3       OFFERING'
+DEBUG: Line 257: first_word='5.3', rest_of_line='OFFERING'
+DEBUG: Line 258: Raw Stripped Line: 'The OFFERING data file contains information regarding the offering requirements.'
+DEBUG: Line 258: first_word='The', rest_of_line='OFFERING data file contains information regarding the offering requirements.'
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'INDUSTRYGROUPTYPE'
+DEBUG: Line 6: first_word='INDUSTRYGROUPTYPE', rest_of_line=''
+DEBUG: Line 6: Finalizing previous field: 'ACCESSIONNUMBER' with description parts: []
+DEBUG: Line 6: New current_field_name='INDUSTRYGROUPTYPE'
+DEBUG: Line 8: Raw Stripped Line: 'INVESTMENTFUNDTYPE'
+DEBUG: Line 8: first_word='INVESTMENTFUNDTYPE', rest_of_line=''
+DEBUG: Line 8: Finalizing previous field: 'INDUSTRYGROUPTYPE' with description parts: []
+DEBUG: Line 8: New current_field_name='INVESTMENTFUNDTYPE'
+DEBUG: Line 10: Raw Stripped Line: 'IS40ACT'
+DEBUG: Line 10: first_word='IS40ACT', rest_of_line=''
+DEBUG: Line 10: Finalizing previous field: 'INVESTMENTFUNDTYPE' with description parts: []
+DEBUG: Line 10: New current_field_name='IS40ACT'
+DEBUG: Line 12: Raw Stripped Line: 'The 20-character string'
+DEBUG: Line 12: first_word='The', rest_of_line='20-character string'
+DEBUG: Line 12: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 12: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string']
+DEBUG: Line 13: Raw Stripped Line: 'formed from the 18-'
+DEBUG: Line 13: first_word='formed', rest_of_line='from the 18-'
+DEBUG: Line 13: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 13: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string', 'formed from the 18-']
+DEBUG: Line 14: Raw Stripped Line: 'digit number assigned'
+DEBUG: Line 14: first_word='digit', rest_of_line='number assigned'
+DEBUG: Line 14: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 14: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string', 'formed from the 18-', 'digit number assigned']
+DEBUG: Line 15: Raw Stripped Line: 'by the Commission to'
+DEBUG: Line 15: first_word='by', rest_of_line='the Commission to'
+DEBUG: Line 15: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 15: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string', 'formed from the 18-', 'digit number assigned', 'by the Commission to']
+DEBUG: Line 16: Raw Stripped Line: 'each EDGAR'
+DEBUG: Line 16: first_word='each', rest_of_line='EDGAR'
+DEBUG: Line 16: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 16: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string', 'formed from the 18-', 'digit number assigned', 'by the Commission to', 'each EDGAR']
+DEBUG: Line 17: Raw Stripped Line: 'submission.'
+DEBUG: Line 17: first_word='submission.', rest_of_line=''
+DEBUG: Line 17: Scenario 3 triggered. Appending to description of 'IS40ACT'.
+DEBUG: Line 17: current_description_parts for 'IS40ACT' after appending stripped_line: ['The 20-character string', 'formed from the 18-', 'digit number assigned', 'by the Commission to', 'each EDGAR', 'submission.']
+DEBUG: Line 19: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 19: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 19: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'IS40ACT'.
+DEBUG: Line 19: Finalizing field: 'IS40ACT' with description parts: ['The 20-character string', 'formed from the 18-', 'digit number assigned', 'by the Commission to', 'each EDGAR', 'submission.']
+DEBUG: Line 19: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'IS40ACT', 'Field Description': 'The 20-character string formed from the 18- digit number assigned by the Commission to each EDGAR submission.'}
+DEBUG: Line 20: Raw Stripped Line: '(nnnnnnnnnn-'
+DEBUG: Line 20: first_word='(nnnnnnnnnn-', rest_of_line=''
+DEBUG: Line 21: Raw Stripped Line: 'nn-nnnnnn)'
+DEBUG: Line 21: first_word='nn-nnnnnn)', rest_of_line=''
+DEBUG: Line 23: Raw Stripped Line: 'Type of Industry'
+DEBUG: Line 23: first_word='Type', rest_of_line='of Industry'
+DEBUG: Line 25: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 25: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 27: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 27: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 29: Raw Stripped Line: 'Max'
+DEBUG: Line 29: first_word='Max', rest_of_line=''
+DEBUG: Line 30: Raw Stripped Line: 'Size'
+DEBUG: Line 30: first_word='Size', rest_of_line=''
+DEBUG: Line 32: Raw Stripped Line: '20'
+DEBUG: Line 32: first_word='20', rest_of_line=''
+DEBUG: Line 34: Raw Stripped Line: 'May be'
+DEBUG: Line 34: first_word='May', rest_of_line='be'
+DEBUG: Line 35: Raw Stripped Line: 'NULL'
+DEBUG: Line 35: first_word='NULL', rest_of_line=''
+DEBUG: Line 35: New current_field_name='NULL'
+DEBUG: Line 37: Raw Stripped Line: 'Key'
+DEBUG: Line 37: first_word='Key', rest_of_line=''
+DEBUG: Line 37: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 37: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 39: Raw Stripped Line: 'No'
+DEBUG: Line 39: first_word='No', rest_of_line=''
+DEBUG: Line 39: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 39: Finalizing field: 'NULL' with description parts: ['Key']
+DEBUG: Line 39: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 41: Raw Stripped Line: '*'
+DEBUG: Line 41: first_word='*', rest_of_line=''
+DEBUG: Line 43: Raw Stripped Line: '255'
+DEBUG: Line 43: first_word='255', rest_of_line=''
+DEBUG: Line 45: Raw Stripped Line: '255'
+DEBUG: Line 45: first_word='255', rest_of_line=''
+DEBUG: Line 47: Raw Stripped Line: 'No'
+DEBUG: Line 47: first_word='No', rest_of_line=''
+DEBUG: Line 49: Raw Stripped Line: 'Yes'
+DEBUG: Line 49: first_word='Yes', rest_of_line=''
+DEBUG: Line 51: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 51: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 53: Raw Stripped Line: '5'
+DEBUG: Line 53: first_word='5', rest_of_line=''
+DEBUG: Line 55: Raw Stripped Line: 'Yes'
+DEBUG: Line 55: first_word='Yes', rest_of_line=''
+DEBUG: Line 57: Raw Stripped Line: 'REVENUERANGE'
+DEBUG: Line 57: first_word='REVENUERANGE', rest_of_line=''
+DEBUG: Line 57: New current_field_name='REVENUERANGE'
+DEBUG: Line 59: Raw Stripped Line: 'Revenue Range'
+DEBUG: Line 59: first_word='Revenue', rest_of_line='Range'
+DEBUG: Line 59: Scenario 3 triggered. Appending to description of 'REVENUERANGE'.
+DEBUG: Line 59: current_description_parts for 'REVENUERANGE' after appending stripped_line: ['Revenue Range']
+DEBUG: Line 61: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 61: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 61: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'REVENUERANGE'.
+DEBUG: Line 61: Finalizing field: 'REVENUERANGE' with description parts: ['Revenue Range']
+DEBUG: Line 61: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'REVENUERANGE', 'Field Description': 'Revenue Range'}
+DEBUG: Line 63: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 63: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 65: Raw Stripped Line: '255'
+DEBUG: Line 65: first_word='255', rest_of_line=''
+DEBUG: Line 67: Raw Stripped Line: '255'
+DEBUG: Line 67: first_word='255', rest_of_line=''
+DEBUG: Line 69: Raw Stripped Line: 'Yes'
+DEBUG: Line 69: first_word='Yes', rest_of_line=''
+DEBUG: Line 71: Raw Stripped Line: 'Yes'
+DEBUG: Line 71: first_word='Yes', rest_of_line=''
+DEBUG: Line 73: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 73: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 75: Raw Stripped Line: '1000'
+DEBUG: Line 75: first_word='1000', rest_of_line=''
+DEBUG: Line 77: Raw Stripped Line: 'Yes'
+DEBUG: Line 77: first_word='Yes', rest_of_line=''
+DEBUG: Line 79: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 79: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 81: Raw Stripped Line: '5'
+DEBUG: Line 81: first_word='5', rest_of_line=''
+DEBUG: Line 83: Raw Stripped Line: 'No'
+DEBUG: Line 83: first_word='No', rest_of_line=''
+DEBUG: Line 85: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 85: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 87: Raw Stripped Line: '20'
+DEBUG: Line 87: first_word='20', rest_of_line=''
+DEBUG: Line 89: Raw Stripped Line: 'Yes'
+DEBUG: Line 89: first_word='Yes', rest_of_line=''
+DEBUG: Line 91: Raw Stripped Line: 'Type of Securities'
+DEBUG: Line 91: first_word='Type', rest_of_line='of Securities'
+DEBUG: Line 92: Raw Stripped Line: 'Offered'
+DEBUG: Line 92: first_word='Offered', rest_of_line=''
+DEBUG: Line 94: Raw Stripped Line: 'Flag to indicate'
+DEBUG: Line 94: first_word='Flag', rest_of_line='to indicate'
+DEBUG: Line 95: Raw Stripped Line: 'whether the issuer'
+DEBUG: Line 95: first_word='whether', rest_of_line='the issuer'
+DEBUG: Line 96: Raw Stripped Line: 'registered as an'
+DEBUG: Line 96: first_word='registered', rest_of_line='as an'
+DEBUG: Line 97: Raw Stripped Line: 'investment'
+DEBUG: Line 97: first_word='investment', rest_of_line=''
+DEBUG: Line 98: Raw Stripped Line: 'company under the'
+DEBUG: Line 98: first_word='company', rest_of_line='under the'
+DEBUG: Line 99: Raw Stripped Line: 'Investment Company'
+DEBUG: Line 99: first_word='Investment', rest_of_line='Company'
+DEBUG: Line 100: Raw Stripped Line: 'Act of 1940'
+DEBUG: Line 100: first_word='Act', rest_of_line='of 1940'
+DEBUG: Line 102: Raw Stripped Line: 'Aggregate Net Asset'
+DEBUG: Line 102: first_word='Aggregate', rest_of_line='Net Asset'
+DEBUG: Line 103: Raw Stripped Line: 'Value Range'
+DEBUG: Line 103: first_word='Value', rest_of_line='Range'
+DEBUG: Line 105: Raw Stripped Line: 'List of exemptions'
+DEBUG: Line 105: first_word='List', rest_of_line='of exemptions'
+DEBUG: Line 106: Raw Stripped Line: 'under Securities Act'
+DEBUG: Line 106: first_word='under', rest_of_line='Securities Act'
+DEBUG: Line 108: Raw Stripped Line: 'New Notice'
+DEBUG: Line 108: first_word='New', rest_of_line='Notice'
+DEBUG: Line 109: Raw Stripped Line: '/Amendment'
+DEBUG: Line 109: first_word='/Amendment', rest_of_line=''
+DEBUG: Line 111: Raw Stripped Line: 'Previous Accession'
+DEBUG: Line 111: first_word='Previous', rest_of_line='Accession'
+DEBUG: Line 112: Raw Stripped Line: 'Number; The 20-'
+DEBUG: Line 112: first_word='Number;', rest_of_line='The 20-'
+DEBUG: Line 113: Raw Stripped Line: 'character string formed'
+DEBUG: Line 113: first_word='character', rest_of_line='string formed'
+DEBUG: Line 114: Raw Stripped Line: 'from the 18-digit'
+DEBUG: Line 114: first_word='from', rest_of_line='the 18-digit'
+DEBUG: Line 115: Raw Stripped Line: 'number assigned by'
+DEBUG: Line 115: first_word='number', rest_of_line='assigned by'
+DEBUG: Line 116: Raw Stripped Line: 'the Commission to'
+DEBUG: Line 116: first_word='the', rest_of_line='Commission to'
+DEBUG: Line 117: Raw Stripped Line: 'each EDGAR'
+DEBUG: Line 117: first_word='each', rest_of_line='EDGAR'
+DEBUG: Line 118: Raw Stripped Line: 'submission.'
+DEBUG: Line 118: first_word='submission.', rest_of_line=''
+DEBUG: Line 120: Raw Stripped Line: 'Duration of offering'
+DEBUG: Line 120: first_word='Duration', rest_of_line='of offering'
+DEBUG: Line 121: Raw Stripped Line: 'more than one year'
+DEBUG: Line 121: first_word='more', rest_of_line='than one year'
+DEBUG: Line 123: Raw Stripped Line: 'Equity'
+DEBUG: Line 123: first_word='Equity', rest_of_line=''
+DEBUG: Line 125: Raw Stripped Line: 'Debt'
+DEBUG: Line 125: first_word='Debt', rest_of_line=''
+DEBUG: Line 127: Raw Stripped Line: 'Option, Warrant or'
+DEBUG: Line 127: first_word='Option,', rest_of_line='Warrant or'
+DEBUG: Line 128: Raw Stripped Line: 'Other Right to Acquire'
+DEBUG: Line 128: first_word='Other', rest_of_line='Right to Acquire'
+DEBUG: Line 129: Raw Stripped Line: 'Another Security'
+DEBUG: Line 129: first_word='Another', rest_of_line='Security'
+DEBUG: Line 131: Raw Stripped Line: 'Security to be Acquired'
+DEBUG: Line 131: first_word='Security', rest_of_line='to be Acquired'
+DEBUG: Line 132: Raw Stripped Line: 'Upon Exercise of'
+DEBUG: Line 132: first_word='Upon', rest_of_line='Exercise of'
+DEBUG: Line 133: Raw Stripped Line: 'Option, Warrant or'
+DEBUG: Line 133: first_word='Option,', rest_of_line='Warrant or'
+DEBUG: Line 134: Raw Stripped Line: 'Other Right to Acquire'
+DEBUG: Line 134: first_word='Other', rest_of_line='Right to Acquire'
+DEBUG: Line 135: Raw Stripped Line: 'Security'
+DEBUG: Line 135: first_word='Security', rest_of_line=''
+DEBUG: Line 137: Raw Stripped Line: 'Sale Date'
+DEBUG: Line 137: first_word='Sale', rest_of_line='Date'
+DEBUG: Line 139: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 139: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 141: Raw Stripped Line: '255'
+DEBUG: Line 141: first_word='255', rest_of_line=''
+DEBUG: Line 143: Raw Stripped Line: 'First Sale Yet to Occur'
+DEBUG: Line 143: first_word='First', rest_of_line='Sale Yet to Occur'
+DEBUG: Line 145: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 145: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 147: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 147: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 149: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 149: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 151: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 151: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 153: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 153: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 155: Raw Stripped Line: 'Yes'
+DEBUG: Line 155: first_word='Yes', rest_of_line=''
+DEBUG: Line 157: Raw Stripped Line: 'Yes'
+DEBUG: Line 157: first_word='Yes', rest_of_line=''
+DEBUG: Line 159: Raw Stripped Line: 'No'
+DEBUG: Line 159: first_word='No', rest_of_line=''
+DEBUG: Line 161: Raw Stripped Line: 'Yes'
+DEBUG: Line 161: first_word='Yes', rest_of_line=''
+DEBUG: Line 163: Raw Stripped Line: 'Yes'
+DEBUG: Line 163: first_word='Yes', rest_of_line=''
+DEBUG: Line 165: Raw Stripped Line: 'Yes'
+DEBUG: Line 165: first_word='Yes', rest_of_line=''
+DEBUG: Line 167: Raw Stripped Line: '5'
+DEBUG: Line 167: first_word='5', rest_of_line=''
+DEBUG: Line 169: Raw Stripped Line: '5'
+DEBUG: Line 169: first_word='5', rest_of_line=''
+DEBUG: Line 171: Raw Stripped Line: '5'
+DEBUG: Line 171: first_word='5', rest_of_line=''
+DEBUG: Line 173: Raw Stripped Line: '5'
+DEBUG: Line 173: first_word='5', rest_of_line=''
+DEBUG: Line 175: Raw Stripped Line: '5'
+DEBUG: Line 175: first_word='5', rest_of_line=''
+DEBUG: Line 177: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 177: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 179: Raw Stripped Line: '5'
+DEBUG: Line 179: first_word='5', rest_of_line=''
+DEBUG: Line 181: Raw Stripped Line: 'Yes'
+DEBUG: Line 181: first_word='Yes', rest_of_line=''
+DEBUG: Line 183: Raw Stripped Line: 'AGGREGATENETASSETVALUERANGE'
+DEBUG: Line 183: first_word='AGGREGATENETASSETVALUERANGE', rest_of_line=''
+DEBUG: Line 183: New current_field_name='AGGREGATENETASSETVALUERANGE'
+DEBUG: Line 185: Raw Stripped Line: 'FEDERALEXEMPTIONS_ITEMS_LIST'
+DEBUG: Line 185: first_word='FEDERALEXEMPTIONS_ITEMS_LIST', rest_of_line=''
+DEBUG: Line 185: Finalizing previous field: 'AGGREGATENETASSETVALUERANGE' with description parts: []
+DEBUG: Line 185: New current_field_name='FEDERALEXEMPTIONS_ITEMS_LIST'
+DEBUG: Line 187: Raw Stripped Line: 'ISAMENDMENT'
+DEBUG: Line 187: first_word='ISAMENDMENT', rest_of_line=''
+DEBUG: Line 187: Finalizing previous field: 'FEDERALEXEMPTIONS_ITEMS_LIST' with description parts: []
+DEBUG: Line 187: New current_field_name='ISAMENDMENT'
+DEBUG: Line 189: Raw Stripped Line: 'PREVIOUSACCESSIONNUMBER'
+DEBUG: Line 189: first_word='PREVIOUSACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 189: Finalizing previous field: 'ISAMENDMENT' with description parts: []
+DEBUG: Line 189: New current_field_name='PREVIOUSACCESSIONNUMBER'
+DEBUG: Line 191: Raw Stripped Line: 'SALE_DATE'
+DEBUG: Line 191: first_word='SALE_DATE', rest_of_line=''
+DEBUG: Line 191: Finalizing previous field: 'PREVIOUSACCESSIONNUMBER' with description parts: []
+DEBUG: Line 191: New current_field_name='SALE_DATE'
+DEBUG: Line 193: Raw Stripped Line: 'YETTOOCCUR'
+DEBUG: Line 193: first_word='YETTOOCCUR', rest_of_line=''
+DEBUG: Line 193: Finalizing previous field: 'SALE_DATE' with description parts: []
+DEBUG: Line 193: New current_field_name='YETTOOCCUR'
+DEBUG: Line 195: Raw Stripped Line: 'MORETHANONEYEAR'
+DEBUG: Line 195: first_word='MORETHANONEYEAR', rest_of_line=''
+DEBUG: Line 195: Finalizing previous field: 'YETTOOCCUR' with description parts: []
+DEBUG: Line 195: New current_field_name='MORETHANONEYEAR'
+DEBUG: Line 197: Raw Stripped Line: 'ISEQUITYTYPE'
+DEBUG: Line 197: first_word='ISEQUITYTYPE', rest_of_line=''
+DEBUG: Line 197: Finalizing previous field: 'MORETHANONEYEAR' with description parts: []
+DEBUG: Line 197: New current_field_name='ISEQUITYTYPE'
+DEBUG: Line 199: Raw Stripped Line: 'ISDEBTTYPE'
+DEBUG: Line 199: first_word='ISDEBTTYPE', rest_of_line=''
+DEBUG: Line 199: Finalizing previous field: 'ISEQUITYTYPE' with description parts: []
+DEBUG: Line 199: New current_field_name='ISDEBTTYPE'
+DEBUG: Line 201: Raw Stripped Line: 'ISOPTIONTOACQUIRETYPE'
+DEBUG: Line 201: first_word='ISOPTIONTOACQUIRETYPE', rest_of_line=''
+DEBUG: Line 201: Finalizing previous field: 'ISDEBTTYPE' with description parts: []
+DEBUG: Line 201: New current_field_name='ISOPTIONTOACQUIRETYPE'
+DEBUG: Line 203: Raw Stripped Line: 'ISSECURITYTOBEACQUIREDTYPE'
+DEBUG: Line 203: first_word='ISSECURITYTOBEACQUIREDTYPE', rest_of_line=''
+DEBUG: Line 203: Finalizing previous field: 'ISOPTIONTOACQUIRETYPE' with description parts: []
+DEBUG: Line 203: New current_field_name='ISSECURITYTOBEACQUIREDTYPE'
+DEBUG: Line 220: Raw Stripped Line: 'Field Name'
+DEBUG: Line 220: first_word='Field', rest_of_line='Name'
+DEBUG: Line 220: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 220: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name']
+DEBUG: Line 222: Raw Stripped Line: 'Field Description'
+DEBUG: Line 222: first_word='Field', rest_of_line='Description'
+DEBUG: Line 222: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 222: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name', 'Field Description']
+DEBUG: Line 224: Raw Stripped Line: 'Format'
+DEBUG: Line 224: first_word='Format', rest_of_line=''
+DEBUG: Line 224: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 224: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name', 'Field Description', 'Format']
+DEBUG: Line 226: Raw Stripped Line: 'Max'
+DEBUG: Line 226: first_word='Max', rest_of_line=''
+DEBUG: Line 226: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 226: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name', 'Field Description', 'Format', 'Max']
+DEBUG: Line 227: Raw Stripped Line: 'Size'
+DEBUG: Line 227: first_word='Size', rest_of_line=''
+DEBUG: Line 227: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 227: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name', 'Field Description', 'Format', 'Max', 'Size']
+DEBUG: Line 229: Raw Stripped Line: 'May be'
+DEBUG: Line 229: first_word='May', rest_of_line='be'
+DEBUG: Line 229: Scenario 3 triggered. Appending to description of 'ISSECURITYTOBEACQUIREDTYPE'.
+DEBUG: Line 229: current_description_parts for 'ISSECURITYTOBEACQUIREDTYPE' after appending stripped_line: ['Field Name', 'Field Description', 'Format', 'Max', 'Size', 'May be']
+DEBUG: Line 230: Raw Stripped Line: 'NULL'
+DEBUG: Line 230: first_word='NULL', rest_of_line=''
+DEBUG: Line 230: Adding to section_fields (before new field): {'Section': 'OFFERING', 'Field Name': 'ISSECURITYTOBEACQUIREDTYPE', 'Field Description': 'Field Name Field Description Format Max Size May be'}
+DEBUG: Line 230: Finalizing previous field: 'ISSECURITYTOBEACQUIREDTYPE' with description parts: ['Field Name', 'Field Description', 'Format', 'Max', 'Size', 'May be']
+DEBUG: Line 230: New current_field_name='NULL'
+DEBUG: Line 232: Raw Stripped Line: 'Key'
+DEBUG: Line 232: first_word='Key', rest_of_line=''
+DEBUG: Line 232: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 232: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 234: Raw Stripped Line: 'ISPOOLEDINVESTMENTFUNDTYPE'
+DEBUG: Line 234: first_word='ISPOOLEDINVESTMENTFUNDTYPE', rest_of_line=''
+DEBUG: Line 234: Adding to section_fields (before new field): {'Section': 'OFFERING', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 234: Finalizing previous field: 'NULL' with description parts: ['Key']
+DEBUG: Line 234: New current_field_name='ISPOOLEDINVESTMENTFUNDTYPE'
+DEBUG: Line 236: Raw Stripped Line: 'ISTENANTINCOMMONTYPE'
+DEBUG: Line 236: first_word='ISTENANTINCOMMONTYPE', rest_of_line=''
+DEBUG: Line 236: Finalizing previous field: 'ISPOOLEDINVESTMENTFUNDTYPE' with description parts: []
+DEBUG: Line 236: New current_field_name='ISTENANTINCOMMONTYPE'
+DEBUG: Line 238: Raw Stripped Line: 'ISMINERALPROPERTYTYPE'
+DEBUG: Line 238: first_word='ISMINERALPROPERTYTYPE', rest_of_line=''
+DEBUG: Line 238: Finalizing previous field: 'ISTENANTINCOMMONTYPE' with description parts: []
+DEBUG: Line 238: New current_field_name='ISMINERALPROPERTYTYPE'
+DEBUG: Line 240: Raw Stripped Line: 'Pooled Investment'
+DEBUG: Line 240: first_word='Pooled', rest_of_line='Investment'
+DEBUG: Line 240: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 240: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment']
+DEBUG: Line 241: Raw Stripped Line: 'Fund Interests'
+DEBUG: Line 241: first_word='Fund', rest_of_line='Interests'
+DEBUG: Line 241: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 241: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment', 'Fund Interests']
+DEBUG: Line 243: Raw Stripped Line: 'Tenant-in-Common'
+DEBUG: Line 243: first_word='Tenant-in-Common', rest_of_line=''
+DEBUG: Line 243: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 243: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment', 'Fund Interests', 'Tenant-in-Common']
+DEBUG: Line 244: Raw Stripped Line: 'Securities'
+DEBUG: Line 244: first_word='Securities', rest_of_line=''
+DEBUG: Line 244: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 244: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment', 'Fund Interests', 'Tenant-in-Common', 'Securities']
+DEBUG: Line 246: Raw Stripped Line: 'Mineral Property'
+DEBUG: Line 246: first_word='Mineral', rest_of_line='Property'
+DEBUG: Line 246: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 246: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment', 'Fund Interests', 'Tenant-in-Common', 'Securities', 'Mineral Property']
+DEBUG: Line 247: Raw Stripped Line: 'Securities'
+DEBUG: Line 247: first_word='Securities', rest_of_line=''
+DEBUG: Line 247: Scenario 3 triggered. Appending to description of 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 247: current_description_parts for 'ISMINERALPROPERTYTYPE' after appending stripped_line: ['Pooled Investment', 'Fund Interests', 'Tenant-in-Common', 'Securities', 'Mineral Property', 'Securities']
+DEBUG: Line 249: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 249: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 249: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ISMINERALPROPERTYTYPE'.
+DEBUG: Line 249: Finalizing field: 'ISMINERALPROPERTYTYPE' with description parts: ['Pooled Investment', 'Fund Interests', 'Tenant-in-Common', 'Securities', 'Mineral Property', 'Securities']
+DEBUG: Line 249: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'ISMINERALPROPERTYTYPE', 'Field Description': 'Pooled Investment Fund Interests Tenant-in-Common Securities Mineral Property Securities'}
+DEBUG: Line 251: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 251: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 253: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 253: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 255: Raw Stripped Line: 'ISOTHERTYPE'
+DEBUG: Line 255: first_word='ISOTHERTYPE', rest_of_line=''
+DEBUG: Line 255: New current_field_name='ISOTHERTYPE'
+DEBUG: Line 257: Raw Stripped Line: 'Other (describe)'
+DEBUG: Line 257: first_word='Other', rest_of_line='(describe)'
+DEBUG: Line 257: Scenario 3 triggered. Appending to description of 'ISOTHERTYPE'.
+DEBUG: Line 257: current_description_parts for 'ISOTHERTYPE' after appending stripped_line: ['Other (describe)']
+DEBUG: Line 259: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 259: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 259: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ISOTHERTYPE'.
+DEBUG: Line 259: Finalizing field: 'ISOTHERTYPE' with description parts: ['Other (describe)']
+DEBUG: Line 259: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'ISOTHERTYPE', 'Field Description': 'Other (describe)'}
+DEBUG: Line 261: Raw Stripped Line: '5'
+DEBUG: Line 261: first_word='5', rest_of_line=''
+DEBUG: Line 263: Raw Stripped Line: '5'
+DEBUG: Line 263: first_word='5', rest_of_line=''
+DEBUG: Line 265: Raw Stripped Line: '5'
+DEBUG: Line 265: first_word='5', rest_of_line=''
+DEBUG: Line 267: Raw Stripped Line: '5'
+DEBUG: Line 267: first_word='5', rest_of_line=''
+DEBUG: Line 269: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 269: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 271: Raw Stripped Line: '255'
+DEBUG: Line 271: first_word='255', rest_of_line=''
+DEBUG: Line 273: Raw Stripped Line: 'Yes'
+DEBUG: Line 273: first_word='Yes', rest_of_line=''
+DEBUG: Line 275: Raw Stripped Line: 'Yes'
+DEBUG: Line 275: first_word='Yes', rest_of_line=''
+DEBUG: Line 277: Raw Stripped Line: 'Yes'
+DEBUG: Line 277: first_word='Yes', rest_of_line=''
+DEBUG: Line 279: Raw Stripped Line: 'Yes'
+DEBUG: Line 279: first_word='Yes', rest_of_line=''
+DEBUG: Line 281: Raw Stripped Line: 'Yes'
+DEBUG: Line 281: first_word='Yes', rest_of_line=''
+DEBUG: Line 283: Raw Stripped Line: 'DESCRIPTIONOFOTHERTYPE'
+DEBUG: Line 283: first_word='DESCRIPTIONOFOTHERTYPE', rest_of_line=''
+DEBUG: Line 283: New current_field_name='DESCRIPTIONOFOTHERTYPE'
+DEBUG: Line 285: Raw Stripped Line: 'ISBUSINESSCOMBINATIONTRANS'
+DEBUG: Line 285: first_word='ISBUSINESSCOMBINATIONTRANS', rest_of_line=''
+DEBUG: Line 285: Finalizing previous field: 'DESCRIPTIONOFOTHERTYPE' with description parts: []
+DEBUG: Line 285: New current_field_name='ISBUSINESSCOMBINATIONTRANS'
+DEBUG: Line 287: Raw Stripped Line: 'BUSCOMBCLARIFICATIONOFRESP'
+DEBUG: Line 287: first_word='BUSCOMBCLARIFICATIONOFRESP', rest_of_line=''
+DEBUG: Line 287: Finalizing previous field: 'ISBUSINESSCOMBINATIONTRANS' with description parts: []
+DEBUG: Line 287: New current_field_name='BUSCOMBCLARIFICATIONOFRESP'
+DEBUG: Line 289: Raw Stripped Line: 'MINIMUMINVESTMENTACCEPTED'
+DEBUG: Line 289: first_word='MINIMUMINVESTMENTACCEPTED', rest_of_line=''
+DEBUG: Line 289: Finalizing previous field: 'BUSCOMBCLARIFICATIONOFRESP' with description parts: []
+DEBUG: Line 289: New current_field_name='MINIMUMINVESTMENTACCEPTED'
+DEBUG: Line 291: Raw Stripped Line: 'Description of Pooled'
+DEBUG: Line 291: first_word='Description', rest_of_line='of Pooled'
+DEBUG: Line 291: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 291: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled']
+DEBUG: Line 292: Raw Stripped Line: 'Investment Type when'
+DEBUG: Line 292: first_word='Investment', rest_of_line='Type when'
+DEBUG: Line 292: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 292: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when']
+DEBUG: Line 293: Raw Stripped Line: 'indicated as 'Other' in'
+DEBUG: Line 293: first_word='indicated', rest_of_line='as 'Other' in'
+DEBUG: Line 293: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 293: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in"]
+DEBUG: Line 294: Raw Stripped Line: ''OtherType' as Pooled'
+DEBUG: Line 294: first_word=''OtherType'', rest_of_line='as Pooled'
+DEBUG: Line 294: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 294: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled"]
+DEBUG: Line 295: Raw Stripped Line: 'Investment Type'
+DEBUG: Line 295: first_word='Investment', rest_of_line='Type'
+DEBUG: Line 295: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 295: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type']
+DEBUG: Line 297: Raw Stripped Line: 'Is this offering being'
+DEBUG: Line 297: first_word='Is', rest_of_line='this offering being'
+DEBUG: Line 297: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 297: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being']
+DEBUG: Line 298: Raw Stripped Line: 'made in connection'
+DEBUG: Line 298: first_word='made', rest_of_line='in connection'
+DEBUG: Line 298: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 298: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection']
+DEBUG: Line 299: Raw Stripped Line: 'with a business'
+DEBUG: Line 299: first_word='with', rest_of_line='a business'
+DEBUG: Line 299: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 299: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business']
+DEBUG: Line 300: Raw Stripped Line: 'combination'
+DEBUG: Line 300: first_word='combination', rest_of_line=''
+DEBUG: Line 300: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 300: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination']
+DEBUG: Line 301: Raw Stripped Line: 'transaction, such as a'
+DEBUG: Line 301: first_word='transaction,', rest_of_line='such as a'
+DEBUG: Line 301: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 301: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a']
+DEBUG: Line 302: Raw Stripped Line: 'merger, acquisition, or'
+DEBUG: Line 302: first_word='merger,', rest_of_line='acquisition, or'
+DEBUG: Line 302: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 302: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or']
+DEBUG: Line 303: Raw Stripped Line: 'exchange offer?'
+DEBUG: Line 303: first_word='exchange', rest_of_line='offer?'
+DEBUG: Line 303: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 303: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?']
+DEBUG: Line 305: Raw Stripped Line: 'Clarification of'
+DEBUG: Line 305: first_word='Clarification', rest_of_line='of'
+DEBUG: Line 305: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 305: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of']
+DEBUG: Line 306: Raw Stripped Line: 'Response (if'
+DEBUG: Line 306: first_word='Response', rest_of_line='(if'
+DEBUG: Line 306: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 306: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if']
+DEBUG: Line 307: Raw Stripped Line: 'Necessary)'
+DEBUG: Line 307: first_word='Necessary)', rest_of_line=''
+DEBUG: Line 307: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 307: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if', 'Necessary)']
+DEBUG: Line 309: Raw Stripped Line: 'Minimum investment'
+DEBUG: Line 309: first_word='Minimum', rest_of_line='investment'
+DEBUG: Line 309: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 309: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if', 'Necessary)', 'Minimum investment']
+DEBUG: Line 310: Raw Stripped Line: 'accepted from any'
+DEBUG: Line 310: first_word='accepted', rest_of_line='from any'
+DEBUG: Line 310: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 310: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if', 'Necessary)', 'Minimum investment', 'accepted from any']
+DEBUG: Line 311: Raw Stripped Line: 'outside investor'
+DEBUG: Line 311: first_word='outside', rest_of_line='investor'
+DEBUG: Line 311: Scenario 3 triggered. Appending to description of 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 311: current_description_parts for 'MINIMUMINVESTMENTACCEPTED' after appending stripped_line: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if', 'Necessary)', 'Minimum investment', 'accepted from any', 'outside investor']
+DEBUG: Line 313: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 313: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 313: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'MINIMUMINVESTMENTACCEPTED'.
+DEBUG: Line 313: Finalizing field: 'MINIMUMINVESTMENTACCEPTED' with description parts: ['Description of Pooled', 'Investment Type when', "indicated as 'Other' in", "'OtherType' as Pooled", 'Investment Type', 'Is this offering being', 'made in connection', 'with a business', 'combination', 'transaction, such as a', 'merger, acquisition, or', 'exchange offer?', 'Clarification of', 'Response (if', 'Necessary)', 'Minimum investment', 'accepted from any', 'outside investor']
+DEBUG: Line 313: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'MINIMUMINVESTMENTACCEPTED', 'Field Description': "Description of Pooled Investment Type when indicated as 'Other' in 'OtherType' as Pooled Investment Type Is this offering being made in connection with a business combination transaction, such as a merger, acquisition, or exchange offer? Clarification of Response (if Necessary) Minimum investment accepted from any outside investor"}
+DEBUG: Line 315: Raw Stripped Line: '5'
+DEBUG: Line 315: first_word='5', rest_of_line=''
+DEBUG: Line 317: Raw Stripped Line: 'No'
+DEBUG: Line 317: first_word='No', rest_of_line=''
+DEBUG: Line 319: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 319: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 321: Raw Stripped Line: '255'
+DEBUG: Line 321: first_word='255', rest_of_line=''
+DEBUG: Line 323: Raw Stripped Line: 'Yes'
+DEBUG: Line 323: first_word='Yes', rest_of_line=''
+DEBUG: Line 325: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 325: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 327: Raw Stripped Line: '19'
+DEBUG: Line 327: first_word='19', rest_of_line=''
+DEBUG: Line 329: Raw Stripped Line: 'No'
+DEBUG: Line 329: first_word='No', rest_of_line=''
+DEBUG: Line 331: Raw Stripped Line: 'OVER100RECIPIENTFLAG'
+DEBUG: Line 331: first_word='OVER100RECIPIENTFLAG', rest_of_line=''
+DEBUG: Line 331: New current_field_name='OVER100RECIPIENTFLAG'
+DEBUG: Line 333: Raw Stripped Line: 'Over 100 recipients'
+DEBUG: Line 333: first_word='Over', rest_of_line='100 recipients'
+DEBUG: Line 333: Scenario 3 triggered. Appending to description of 'OVER100RECIPIENTFLAG'.
+DEBUG: Line 333: current_description_parts for 'OVER100RECIPIENTFLAG' after appending stripped_line: ['Over 100 recipients']
+DEBUG: Line 335: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 335: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 335: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'OVER100RECIPIENTFLAG'.
+DEBUG: Line 335: Finalizing field: 'OVER100RECIPIENTFLAG' with description parts: ['Over 100 recipients']
+DEBUG: Line 335: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'OVER100RECIPIENTFLAG', 'Field Description': 'Over 100 recipients'}
+DEBUG: Line 337: Raw Stripped Line: 'TOTALOFFERINGAMOUNT'
+DEBUG: Line 337: first_word='TOTALOFFERINGAMOUNT', rest_of_line=''
+DEBUG: Line 337: New current_field_name='TOTALOFFERINGAMOUNT'
+DEBUG: Line 339: Raw Stripped Line: 'Total offering amount'
+DEBUG: Line 339: first_word='Total', rest_of_line='offering amount'
+DEBUG: Line 339: Scenario 3 triggered. Appending to description of 'TOTALOFFERINGAMOUNT'.
+DEBUG: Line 339: current_description_parts for 'TOTALOFFERINGAMOUNT' after appending stripped_line: ['Total offering amount']
+DEBUG: Line 341: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 341: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 341: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'TOTALOFFERINGAMOUNT'.
+DEBUG: Line 341: Finalizing field: 'TOTALOFFERINGAMOUNT' with description parts: ['Total offering amount']
+DEBUG: Line 341: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'TOTALOFFERINGAMOUNT', 'Field Description': 'Total offering amount'}
+DEBUG: Line 343: Raw Stripped Line: 'TOTALAMOUNTSOLD'
+DEBUG: Line 343: first_word='TOTALAMOUNTSOLD', rest_of_line=''
+DEBUG: Line 343: New current_field_name='TOTALAMOUNTSOLD'
+DEBUG: Line 345: Raw Stripped Line: 'TOTALREMAINING'
+DEBUG: Line 345: first_word='TOTALREMAINING', rest_of_line=''
+DEBUG: Line 345: Finalizing previous field: 'TOTALAMOUNTSOLD' with description parts: []
+DEBUG: Line 345: New current_field_name='TOTALREMAINING'
+DEBUG: Line 347: Raw Stripped Line: 'SALESAMTCLARIFICATIONOFRESP'
+DEBUG: Line 347: first_word='SALESAMTCLARIFICATIONOFRESP', rest_of_line=''
+DEBUG: Line 347: Finalizing previous field: 'TOTALREMAINING' with description parts: []
+DEBUG: Line 347: New current_field_name='SALESAMTCLARIFICATIONOFRESP'
+DEBUG: Line 349: Raw Stripped Line: 'HASNONACCREDITEDINVESTORS'
+DEBUG: Line 349: first_word='HASNONACCREDITEDINVESTORS', rest_of_line=''
+DEBUG: Line 349: Finalizing previous field: 'SALESAMTCLARIFICATIONOFRESP' with description parts: []
+DEBUG: Line 349: New current_field_name='HASNONACCREDITEDINVESTORS'
+DEBUG: Line 351: Raw Stripped Line: 'NUMBERNONACCREDITEDINVESTORS'
+DEBUG: Line 351: first_word='NUMBERNONACCREDITEDINVESTORS', rest_of_line=''
+DEBUG: Line 351: Finalizing previous field: 'HASNONACCREDITEDINVESTORS' with description parts: []
+DEBUG: Line 351: New current_field_name='NUMBERNONACCREDITEDINVESTORS'
+DEBUG: Line 353: Raw Stripped Line: '5'
+DEBUG: Line 353: first_word='5', rest_of_line=''
+DEBUG: Line 353: Scenario 2 triggered for line starting with '5'. Finalizing field 'NUMBERNONACCREDITEDINVESTORS'.
+DEBUG: Line 353: Finalizing field: 'NUMBERNONACCREDITEDINVESTORS' with description parts: []
+DEBUG: Line 353: Adding to section_fields (Scenario 2 - no desc): {'Section': 'OFFERING', 'Field Name': 'NUMBERNONACCREDITEDINVESTORS', 'Field Description': ''}
+DEBUG: Line 355: Raw Stripped Line: '12'
+DEBUG: Line 355: first_word='12', rest_of_line=''
+DEBUG: Line 357: Raw Stripped Line: '12'
+DEBUG: Line 357: first_word='12', rest_of_line=''
+DEBUG: Line 359: Raw Stripped Line: '12'
+DEBUG: Line 359: first_word='12', rest_of_line=''
+DEBUG: Line 361: Raw Stripped Line: 'Yes'
+DEBUG: Line 361: first_word='Yes', rest_of_line=''
+DEBUG: Line 363: Raw Stripped Line: 'No'
+DEBUG: Line 363: first_word='No', rest_of_line=''
+DEBUG: Line 365: Raw Stripped Line: 'No'
+DEBUG: Line 365: first_word='No', rest_of_line=''
+DEBUG: Line 367: Raw Stripped Line: 'No'
+DEBUG: Line 367: first_word='No', rest_of_line=''
+DEBUG: Line 369: Raw Stripped Line: 'Total amount sold'
+DEBUG: Line 369: first_word='Total', rest_of_line='amount sold'
+DEBUG: Line 371: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 371: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 373: Raw Stripped Line: 'Total remaining to be'
+DEBUG: Line 373: first_word='Total', rest_of_line='remaining to be'
+DEBUG: Line 374: Raw Stripped Line: 'sold'
+DEBUG: Line 374: first_word='sold', rest_of_line=''
+DEBUG: Line 376: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 376: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 378: Raw Stripped Line: 'Clarification of'
+DEBUG: Line 378: first_word='Clarification', rest_of_line='of'
+DEBUG: Line 379: Raw Stripped Line: 'Response (if'
+DEBUG: Line 379: first_word='Response', rest_of_line='(if'
+DEBUG: Line 380: Raw Stripped Line: 'Necessary)'
+DEBUG: Line 380: first_word='Necessary)', rest_of_line=''
+DEBUG: Line 382: Raw Stripped Line: 'Select if securities in'
+DEBUG: Line 382: first_word='Select', rest_of_line='if securities in'
+DEBUG: Line 383: Raw Stripped Line: 'the offering have been'
+DEBUG: Line 383: first_word='the', rest_of_line='offering have been'
+DEBUG: Line 384: Raw Stripped Line: 'or may be sold to'
+DEBUG: Line 384: first_word='or', rest_of_line='may be sold to'
+DEBUG: Line 385: Raw Stripped Line: 'persons who do not'
+DEBUG: Line 385: first_word='persons', rest_of_line='who do not'
+DEBUG: Line 386: Raw Stripped Line: 'qualify as accredited'
+DEBUG: Line 386: first_word='qualify', rest_of_line='as accredited'
+DEBUG: Line 387: Raw Stripped Line: 'investors'
+DEBUG: Line 387: first_word='investors', rest_of_line=''
+DEBUG: Line 389: Raw Stripped Line: 'Number of such non-'
+DEBUG: Line 389: first_word='Number', rest_of_line='of such non-'
+DEBUG: Line 390: Raw Stripped Line: 'accredited investors'
+DEBUG: Line 390: first_word='accredited', rest_of_line='investors'
+DEBUG: Line 391: Raw Stripped Line: 'who already have'
+DEBUG: Line 391: first_word='who', rest_of_line='already have'
+DEBUG: Line 392: Raw Stripped Line: 'invested in the offering'
+DEBUG: Line 392: first_word='invested', rest_of_line='in the offering'
+DEBUG: Line 394: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 394: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 396: Raw Stripped Line: '255'
+DEBUG: Line 396: first_word='255', rest_of_line=''
+DEBUG: Line 398: Raw Stripped Line: 'Yes'
+DEBUG: Line 398: first_word='Yes', rest_of_line=''
+DEBUG: Line 400: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 400: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 402: Raw Stripped Line: '5'
+DEBUG: Line 402: first_word='5', rest_of_line=''
+DEBUG: Line 404: Raw Stripped Line: 'No'
+DEBUG: Line 404: first_word='No', rest_of_line=''
+DEBUG: Line 406: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 406: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 408: Raw Stripped Line: '19'
+DEBUG: Line 408: first_word='19', rest_of_line=''
+DEBUG: Line 410: Raw Stripped Line: 'Yes'
+DEBUG: Line 410: first_word='Yes', rest_of_line=''
+DEBUG: Line 427: Raw Stripped Line: 'Field Name'
+DEBUG: Line 427: first_word='Field', rest_of_line='Name'
+DEBUG: Line 429: Raw Stripped Line: 'Field Description'
+DEBUG: Line 429: first_word='Field', rest_of_line='Description'
+DEBUG: Line 431: Raw Stripped Line: 'Format'
+DEBUG: Line 431: first_word='Format', rest_of_line=''
+DEBUG: Line 433: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 433: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 435: Raw Stripped Line: 'Max'
+DEBUG: Line 435: first_word='Max', rest_of_line=''
+DEBUG: Line 436: Raw Stripped Line: 'Size'
+DEBUG: Line 436: first_word='Size', rest_of_line=''
+DEBUG: Line 438: Raw Stripped Line: '19'
+DEBUG: Line 438: first_word='19', rest_of_line=''
+DEBUG: Line 440: Raw Stripped Line: 'May be'
+DEBUG: Line 440: first_word='May', rest_of_line='be'
+DEBUG: Line 441: Raw Stripped Line: 'NULL'
+DEBUG: Line 441: first_word='NULL', rest_of_line=''
+DEBUG: Line 441: New current_field_name='NULL'
+DEBUG: Line 443: Raw Stripped Line: 'No'
+DEBUG: Line 443: first_word='No', rest_of_line=''
+DEBUG: Line 443: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 443: Finalizing field: 'NULL' with description parts: []
+DEBUG: Line 445: Raw Stripped Line: 'Key'
+DEBUG: Line 445: first_word='Key', rest_of_line=''
+DEBUG: Line 447: Raw Stripped Line: 'SALESCOMM_ISESTIMATE'
+DEBUG: Line 447: first_word='SALESCOMM_ISESTIMATE', rest_of_line=''
+DEBUG: Line 447: New current_field_name='SALESCOMM_ISESTIMATE'
+DEBUG: Line 449: Raw Stripped Line: 'Estimate'
+DEBUG: Line 449: first_word='Estimate', rest_of_line=''
+DEBUG: Line 449: Scenario 3 triggered. Appending to description of 'SALESCOMM_ISESTIMATE'.
+DEBUG: Line 449: current_description_parts for 'SALESCOMM_ISESTIMATE' after appending stripped_line: ['Estimate']
+DEBUG: Line 451: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 451: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 451: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'SALESCOMM_ISESTIMATE'.
+DEBUG: Line 451: Finalizing field: 'SALESCOMM_ISESTIMATE' with description parts: ['Estimate']
+DEBUG: Line 451: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'SALESCOMM_ISESTIMATE', 'Field Description': 'Estimate'}
+DEBUG: Line 453: Raw Stripped Line: 'FINDERSFEE_DOLLARAMOUNT'
+DEBUG: Line 453: first_word='FINDERSFEE_DOLLARAMOUNT', rest_of_line=''
+DEBUG: Line 453: New current_field_name='FINDERSFEE_DOLLARAMOUNT'
+DEBUG: Line 455: Raw Stripped Line: 'Finders  Fee USD'
+DEBUG: Line 455: first_word='Finders', rest_of_line='Fee USD'
+DEBUG: Line 455: Scenario 3 triggered. Appending to description of 'FINDERSFEE_DOLLARAMOUNT'.
+DEBUG: Line 455: current_description_parts for 'FINDERSFEE_DOLLARAMOUNT' after appending stripped_line: ['Finders  Fee USD']
+DEBUG: Line 457: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 457: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 457: Scenario 2 triggered for line starting with 'NUMERIC'. Finalizing field 'FINDERSFEE_DOLLARAMOUNT'.
+DEBUG: Line 457: Finalizing field: 'FINDERSFEE_DOLLARAMOUNT' with description parts: ['Finders  Fee USD']
+DEBUG: Line 457: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'FINDERSFEE_DOLLARAMOUNT', 'Field Description': 'Finders  Fee USD'}
+DEBUG: Line 459: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 459: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 461: Raw Stripped Line: '12'
+DEBUG: Line 461: first_word='12', rest_of_line=''
+DEBUG: Line 463: Raw Stripped Line: 'No'
+DEBUG: Line 463: first_word='No', rest_of_line=''
+DEBUG: Line 465: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 465: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 467: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 467: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 469: Raw Stripped Line: '255'
+DEBUG: Line 469: first_word='255', rest_of_line=''
+DEBUG: Line 471: Raw Stripped Line: '5'
+DEBUG: Line 471: first_word='5', rest_of_line=''
+DEBUG: Line 473: Raw Stripped Line: '12'
+DEBUG: Line 473: first_word='12', rest_of_line=''
+DEBUG: Line 475: Raw Stripped Line: '5'
+DEBUG: Line 475: first_word='5', rest_of_line=''
+DEBUG: Line 477: Raw Stripped Line: 'Yes'
+DEBUG: Line 477: first_word='Yes', rest_of_line=''
+DEBUG: Line 479: Raw Stripped Line: 'No'
+DEBUG: Line 479: first_word='No', rest_of_line=''
+DEBUG: Line 481: Raw Stripped Line: 'Yes'
+DEBUG: Line 481: first_word='Yes', rest_of_line=''
+DEBUG: Line 483: Raw Stripped Line: 'Yes'
+DEBUG: Line 483: first_word='Yes', rest_of_line=''
+DEBUG: Line 485: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 485: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 487: Raw Stripped Line: '12'
+DEBUG: Line 487: first_word='12', rest_of_line=''
+DEBUG: Line 489: Raw Stripped Line: 'No'
+DEBUG: Line 489: first_word='No', rest_of_line=''
+DEBUG: Line 491: Raw Stripped Line: 'TOTALNUMBERALREADYINVESTED'
+DEBUG: Line 491: first_word='TOTALNUMBERALREADYINVESTED', rest_of_line=''
+DEBUG: Line 491: New current_field_name='TOTALNUMBERALREADYINVESTED'
+DEBUG: Line 493: Raw Stripped Line: 'SALESCOMM_DOLLARAMOUNT'
+DEBUG: Line 493: first_word='SALESCOMM_DOLLARAMOUNT', rest_of_line=''
+DEBUG: Line 493: Finalizing previous field: 'TOTALNUMBERALREADYINVESTED' with description parts: []
+DEBUG: Line 493: New current_field_name='SALESCOMM_DOLLARAMOUNT'
+DEBUG: Line 495: Raw Stripped Line: 'Regardless of whether'
+DEBUG: Line 495: first_word='Regardless', rest_of_line='of whether'
+DEBUG: Line 495: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 495: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether']
+DEBUG: Line 496: Raw Stripped Line: 'securities in the'
+DEBUG: Line 496: first_word='securities', rest_of_line='in the'
+DEBUG: Line 496: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 496: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the']
+DEBUG: Line 497: Raw Stripped Line: 'offering have been or'
+DEBUG: Line 497: first_word='offering', rest_of_line='have been or'
+DEBUG: Line 497: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 497: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or']
+DEBUG: Line 498: Raw Stripped Line: 'may be sold to persons'
+DEBUG: Line 498: first_word='may', rest_of_line='be sold to persons'
+DEBUG: Line 498: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 498: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons']
+DEBUG: Line 499: Raw Stripped Line: 'who do not qualify as'
+DEBUG: Line 499: first_word='who', rest_of_line='do not qualify as'
+DEBUG: Line 499: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 499: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as']
+DEBUG: Line 500: Raw Stripped Line: 'accredited investors,'
+DEBUG: Line 500: first_word='accredited', rest_of_line='investors,'
+DEBUG: Line 500: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 500: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,']
+DEBUG: Line 501: Raw Stripped Line: 'enter the total number'
+DEBUG: Line 501: first_word='enter', rest_of_line='the total number'
+DEBUG: Line 501: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 501: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number']
+DEBUG: Line 502: Raw Stripped Line: 'of investors who'
+DEBUG: Line 502: first_word='of', rest_of_line='investors who'
+DEBUG: Line 502: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 502: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number', 'of investors who']
+DEBUG: Line 503: Raw Stripped Line: 'already have invested'
+DEBUG: Line 503: first_word='already', rest_of_line='have invested'
+DEBUG: Line 503: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 503: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number', 'of investors who', 'already have invested']
+DEBUG: Line 504: Raw Stripped Line: 'in the offering.'
+DEBUG: Line 504: first_word='in', rest_of_line='the offering.'
+DEBUG: Line 504: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 504: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number', 'of investors who', 'already have invested', 'in the offering.']
+DEBUG: Line 506: Raw Stripped Line: 'Sales Commissions,'
+DEBUG: Line 506: first_word='Sales', rest_of_line='Commissions,'
+DEBUG: Line 506: Scenario 3 triggered. Appending to description of 'SALESCOMM_DOLLARAMOUNT'.
+DEBUG: Line 506: current_description_parts for 'SALESCOMM_DOLLARAMOUNT' after appending stripped_line: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number', 'of investors who', 'already have invested', 'in the offering.', 'Sales Commissions,']
+DEBUG: Line 507: Raw Stripped Line: 'USD'
+DEBUG: Line 507: first_word='USD', rest_of_line=''
+DEBUG: Line 507: Adding to section_fields (before new field): {'Section': 'OFFERING', 'Field Name': 'SALESCOMM_DOLLARAMOUNT', 'Field Description': 'Regardless of whether securities in the offering have been or may be sold to persons who do not qualify as accredited investors, enter the total number of investors who already have invested in the offering. Sales Commissions,'}
+DEBUG: Line 507: Finalizing previous field: 'SALESCOMM_DOLLARAMOUNT' with description parts: ['Regardless of whether', 'securities in the', 'offering have been or', 'may be sold to persons', 'who do not qualify as', 'accredited investors,', 'enter the total number', 'of investors who', 'already have invested', 'in the offering.', 'Sales Commissions,']
+DEBUG: Line 507: New current_field_name='USD'
+DEBUG: Line 509: Raw Stripped Line: 'FINDERSFEE_ISESTIMATE'
+DEBUG: Line 509: first_word='FINDERSFEE_ISESTIMATE', rest_of_line=''
+DEBUG: Line 509: Finalizing previous field: 'USD' with description parts: []
+DEBUG: Line 509: New current_field_name='FINDERSFEE_ISESTIMATE'
+DEBUG: Line 511: Raw Stripped Line: 'FINDERFEECLARIFICATIONOFRESP'
+DEBUG: Line 511: first_word='FINDERFEECLARIFICATIONOFRESP', rest_of_line=''
+DEBUG: Line 511: Finalizing previous field: 'FINDERSFEE_ISESTIMATE' with description parts: []
+DEBUG: Line 511: New current_field_name='FINDERFEECLARIFICATIONOFRESP'
+DEBUG: Line 513: Raw Stripped Line: 'Estimate'
+DEBUG: Line 513: first_word='Estimate', rest_of_line=''
+DEBUG: Line 513: Scenario 3 triggered. Appending to description of 'FINDERFEECLARIFICATIONOFRESP'.
+DEBUG: Line 513: current_description_parts for 'FINDERFEECLARIFICATIONOFRESP' after appending stripped_line: ['Estimate']
+DEBUG: Line 515: Raw Stripped Line: 'Clarification of'
+DEBUG: Line 515: first_word='Clarification', rest_of_line='of'
+DEBUG: Line 515: Scenario 3 triggered. Appending to description of 'FINDERFEECLARIFICATIONOFRESP'.
+DEBUG: Line 515: current_description_parts for 'FINDERFEECLARIFICATIONOFRESP' after appending stripped_line: ['Estimate', 'Clarification of']
+DEBUG: Line 516: Raw Stripped Line: 'Response (if'
+DEBUG: Line 516: first_word='Response', rest_of_line='(if'
+DEBUG: Line 516: Scenario 3 triggered. Appending to description of 'FINDERFEECLARIFICATIONOFRESP'.
+DEBUG: Line 516: current_description_parts for 'FINDERFEECLARIFICATIONOFRESP' after appending stripped_line: ['Estimate', 'Clarification of', 'Response (if']
+DEBUG: Line 517: Raw Stripped Line: 'Necessary)'
+DEBUG: Line 517: first_word='Necessary)', rest_of_line=''
+DEBUG: Line 517: Scenario 3 triggered. Appending to description of 'FINDERFEECLARIFICATIONOFRESP'.
+DEBUG: Line 517: current_description_parts for 'FINDERFEECLARIFICATIONOFRESP' after appending stripped_line: ['Estimate', 'Clarification of', 'Response (if', 'Necessary)']
+DEBUG: Line 519: Raw Stripped Line: 'GROSSPROCEEDSUSED_DOLLARAMOUNT  Provide the amount of'
+DEBUG: Line 519: first_word='GROSSPROCEEDSUSED_DOLLARAMOUNT', rest_of_line='Provide the amount of'
+DEBUG: Line 519: Adding to section_fields (before new field): {'Section': 'OFFERING', 'Field Name': 'FINDERFEECLARIFICATIONOFRESP', 'Field Description': 'Estimate Clarification of Response (if Necessary)'}
+DEBUG: Line 519: Finalizing previous field: 'FINDERFEECLARIFICATIONOFRESP' with description parts: ['Estimate', 'Clarification of', 'Response (if', 'Necessary)']
+DEBUG: Line 519: New current_field_name='GROSSPROCEEDSUSED_DOLLARAMOUNT'
+DEBUG: Line 519: Processing rest_of_line for field 'GROSSPROCEEDSUSED_DOLLARAMOUNT': 'Provide the amount of'
+DEBUG: Line 519: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 519: description_segment from rest_of_line='Provide the amount of'
+DEBUG: Line 519: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after rest_of_line processing: ['Provide the amount of']
+DEBUG: Line 520: Raw Stripped Line: 'the gross proceeds of'
+DEBUG: Line 520: first_word='the', rest_of_line='gross proceeds of'
+DEBUG: Line 520: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 520: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of']
+DEBUG: Line 521: Raw Stripped Line: 'the offering that has'
+DEBUG: Line 521: first_word='the', rest_of_line='offering that has'
+DEBUG: Line 521: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 521: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has']
+DEBUG: Line 522: Raw Stripped Line: 'been or is proposed to'
+DEBUG: Line 522: first_word='been', rest_of_line='or is proposed to'
+DEBUG: Line 522: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 522: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to']
+DEBUG: Line 523: Raw Stripped Line: 'be used for payments'
+DEBUG: Line 523: first_word='be', rest_of_line='used for payments'
+DEBUG: Line 523: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 523: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments']
+DEBUG: Line 524: Raw Stripped Line: 'to any of the persons'
+DEBUG: Line 524: first_word='to', rest_of_line='any of the persons'
+DEBUG: Line 524: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 524: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons']
+DEBUG: Line 525: Raw Stripped Line: 'required to be named'
+DEBUG: Line 525: first_word='required', rest_of_line='to be named'
+DEBUG: Line 525: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 525: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named']
+DEBUG: Line 526: Raw Stripped Line: 'as executive officers,'
+DEBUG: Line 526: first_word='as', rest_of_line='executive officers,'
+DEBUG: Line 526: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 526: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,']
+DEBUG: Line 527: Raw Stripped Line: 'directors, or promoters'
+DEBUG: Line 527: first_word='directors,', rest_of_line='or promoters'
+DEBUG: Line 527: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 527: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters']
+DEBUG: Line 528: Raw Stripped Line: 'in response to Item 3'
+DEBUG: Line 528: first_word='in', rest_of_line='response to Item 3'
+DEBUG: Line 528: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 528: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3']
+DEBUG: Line 529: Raw Stripped Line: 'above. If the amount is'
+DEBUG: Line 529: first_word='above.', rest_of_line='If the amount is'
+DEBUG: Line 529: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 529: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is']
+DEBUG: Line 530: Raw Stripped Line: 'unknown, provide an'
+DEBUG: Line 530: first_word='unknown,', rest_of_line='provide an'
+DEBUG: Line 530: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 530: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is', 'unknown, provide an']
+DEBUG: Line 531: Raw Stripped Line: 'estimate and check the'
+DEBUG: Line 531: first_word='estimate', rest_of_line='and check the'
+DEBUG: Line 531: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 531: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is', 'unknown, provide an', 'estimate and check the']
+DEBUG: Line 532: Raw Stripped Line: 'box next to the'
+DEBUG: Line 532: first_word='box', rest_of_line='next to the'
+DEBUG: Line 532: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 532: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is', 'unknown, provide an', 'estimate and check the', 'box next to the']
+DEBUG: Line 533: Raw Stripped Line: 'amount. USD'
+DEBUG: Line 533: first_word='amount.', rest_of_line='USD'
+DEBUG: Line 533: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_DOLLARAMOUNT'.
+DEBUG: Line 533: current_description_parts for 'GROSSPROCEEDSUSED_DOLLARAMOUNT' after appending stripped_line: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is', 'unknown, provide an', 'estimate and check the', 'box next to the', 'amount. USD']
+DEBUG: Line 535: Raw Stripped Line: 'GROSSPROCEEDSUSED_CLAROFRESP'
+DEBUG: Line 535: first_word='GROSSPROCEEDSUSED_CLAROFRESP', rest_of_line=''
+DEBUG: Line 535: Adding to section_fields (before new field): {'Section': 'OFFERING', 'Field Name': 'GROSSPROCEEDSUSED_DOLLARAMOUNT', 'Field Description': 'Provide the amount of the gross proceeds of the offering that has been or is proposed to be used for payments to any of the persons required to be named as executive officers, directors, or promoters in response to Item 3 above. If the amount is unknown, provide an estimate and check the box next to the amount. USD'}
+DEBUG: Line 535: Finalizing previous field: 'GROSSPROCEEDSUSED_DOLLARAMOUNT' with description parts: ['Provide the amount of', 'the gross proceeds of', 'the offering that has', 'been or is proposed to', 'be used for payments', 'to any of the persons', 'required to be named', 'as executive officers,', 'directors, or promoters', 'in response to Item 3', 'above. If the amount is', 'unknown, provide an', 'estimate and check the', 'box next to the', 'amount. USD']
+DEBUG: Line 535: New current_field_name='GROSSPROCEEDSUSED_CLAROFRESP'
+DEBUG: Line 537: Raw Stripped Line: 'AUTHORIZEDREPRESENTATIVE'
+DEBUG: Line 537: first_word='AUTHORIZEDREPRESENTATIVE', rest_of_line=''
+DEBUG: Line 537: Finalizing previous field: 'GROSSPROCEEDSUSED_CLAROFRESP' with description parts: []
+DEBUG: Line 537: New current_field_name='AUTHORIZEDREPRESENTATIVE'
+DEBUG: Line 539: Raw Stripped Line: 'Clarification of'
+DEBUG: Line 539: first_word='Clarification', rest_of_line='of'
+DEBUG: Line 539: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 539: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of']
+DEBUG: Line 540: Raw Stripped Line: 'Response (if'
+DEBUG: Line 540: first_word='Response', rest_of_line='(if'
+DEBUG: Line 540: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 540: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if']
+DEBUG: Line 541: Raw Stripped Line: 'Necessary)'
+DEBUG: Line 541: first_word='Necessary)', rest_of_line=''
+DEBUG: Line 541: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 541: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if', 'Necessary)']
+DEBUG: Line 543: Raw Stripped Line: 'I also am a duly'
+DEBUG: Line 543: first_word='I', rest_of_line='also am a duly'
+DEBUG: Line 543: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 543: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if', 'Necessary)', 'I also am a duly']
+DEBUG: Line 544: Raw Stripped Line: 'authorized'
+DEBUG: Line 544: first_word='authorized', rest_of_line=''
+DEBUG: Line 544: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 544: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if', 'Necessary)', 'I also am a duly', 'authorized']
+DEBUG: Line 545: Raw Stripped Line: 'representative of the'
+DEBUG: Line 545: first_word='representative', rest_of_line='of the'
+DEBUG: Line 545: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 545: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if', 'Necessary)', 'I also am a duly', 'authorized', 'representative of the']
+DEBUG: Line 546: Raw Stripped Line: 'other Issuer(s) in Item'
+DEBUG: Line 546: first_word='other', rest_of_line='Issuer(s) in Item'
+DEBUG: Line 546: Scenario 3 triggered. Appending to description of 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 546: current_description_parts for 'AUTHORIZEDREPRESENTATIVE' after appending stripped_line: ['Clarification of', 'Response (if', 'Necessary)', 'I also am a duly', 'authorized', 'representative of the', 'other Issuer(s) in Item']
+DEBUG: Line 547: Raw Stripped Line: '1 above and authorized'
+DEBUG: Line 547: first_word='1', rest_of_line='above and authorized'
+DEBUG: Line 547: Scenario 2 triggered for line starting with '1'. Finalizing field 'AUTHORIZEDREPRESENTATIVE'.
+DEBUG: Line 547: Finalizing field: 'AUTHORIZEDREPRESENTATIVE' with description parts: ['Clarification of', 'Response (if', 'Necessary)', 'I also am a duly', 'authorized', 'representative of the', 'other Issuer(s) in Item']
+DEBUG: Line 547: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'AUTHORIZEDREPRESENTATIVE', 'Field Description': 'Clarification of Response (if Necessary) I also am a duly authorized representative of the other Issuer(s) in Item'}
+DEBUG: Line 548: Raw Stripped Line: 'to sign on their behalf.'
+DEBUG: Line 548: first_word='to', rest_of_line='sign on their behalf.'
+DEBUG: Line 550: Raw Stripped Line: '5.4       RECIPIENTS'
+DEBUG: Line 550: first_word='5.4', rest_of_line='RECIPIENTS'
+DEBUG: Line 552: Raw Stripped Line: 'GROSSPROCEEDSUSED_ISESTIMATE'
+DEBUG: Line 552: first_word='GROSSPROCEEDSUSED_ISESTIMATE', rest_of_line=''
+DEBUG: Line 552: New current_field_name='GROSSPROCEEDSUSED_ISESTIMATE'
+DEBUG: Line 554: Raw Stripped Line: 'Estimate'
+DEBUG: Line 554: first_word='Estimate', rest_of_line=''
+DEBUG: Line 554: Scenario 3 triggered. Appending to description of 'GROSSPROCEEDSUSED_ISESTIMATE'.
+DEBUG: Line 554: current_description_parts for 'GROSSPROCEEDSUSED_ISESTIMATE' after appending stripped_line: ['Estimate']
+DEBUG: Line 556: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 556: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 556: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'GROSSPROCEEDSUSED_ISESTIMATE'.
+DEBUG: Line 556: Finalizing field: 'GROSSPROCEEDSUSED_ISESTIMATE' with description parts: ['Estimate']
+DEBUG: Line 556: Adding to section_fields (Scenario 2 - with desc): {'Section': 'OFFERING', 'Field Name': 'GROSSPROCEEDSUSED_ISESTIMATE', 'Field Description': 'Estimate'}
+DEBUG: Line 558: Raw Stripped Line: '5'
+DEBUG: Line 558: first_word='5', rest_of_line=''
+DEBUG: Line 560: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 560: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 562: Raw Stripped Line: '255'
+DEBUG: Line 562: first_word='255', rest_of_line=''
+DEBUG: Line 564: Raw Stripped Line: 'Yes'
+DEBUG: Line 564: first_word='Yes', rest_of_line=''
+DEBUG: Line 566: Raw Stripped Line: 'Yes'
+DEBUG: Line 566: first_word='Yes', rest_of_line=''
+DEBUG: Line 568: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 568: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 570: Raw Stripped Line: '5'
+DEBUG: Line 570: first_word='5', rest_of_line=''
+DEBUG: Line 572: Raw Stripped Line: 'Yes'
+DEBUG: Line 572: first_word='Yes', rest_of_line=''
+DEBUG: Line 585: Raw Stripped Line: 'The RECIPIENTS data file contains the recipients information.'
+DEBUG: Line 585: first_word='The', rest_of_line='RECIPIENTS data file contains the recipients information.'
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'The 20-character string'
+DEBUG: Line 6: first_word='The', rest_of_line='20-character string'
+DEBUG: Line 6: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 6: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string']
+DEBUG: Line 7: Raw Stripped Line: 'formed from the 18-digit'
+DEBUG: Line 7: first_word='formed', rest_of_line='from the 18-digit'
+DEBUG: Line 7: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 7: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit']
+DEBUG: Line 8: Raw Stripped Line: 'number assigned by the'
+DEBUG: Line 8: first_word='number', rest_of_line='assigned by the'
+DEBUG: Line 8: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 8: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the']
+DEBUG: Line 9: Raw Stripped Line: 'Commission to each EDGAR'
+DEBUG: Line 9: first_word='Commission', rest_of_line='to each EDGAR'
+DEBUG: Line 9: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 9: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR']
+DEBUG: Line 10: Raw Stripped Line: 'submission.'
+DEBUG: Line 10: first_word='submission.', rest_of_line=''
+DEBUG: Line 10: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 10: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR', 'submission.']
+DEBUG: Line 12: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 12: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 12: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ACCESSIONNUMBER'.
+DEBUG: Line 12: Finalizing field: 'ACCESSIONNUMBER' with description parts: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR', 'submission.']
+DEBUG: Line 12: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'ACCESSIONNUMBER', 'Field Description': 'The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.'}
+DEBUG: Line 13: Raw Stripped Line: '(nnnnnnnnnn-nn-'
+DEBUG: Line 13: first_word='(nnnnnnnnnn-nn-', rest_of_line=''
+DEBUG: Line 14: Raw Stripped Line: 'nnnnnn)'
+DEBUG: Line 14: first_word='nnnnnn)', rest_of_line=''
+DEBUG: Line 16: Raw Stripped Line: 'Max'
+DEBUG: Line 16: first_word='Max', rest_of_line=''
+DEBUG: Line 17: Raw Stripped Line: 'Size'
+DEBUG: Line 17: first_word='Size', rest_of_line=''
+DEBUG: Line 19: Raw Stripped Line: '20'
+DEBUG: Line 19: first_word='20', rest_of_line=''
+DEBUG: Line 21: Raw Stripped Line: 'May be'
+DEBUG: Line 21: first_word='May', rest_of_line='be'
+DEBUG: Line 22: Raw Stripped Line: 'NULL'
+DEBUG: Line 22: first_word='NULL', rest_of_line=''
+DEBUG: Line 22: New current_field_name='NULL'
+DEBUG: Line 24: Raw Stripped Line: 'Key'
+DEBUG: Line 24: first_word='Key', rest_of_line=''
+DEBUG: Line 24: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 24: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 26: Raw Stripped Line: 'No'
+DEBUG: Line 26: first_word='No', rest_of_line=''
+DEBUG: Line 26: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 26: Finalizing field: 'NULL' with description parts: ['Key']
+DEBUG: Line 26: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 28: Raw Stripped Line: '*'
+DEBUG: Line 28: first_word='*', rest_of_line=''
+DEBUG: Line 30: Raw Stripped Line: 'RECIPIENT_SEQ_KEY'
+DEBUG: Line 30: first_word='RECIPIENT_SEQ_KEY', rest_of_line=''
+DEBUG: Line 30: New current_field_name='RECIPIENT_SEQ_KEY'
+DEBUG: Line 32: Raw Stripped Line: 'Recipient index key.'
+DEBUG: Line 32: first_word='Recipient', rest_of_line='index key.'
+DEBUG: Line 32: Scenario 3 triggered. Appending to description of 'RECIPIENT_SEQ_KEY'.
+DEBUG: Line 32: current_description_parts for 'RECIPIENT_SEQ_KEY' after appending stripped_line: ['Recipient index key.']
+DEBUG: Line 34: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 34: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 34: Scenario 2 triggered for line starting with 'NUMERIC'. Finalizing field 'RECIPIENT_SEQ_KEY'.
+DEBUG: Line 34: Finalizing field: 'RECIPIENT_SEQ_KEY' with description parts: ['Recipient index key.']
+DEBUG: Line 34: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'RECIPIENT_SEQ_KEY', 'Field Description': 'Recipient index key.'}
+DEBUG: Line 36: Raw Stripped Line: 'RECIPIENTNAME'
+DEBUG: Line 36: first_word='RECIPIENTNAME', rest_of_line=''
+DEBUG: Line 36: New current_field_name='RECIPIENTNAME'
+DEBUG: Line 38: Raw Stripped Line: 'Recipient'
+DEBUG: Line 38: first_word='Recipient', rest_of_line=''
+DEBUG: Line 38: Scenario 3 triggered. Appending to description of 'RECIPIENTNAME'.
+DEBUG: Line 38: current_description_parts for 'RECIPIENTNAME' after appending stripped_line: ['Recipient']
+DEBUG: Line 40: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 40: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 40: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'RECIPIENTNAME'.
+DEBUG: Line 40: Finalizing field: 'RECIPIENTNAME' with description parts: ['Recipient']
+DEBUG: Line 40: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'RECIPIENTNAME', 'Field Description': 'Recipient'}
+DEBUG: Line 42: Raw Stripped Line: 'RECIPIENTCRDNUMBER'
+DEBUG: Line 42: first_word='RECIPIENTCRDNUMBER', rest_of_line=''
+DEBUG: Line 42: New current_field_name='RECIPIENTCRDNUMBER'
+DEBUG: Line 44: Raw Stripped Line: 'Recipient CRD Number'
+DEBUG: Line 44: first_word='Recipient', rest_of_line='CRD Number'
+DEBUG: Line 44: Scenario 3 triggered. Appending to description of 'RECIPIENTCRDNUMBER'.
+DEBUG: Line 44: current_description_parts for 'RECIPIENTCRDNUMBER' after appending stripped_line: ['Recipient CRD Number']
+DEBUG: Line 46: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 46: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 46: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'RECIPIENTCRDNUMBER'.
+DEBUG: Line 46: Finalizing field: 'RECIPIENTCRDNUMBER' with description parts: ['Recipient CRD Number']
+DEBUG: Line 46: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'RECIPIENTCRDNUMBER', 'Field Description': 'Recipient CRD Number'}
+DEBUG: Line 48: Raw Stripped Line: '38'
+DEBUG: Line 48: first_word='38', rest_of_line=''
+DEBUG: Line 50: Raw Stripped Line: '150'
+DEBUG: Line 50: first_word='150', rest_of_line=''
+DEBUG: Line 52: Raw Stripped Line: '9'
+DEBUG: Line 52: first_word='9', rest_of_line=''
+DEBUG: Line 54: Raw Stripped Line: 'ASSOCIATEDBDNAME'
+DEBUG: Line 54: first_word='ASSOCIATEDBDNAME', rest_of_line=''
+DEBUG: Line 54: New current_field_name='ASSOCIATEDBDNAME'
+DEBUG: Line 56: Raw Stripped Line: '(Associated) Broker or Dealer'
+DEBUG: Line 56: first_word='(Associated)', rest_of_line='Broker or Dealer'
+DEBUG: Line 56: Scenario 3 triggered. Appending to description of 'ASSOCIATEDBDNAME'.
+DEBUG: Line 56: current_description_parts for 'ASSOCIATEDBDNAME' after appending stripped_line: ['(Associated) Broker or Dealer']
+DEBUG: Line 58: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 58: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 58: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ASSOCIATEDBDNAME'.
+DEBUG: Line 58: Finalizing field: 'ASSOCIATEDBDNAME' with description parts: ['(Associated) Broker or Dealer']
+DEBUG: Line 58: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'ASSOCIATEDBDNAME', 'Field Description': '(Associated) Broker or Dealer'}
+DEBUG: Line 60: Raw Stripped Line: '150'
+DEBUG: Line 60: first_word='150', rest_of_line=''
+DEBUG: Line 62: Raw Stripped Line: 'ASSOCIATEDBDCRDNUMBER'
+DEBUG: Line 62: first_word='ASSOCIATEDBDCRDNUMBER', rest_of_line=''
+DEBUG: Line 62: New current_field_name='ASSOCIATEDBDCRDNUMBER'
+DEBUG: Line 64: Raw Stripped Line: '(Associated) Broker or Dealer'
+DEBUG: Line 64: first_word='(Associated)', rest_of_line='Broker or Dealer'
+DEBUG: Line 64: Scenario 3 triggered. Appending to description of 'ASSOCIATEDBDCRDNUMBER'.
+DEBUG: Line 64: current_description_parts for 'ASSOCIATEDBDCRDNUMBER' after appending stripped_line: ['(Associated) Broker or Dealer']
+DEBUG: Line 65: Raw Stripped Line: 'CRD Number'
+DEBUG: Line 65: first_word='CRD', rest_of_line='Number'
+DEBUG: Line 65: Adding to section_fields (before new field): {'Section': 'RECIPIENTS', 'Field Name': 'ASSOCIATEDBDCRDNUMBER', 'Field Description': '(Associated) Broker or Dealer'}
+DEBUG: Line 65: Finalizing previous field: 'ASSOCIATEDBDCRDNUMBER' with description parts: ['(Associated) Broker or Dealer']
+DEBUG: Line 65: New current_field_name='CRD'
+DEBUG: Line 65: Processing rest_of_line for field 'CRD': 'Number'
+DEBUG: Line 65: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 65: description_segment from rest_of_line='Number'
+DEBUG: Line 65: current_description_parts for 'CRD' after rest_of_line processing: ['Number']
+DEBUG: Line 67: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 67: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 67: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'CRD'.
+DEBUG: Line 67: Finalizing field: 'CRD' with description parts: ['Number']
+DEBUG: Line 67: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'CRD', 'Field Description': 'Number'}
+DEBUG: Line 69: Raw Stripped Line: '9'
+DEBUG: Line 69: first_word='9', rest_of_line=''
+DEBUG: Line 71: Raw Stripped Line: 'STREET1'
+DEBUG: Line 71: first_word='STREET1', rest_of_line=''
+DEBUG: Line 71: New current_field_name='STREET1'
+DEBUG: Line 73: Raw Stripped Line: 'STREET2'
+DEBUG: Line 73: first_word='STREET2', rest_of_line=''
+DEBUG: Line 73: Finalizing previous field: 'STREET1' with description parts: []
+DEBUG: Line 73: New current_field_name='STREET2'
+DEBUG: Line 75: Raw Stripped Line: 'CITY'
+DEBUG: Line 75: first_word='CITY', rest_of_line=''
+DEBUG: Line 75: Finalizing previous field: 'STREET2' with description parts: []
+DEBUG: Line 75: New current_field_name='CITY'
+DEBUG: Line 77: Raw Stripped Line: 'Street Address 1'
+DEBUG: Line 77: first_word='Street', rest_of_line='Address 1'
+DEBUG: Line 77: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 77: current_description_parts for 'CITY' after appending stripped_line: ['Street Address 1']
+DEBUG: Line 79: Raw Stripped Line: 'Street Address 2'
+DEBUG: Line 79: first_word='Street', rest_of_line='Address 2'
+DEBUG: Line 79: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 79: current_description_parts for 'CITY' after appending stripped_line: ['Street Address 1', 'Street Address 2']
+DEBUG: Line 81: Raw Stripped Line: 'City'
+DEBUG: Line 81: first_word='City', rest_of_line=''
+DEBUG: Line 81: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 81: current_description_parts for 'CITY' after appending stripped_line: ['Street Address 1', 'Street Address 2', 'City']
+DEBUG: Line 83: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 83: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 83: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'CITY'.
+DEBUG: Line 83: Finalizing field: 'CITY' with description parts: ['Street Address 1', 'Street Address 2', 'City']
+DEBUG: Line 83: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'CITY', 'Field Description': 'Street Address 1 Street Address 2 City'}
+DEBUG: Line 85: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 85: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 87: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 87: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 89: Raw Stripped Line: 'STATEORCOUNTRY'
+DEBUG: Line 89: first_word='STATEORCOUNTRY', rest_of_line=''
+DEBUG: Line 89: New current_field_name='STATEORCOUNTRY'
+DEBUG: Line 91: Raw Stripped Line: 'State/Province/Country'
+DEBUG: Line 91: first_word='State/Province/Country', rest_of_line=''
+DEBUG: Line 91: Scenario 3 triggered. Appending to description of 'STATEORCOUNTRY'.
+DEBUG: Line 91: current_description_parts for 'STATEORCOUNTRY' after appending stripped_line: ['State/Province/Country']
+DEBUG: Line 93: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 93: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 93: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRY'.
+DEBUG: Line 93: Finalizing field: 'STATEORCOUNTRY' with description parts: ['State/Province/Country']
+DEBUG: Line 93: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'STATEORCOUNTRY', 'Field Description': 'State/Province/Country'}
+DEBUG: Line 95: Raw Stripped Line: 'STATEORCOUNTRYDESCRIPTION  Full name of the country or'
+DEBUG: Line 95: first_word='STATEORCOUNTRYDESCRIPTION', rest_of_line='Full name of the country or'
+DEBUG: Line 95: New current_field_name='STATEORCOUNTRYDESCRIPTION'
+DEBUG: Line 95: Processing rest_of_line for field 'STATEORCOUNTRYDESCRIPTION': 'Full name of the country or'
+DEBUG: Line 95: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 95: description_segment from rest_of_line='Full name of the country or'
+DEBUG: Line 95: current_description_parts for 'STATEORCOUNTRYDESCRIPTION' after rest_of_line processing: ['Full name of the country or']
+DEBUG: Line 97: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 97: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 97: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRYDESCRIPTION'.
+DEBUG: Line 97: Finalizing field: 'STATEORCOUNTRYDESCRIPTION' with description parts: ['Full name of the country or']
+DEBUG: Line 97: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'STATEORCOUNTRYDESCRIPTION', 'Field Description': 'Full name of the country or'}
+DEBUG: Line 99: Raw Stripped Line: 'state'
+DEBUG: Line 99: first_word='state', rest_of_line=''
+DEBUG: Line 101: Raw Stripped Line: '40'
+DEBUG: Line 101: first_word='40', rest_of_line=''
+DEBUG: Line 103: Raw Stripped Line: '40'
+DEBUG: Line 103: first_word='40', rest_of_line=''
+DEBUG: Line 105: Raw Stripped Line: '30'
+DEBUG: Line 105: first_word='30', rest_of_line=''
+DEBUG: Line 107: Raw Stripped Line: '255'
+DEBUG: Line 107: first_word='255', rest_of_line=''
+DEBUG: Line 109: Raw Stripped Line: '50'
+DEBUG: Line 109: first_word='50', rest_of_line=''
+DEBUG: Line 111: Raw Stripped Line: 'ZIPCODE'
+DEBUG: Line 111: first_word='ZIPCODE', rest_of_line=''
+DEBUG: Line 111: New current_field_name='ZIPCODE'
+DEBUG: Line 113: Raw Stripped Line: 'Zip/Postal Code'
+DEBUG: Line 113: first_word='Zip/Postal', rest_of_line='Code'
+DEBUG: Line 113: Scenario 3 triggered. Appending to description of 'ZIPCODE'.
+DEBUG: Line 113: current_description_parts for 'ZIPCODE' after appending stripped_line: ['Zip/Postal Code']
+DEBUG: Line 115: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 115: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 115: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ZIPCODE'.
+DEBUG: Line 115: Finalizing field: 'ZIPCODE' with description parts: ['Zip/Postal Code']
+DEBUG: Line 115: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'ZIPCODE', 'Field Description': 'Zip/Postal Code'}
+DEBUG: Line 117: Raw Stripped Line: '10'
+DEBUG: Line 117: first_word='10', rest_of_line=''
+DEBUG: Line 119: Raw Stripped Line: 'STATES_OR_VALUE_LIST'
+DEBUG: Line 119: first_word='STATES_OR_VALUE_LIST', rest_of_line=''
+DEBUG: Line 119: New current_field_name='STATES_OR_VALUE_LIST'
+DEBUG: Line 121: Raw Stripped Line: 'DESCRIPTIONS_LIST'
+DEBUG: Line 121: first_word='DESCRIPTIONS_LIST', rest_of_line=''
+DEBUG: Line 121: Finalizing previous field: 'STATES_OR_VALUE_LIST' with description parts: []
+DEBUG: Line 121: New current_field_name='DESCRIPTIONS_LIST'
+DEBUG: Line 123: Raw Stripped Line: 'FOREIGNSOLICITATION'
+DEBUG: Line 123: first_word='FOREIGNSOLICITATION', rest_of_line=''
+DEBUG: Line 123: Finalizing previous field: 'DESCRIPTIONS_LIST' with description parts: []
+DEBUG: Line 123: New current_field_name='FOREIGNSOLICITATION'
+DEBUG: Line 125: Raw Stripped Line: 'List of States or Countries of'
+DEBUG: Line 125: first_word='List', rest_of_line='of States or Countries of'
+DEBUG: Line 125: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 125: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of']
+DEBUG: Line 126: Raw Stripped Line: 'Recipients'
+DEBUG: Line 126: first_word='Recipients', rest_of_line=''
+DEBUG: Line 126: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 126: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients']
+DEBUG: Line 128: Raw Stripped Line: 'Full name of States or'
+DEBUG: Line 128: first_word='Full', rest_of_line='name of States or'
+DEBUG: Line 128: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 128: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients', 'Full name of States or']
+DEBUG: Line 129: Raw Stripped Line: 'Countries of Recipients'
+DEBUG: Line 129: first_word='Countries', rest_of_line='of Recipients'
+DEBUG: Line 129: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 129: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients', 'Full name of States or', 'Countries of Recipients']
+DEBUG: Line 131: Raw Stripped Line: 'Selected if the recipient has'
+DEBUG: Line 131: first_word='Selected', rest_of_line='if the recipient has'
+DEBUG: Line 131: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 131: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients', 'Full name of States or', 'Countries of Recipients', 'Selected if the recipient has']
+DEBUG: Line 132: Raw Stripped Line: 'solicited sales in foreign'
+DEBUG: Line 132: first_word='solicited', rest_of_line='sales in foreign'
+DEBUG: Line 132: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 132: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients', 'Full name of States or', 'Countries of Recipients', 'Selected if the recipient has', 'solicited sales in foreign']
+DEBUG: Line 133: Raw Stripped Line: 'countries.'
+DEBUG: Line 133: first_word='countries.', rest_of_line=''
+DEBUG: Line 133: Scenario 3 triggered. Appending to description of 'FOREIGNSOLICITATION'.
+DEBUG: Line 133: current_description_parts for 'FOREIGNSOLICITATION' after appending stripped_line: ['List of States or Countries of', 'Recipients', 'Full name of States or', 'Countries of Recipients', 'Selected if the recipient has', 'solicited sales in foreign', 'countries.']
+DEBUG: Line 135: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 135: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 135: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'FOREIGNSOLICITATION'.
+DEBUG: Line 135: Finalizing field: 'FOREIGNSOLICITATION' with description parts: ['List of States or Countries of', 'Recipients', 'Full name of States or', 'Countries of Recipients', 'Selected if the recipient has', 'solicited sales in foreign', 'countries.']
+DEBUG: Line 135: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RECIPIENTS', 'Field Name': 'FOREIGNSOLICITATION', 'Field Description': 'List of States or Countries of Recipients Full name of States or Countries of Recipients Selected if the recipient has solicited sales in foreign countries.'}
+DEBUG: Line 137: Raw Stripped Line: '1000'
+DEBUG: Line 137: first_word='1000', rest_of_line=''
+DEBUG: Line 139: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 139: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 141: Raw Stripped Line: '1000'
+DEBUG: Line 141: first_word='1000', rest_of_line=''
+DEBUG: Line 143: Raw Stripped Line: 'Yes'
+DEBUG: Line 143: first_word='Yes', rest_of_line=''
+DEBUG: Line 145: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 145: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 147: Raw Stripped Line: '5'
+DEBUG: Line 147: first_word='5', rest_of_line=''
+DEBUG: Line 149: Raw Stripped Line: 'Yes'
+DEBUG: Line 149: first_word='Yes', rest_of_line=''
+DEBUG: Line 151: Raw Stripped Line: '*'
+DEBUG: Line 151: first_word='*', rest_of_line=''
+DEBUG: Line 153: Raw Stripped Line: 'No'
+DEBUG: Line 153: first_word='No', rest_of_line=''
+DEBUG: Line 155: Raw Stripped Line: 'No'
+DEBUG: Line 155: first_word='No', rest_of_line=''
+DEBUG: Line 157: Raw Stripped Line: 'No'
+DEBUG: Line 157: first_word='No', rest_of_line=''
+DEBUG: Line 159: Raw Stripped Line: 'No'
+DEBUG: Line 159: first_word='No', rest_of_line=''
+DEBUG: Line 161: Raw Stripped Line: 'No'
+DEBUG: Line 161: first_word='No', rest_of_line=''
+DEBUG: Line 163: Raw Stripped Line: 'No'
+DEBUG: Line 163: first_word='No', rest_of_line=''
+DEBUG: Line 165: Raw Stripped Line: 'Yes'
+DEBUG: Line 165: first_word='Yes', rest_of_line=''
+DEBUG: Line 167: Raw Stripped Line: 'No'
+DEBUG: Line 167: first_word='No', rest_of_line=''
+DEBUG: Line 169: Raw Stripped Line: 'No'
+DEBUG: Line 169: first_word='No', rest_of_line=''
+DEBUG: Line 171: Raw Stripped Line: 'Yes'
+DEBUG: Line 171: first_word='Yes', rest_of_line=''
+DEBUG: Line 173: Raw Stripped Line: 'No'
+DEBUG: Line 173: first_word='No', rest_of_line=''
+DEBUG: Line 175: Raw Stripped Line: 'Yes'
+DEBUG: Line 175: first_word='Yes', rest_of_line=''
+DEBUG: Line 177: Raw Stripped Line: '5.5       RELATEDPERSONS'
+DEBUG: Line 177: first_word='5.5', rest_of_line='RELATEDPERSONS'
+DEBUG: Line 178: Raw Stripped Line: 'The RELATEDPERSONS data file provides information of related persons with the submission.'
+DEBUG: Line 178: first_word='The', rest_of_line='RELATEDPERSONS data file provides information of related persons with the submission.'
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'The 20-character string'
+DEBUG: Line 6: first_word='The', rest_of_line='20-character string'
+DEBUG: Line 6: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 6: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string']
+DEBUG: Line 7: Raw Stripped Line: 'formed from the 18-digit'
+DEBUG: Line 7: first_word='formed', rest_of_line='from the 18-digit'
+DEBUG: Line 7: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 7: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit']
+DEBUG: Line 8: Raw Stripped Line: 'number assigned by the'
+DEBUG: Line 8: first_word='number', rest_of_line='assigned by the'
+DEBUG: Line 8: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 8: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the']
+DEBUG: Line 9: Raw Stripped Line: 'Commission to each EDGAR'
+DEBUG: Line 9: first_word='Commission', rest_of_line='to each EDGAR'
+DEBUG: Line 9: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 9: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR']
+DEBUG: Line 10: Raw Stripped Line: 'submission.'
+DEBUG: Line 10: first_word='submission.', rest_of_line=''
+DEBUG: Line 10: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 10: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR', 'submission.']
+DEBUG: Line 12: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 12: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 12: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ACCESSIONNUMBER'.
+DEBUG: Line 12: Finalizing field: 'ACCESSIONNUMBER' with description parts: ['The 20-character string', 'formed from the 18-digit', 'number assigned by the', 'Commission to each EDGAR', 'submission.']
+DEBUG: Line 12: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'ACCESSIONNUMBER', 'Field Description': 'The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.'}
+DEBUG: Line 13: Raw Stripped Line: '(nnnnnnnnnn-nn-'
+DEBUG: Line 13: first_word='(nnnnnnnnnn-nn-', rest_of_line=''
+DEBUG: Line 14: Raw Stripped Line: 'nnnnnn)'
+DEBUG: Line 14: first_word='nnnnnn)', rest_of_line=''
+DEBUG: Line 16: Raw Stripped Line: 'Max'
+DEBUG: Line 16: first_word='Max', rest_of_line=''
+DEBUG: Line 17: Raw Stripped Line: 'Size'
+DEBUG: Line 17: first_word='Size', rest_of_line=''
+DEBUG: Line 19: Raw Stripped Line: '20'
+DEBUG: Line 19: first_word='20', rest_of_line=''
+DEBUG: Line 21: Raw Stripped Line: 'May be'
+DEBUG: Line 21: first_word='May', rest_of_line='be'
+DEBUG: Line 22: Raw Stripped Line: 'NULL'
+DEBUG: Line 22: first_word='NULL', rest_of_line=''
+DEBUG: Line 22: New current_field_name='NULL'
+DEBUG: Line 24: Raw Stripped Line: 'Key'
+DEBUG: Line 24: first_word='Key', rest_of_line=''
+DEBUG: Line 24: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 24: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 26: Raw Stripped Line: 'No'
+DEBUG: Line 26: first_word='No', rest_of_line=''
+DEBUG: Line 26: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 26: Finalizing field: 'NULL' with description parts: ['Key']
+DEBUG: Line 26: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 28: Raw Stripped Line: '*'
+DEBUG: Line 28: first_word='*', rest_of_line=''
+DEBUG: Line 30: Raw Stripped Line: 'RELATEDPERSON_SEQ_KEY'
+DEBUG: Line 30: first_word='RELATEDPERSON_SEQ_KEY', rest_of_line=''
+DEBUG: Line 30: New current_field_name='RELATEDPERSON_SEQ_KEY'
+DEBUG: Line 32: Raw Stripped Line: 'Related person index key.'
+DEBUG: Line 32: first_word='Related', rest_of_line='person index key.'
+DEBUG: Line 32: Scenario 3 triggered. Appending to description of 'RELATEDPERSON_SEQ_KEY'.
+DEBUG: Line 32: current_description_parts for 'RELATEDPERSON_SEQ_KEY' after appending stripped_line: ['Related person index key.']
+DEBUG: Line 34: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 34: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 34: Scenario 2 triggered for line starting with 'NUMERIC'. Finalizing field 'RELATEDPERSON_SEQ_KEY'.
+DEBUG: Line 34: Finalizing field: 'RELATEDPERSON_SEQ_KEY' with description parts: ['Related person index key.']
+DEBUG: Line 34: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'RELATEDPERSON_SEQ_KEY', 'Field Description': 'Related person index key.'}
+DEBUG: Line 36: Raw Stripped Line: 'FIRSTNAME'
+DEBUG: Line 36: first_word='FIRSTNAME', rest_of_line=''
+DEBUG: Line 36: New current_field_name='FIRSTNAME'
+DEBUG: Line 38: Raw Stripped Line: 'MIDDLENAME'
+DEBUG: Line 38: first_word='MIDDLENAME', rest_of_line=''
+DEBUG: Line 38: Finalizing previous field: 'FIRSTNAME' with description parts: []
+DEBUG: Line 38: New current_field_name='MIDDLENAME'
+DEBUG: Line 40: Raw Stripped Line: 'First Name'
+DEBUG: Line 40: first_word='First', rest_of_line='Name'
+DEBUG: Line 40: Scenario 3 triggered. Appending to description of 'MIDDLENAME'.
+DEBUG: Line 40: current_description_parts for 'MIDDLENAME' after appending stripped_line: ['First Name']
+DEBUG: Line 42: Raw Stripped Line: 'Middle Name'
+DEBUG: Line 42: first_word='Middle', rest_of_line='Name'
+DEBUG: Line 42: Scenario 3 triggered. Appending to description of 'MIDDLENAME'.
+DEBUG: Line 42: current_description_parts for 'MIDDLENAME' after appending stripped_line: ['First Name', 'Middle Name']
+DEBUG: Line 44: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 44: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 44: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'MIDDLENAME'.
+DEBUG: Line 44: Finalizing field: 'MIDDLENAME' with description parts: ['First Name', 'Middle Name']
+DEBUG: Line 44: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'MIDDLENAME', 'Field Description': 'First Name Middle Name'}
+DEBUG: Line 46: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 46: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 48: Raw Stripped Line: '*'
+DEBUG: Line 48: first_word='*', rest_of_line=''
+DEBUG: Line 50: Raw Stripped Line: '38'
+DEBUG: Line 50: first_word='38', rest_of_line=''
+DEBUG: Line 52: Raw Stripped Line: '150'
+DEBUG: Line 52: first_word='150', rest_of_line=''
+DEBUG: Line 54: Raw Stripped Line: '150'
+DEBUG: Line 54: first_word='150', rest_of_line=''
+DEBUG: Line 56: Raw Stripped Line: 'No'
+DEBUG: Line 56: first_word='No', rest_of_line=''
+DEBUG: Line 58: Raw Stripped Line: 'No'
+DEBUG: Line 58: first_word='No', rest_of_line=''
+DEBUG: Line 60: Raw Stripped Line: 'Yes'
+DEBUG: Line 60: first_word='Yes', rest_of_line=''
+DEBUG: Line 77: Raw Stripped Line: 'Field Name'
+DEBUG: Line 77: first_word='Field', rest_of_line='Name'
+DEBUG: Line 79: Raw Stripped Line: 'Field Description'
+DEBUG: Line 79: first_word='Field', rest_of_line='Description'
+DEBUG: Line 81: Raw Stripped Line: 'Format'
+DEBUG: Line 81: first_word='Format', rest_of_line=''
+DEBUG: Line 83: Raw Stripped Line: 'LASTNAME'
+DEBUG: Line 83: first_word='LASTNAME', rest_of_line=''
+DEBUG: Line 83: New current_field_name='LASTNAME'
+DEBUG: Line 85: Raw Stripped Line: 'STREET1'
+DEBUG: Line 85: first_word='STREET1', rest_of_line=''
+DEBUG: Line 85: Finalizing previous field: 'LASTNAME' with description parts: []
+DEBUG: Line 85: New current_field_name='STREET1'
+DEBUG: Line 87: Raw Stripped Line: 'STREET2'
+DEBUG: Line 87: first_word='STREET2', rest_of_line=''
+DEBUG: Line 87: Finalizing previous field: 'STREET1' with description parts: []
+DEBUG: Line 87: New current_field_name='STREET2'
+DEBUG: Line 89: Raw Stripped Line: 'CITY'
+DEBUG: Line 89: first_word='CITY', rest_of_line=''
+DEBUG: Line 89: Finalizing previous field: 'STREET2' with description parts: []
+DEBUG: Line 89: New current_field_name='CITY'
+DEBUG: Line 91: Raw Stripped Line: 'Last Name'
+DEBUG: Line 91: first_word='Last', rest_of_line='Name'
+DEBUG: Line 91: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 91: current_description_parts for 'CITY' after appending stripped_line: ['Last Name']
+DEBUG: Line 93: Raw Stripped Line: 'Street Address 1'
+DEBUG: Line 93: first_word='Street', rest_of_line='Address 1'
+DEBUG: Line 93: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 93: current_description_parts for 'CITY' after appending stripped_line: ['Last Name', 'Street Address 1']
+DEBUG: Line 95: Raw Stripped Line: 'Street Address 2'
+DEBUG: Line 95: first_word='Street', rest_of_line='Address 2'
+DEBUG: Line 95: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 95: current_description_parts for 'CITY' after appending stripped_line: ['Last Name', 'Street Address 1', 'Street Address 2']
+DEBUG: Line 97: Raw Stripped Line: 'City'
+DEBUG: Line 97: first_word='City', rest_of_line=''
+DEBUG: Line 97: Scenario 3 triggered. Appending to description of 'CITY'.
+DEBUG: Line 97: current_description_parts for 'CITY' after appending stripped_line: ['Last Name', 'Street Address 1', 'Street Address 2', 'City']
+DEBUG: Line 99: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 99: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 99: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'CITY'.
+DEBUG: Line 99: Finalizing field: 'CITY' with description parts: ['Last Name', 'Street Address 1', 'Street Address 2', 'City']
+DEBUG: Line 99: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'CITY', 'Field Description': 'Last Name Street Address 1 Street Address 2 City'}
+DEBUG: Line 101: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 101: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 103: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 103: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 105: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 105: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 107: Raw Stripped Line: 'Max'
+DEBUG: Line 107: first_word='Max', rest_of_line=''
+DEBUG: Line 108: Raw Stripped Line: 'Size'
+DEBUG: Line 108: first_word='Size', rest_of_line=''
+DEBUG: Line 110: Raw Stripped Line: '150'
+DEBUG: Line 110: first_word='150', rest_of_line=''
+DEBUG: Line 112: Raw Stripped Line: '40'
+DEBUG: Line 112: first_word='40', rest_of_line=''
+DEBUG: Line 114: Raw Stripped Line: '40'
+DEBUG: Line 114: first_word='40', rest_of_line=''
+DEBUG: Line 116: Raw Stripped Line: '30'
+DEBUG: Line 116: first_word='30', rest_of_line=''
+DEBUG: Line 118: Raw Stripped Line: 'STATEORCOUNTRY'
+DEBUG: Line 118: first_word='STATEORCOUNTRY', rest_of_line=''
+DEBUG: Line 118: New current_field_name='STATEORCOUNTRY'
+DEBUG: Line 120: Raw Stripped Line: 'State/Province/Country'
+DEBUG: Line 120: first_word='State/Province/Country', rest_of_line=''
+DEBUG: Line 120: Scenario 3 triggered. Appending to description of 'STATEORCOUNTRY'.
+DEBUG: Line 120: current_description_parts for 'STATEORCOUNTRY' after appending stripped_line: ['State/Province/Country']
+DEBUG: Line 122: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 122: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 122: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRY'.
+DEBUG: Line 122: Finalizing field: 'STATEORCOUNTRY' with description parts: ['State/Province/Country']
+DEBUG: Line 122: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'STATEORCOUNTRY', 'Field Description': 'State/Province/Country'}
+DEBUG: Line 124: Raw Stripped Line: '255'
+DEBUG: Line 124: first_word='255', rest_of_line=''
+DEBUG: Line 126: Raw Stripped Line: 'May be'
+DEBUG: Line 126: first_word='May', rest_of_line='be'
+DEBUG: Line 127: Raw Stripped Line: 'NULL'
+DEBUG: Line 127: first_word='NULL', rest_of_line=''
+DEBUG: Line 127: New current_field_name='NULL'
+DEBUG: Line 129: Raw Stripped Line: 'Key'
+DEBUG: Line 129: first_word='Key', rest_of_line=''
+DEBUG: Line 129: Scenario 3 triggered. Appending to description of 'NULL'.
+DEBUG: Line 129: current_description_parts for 'NULL' after appending stripped_line: ['Key']
+DEBUG: Line 131: Raw Stripped Line: 'No'
+DEBUG: Line 131: first_word='No', rest_of_line=''
+DEBUG: Line 131: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 131: Finalizing field: 'NULL' with description parts: ['Key']
+DEBUG: Line 131: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'NULL', 'Field Description': 'Key'}
+DEBUG: Line 133: Raw Stripped Line: 'No'
+DEBUG: Line 133: first_word='No', rest_of_line=''
+DEBUG: Line 135: Raw Stripped Line: 'Yes'
+DEBUG: Line 135: first_word='Yes', rest_of_line=''
+DEBUG: Line 137: Raw Stripped Line: 'No'
+DEBUG: Line 137: first_word='No', rest_of_line=''
+DEBUG: Line 139: Raw Stripped Line: 'No'
+DEBUG: Line 139: first_word='No', rest_of_line=''
+DEBUG: Line 141: Raw Stripped Line: 'STATEORCOUNTRYDESCRIPTION  Full name of the country or'
+DEBUG: Line 141: first_word='STATEORCOUNTRYDESCRIPTION', rest_of_line='Full name of the country or'
+DEBUG: Line 141: New current_field_name='STATEORCOUNTRYDESCRIPTION'
+DEBUG: Line 141: Processing rest_of_line for field 'STATEORCOUNTRYDESCRIPTION': 'Full name of the country or'
+DEBUG: Line 141: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 141: description_segment from rest_of_line='Full name of the country or'
+DEBUG: Line 141: current_description_parts for 'STATEORCOUNTRYDESCRIPTION' after rest_of_line processing: ['Full name of the country or']
+DEBUG: Line 143: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 143: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 143: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'STATEORCOUNTRYDESCRIPTION'.
+DEBUG: Line 143: Finalizing field: 'STATEORCOUNTRYDESCRIPTION' with description parts: ['Full name of the country or']
+DEBUG: Line 143: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'STATEORCOUNTRYDESCRIPTION', 'Field Description': 'Full name of the country or'}
+DEBUG: Line 145: Raw Stripped Line: '50'
+DEBUG: Line 145: first_word='50', rest_of_line=''
+DEBUG: Line 147: Raw Stripped Line: 'Yes'
+DEBUG: Line 147: first_word='Yes', rest_of_line=''
+DEBUG: Line 149: Raw Stripped Line: 'state'
+DEBUG: Line 149: first_word='state', rest_of_line=''
+DEBUG: Line 151: Raw Stripped Line: 'Zip/Postal Code'
+DEBUG: Line 151: first_word='Zip/Postal', rest_of_line='Code'
+DEBUG: Line 153: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 153: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 155: Raw Stripped Line: '10'
+DEBUG: Line 155: first_word='10', rest_of_line=''
+DEBUG: Line 157: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 157: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 159: Raw Stripped Line: '255'
+DEBUG: Line 159: first_word='255', rest_of_line=''
+DEBUG: Line 161: Raw Stripped Line: 'No'
+DEBUG: Line 161: first_word='No', rest_of_line=''
+DEBUG: Line 163: Raw Stripped Line: 'Yes'
+DEBUG: Line 163: first_word='Yes', rest_of_line=''
+DEBUG: Line 165: Raw Stripped Line: 'ZIPCODE'
+DEBUG: Line 165: first_word='ZIPCODE', rest_of_line=''
+DEBUG: Line 165: New current_field_name='ZIPCODE'
+DEBUG: Line 167: Raw Stripped Line: 'RELATIONSHIP_1'
+DEBUG: Line 167: first_word='RELATIONSHIP_1', rest_of_line=''
+DEBUG: Line 167: Finalizing previous field: 'ZIPCODE' with description parts: []
+DEBUG: Line 167: New current_field_name='RELATIONSHIP_1'
+DEBUG: Line 169: Raw Stripped Line: 'RELATIONSHIP_2'
+DEBUG: Line 169: first_word='RELATIONSHIP_2', rest_of_line=''
+DEBUG: Line 169: Finalizing previous field: 'RELATIONSHIP_1' with description parts: []
+DEBUG: Line 169: New current_field_name='RELATIONSHIP_2'
+DEBUG: Line 171: Raw Stripped Line: 'RELATIONSHIP_3'
+DEBUG: Line 171: first_word='RELATIONSHIP_3', rest_of_line=''
+DEBUG: Line 171: Finalizing previous field: 'RELATIONSHIP_2' with description parts: []
+DEBUG: Line 171: New current_field_name='RELATIONSHIP_3'
+DEBUG: Line 173: Raw Stripped Line: 'RELATIONSHIPCLARIFICATION'
+DEBUG: Line 173: first_word='RELATIONSHIPCLARIFICATION', rest_of_line=''
+DEBUG: Line 173: Finalizing previous field: 'RELATIONSHIP_3' with description parts: []
+DEBUG: Line 173: New current_field_name='RELATIONSHIPCLARIFICATION'
+DEBUG: Line 175: Raw Stripped Line: 'Relationship of related person'
+DEBUG: Line 175: first_word='Relationship', rest_of_line='of related person'
+DEBUG: Line 175: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 175: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person']
+DEBUG: Line 176: Raw Stripped Line: 'to issuer consisting of'
+DEBUG: Line 176: first_word='to', rest_of_line='issuer consisting of'
+DEBUG: Line 176: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 176: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of']
+DEBUG: Line 177: Raw Stripped Line: 'Executive Officer, Director, or'
+DEBUG: Line 177: first_word='Executive', rest_of_line='Officer, Director, or'
+DEBUG: Line 177: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 177: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or']
+DEBUG: Line 178: Raw Stripped Line: 'Promoter.'
+DEBUG: Line 178: first_word='Promoter.', rest_of_line=''
+DEBUG: Line 178: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 178: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.']
+DEBUG: Line 180: Raw Stripped Line: 'Relationship of related person'
+DEBUG: Line 180: first_word='Relationship', rest_of_line='of related person'
+DEBUG: Line 180: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 180: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person']
+DEBUG: Line 181: Raw Stripped Line: 'to issuer consisting of'
+DEBUG: Line 181: first_word='to', rest_of_line='issuer consisting of'
+DEBUG: Line 181: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 181: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of']
+DEBUG: Line 182: Raw Stripped Line: 'Executive Officer, Director, or'
+DEBUG: Line 182: first_word='Executive', rest_of_line='Officer, Director, or'
+DEBUG: Line 182: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 182: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or']
+DEBUG: Line 183: Raw Stripped Line: 'Promoter.'
+DEBUG: Line 183: first_word='Promoter.', rest_of_line=''
+DEBUG: Line 183: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 183: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.']
+DEBUG: Line 185: Raw Stripped Line: 'Relationship of related person'
+DEBUG: Line 185: first_word='Relationship', rest_of_line='of related person'
+DEBUG: Line 185: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 185: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person']
+DEBUG: Line 186: Raw Stripped Line: 'to issuer consisting of'
+DEBUG: Line 186: first_word='to', rest_of_line='issuer consisting of'
+DEBUG: Line 186: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 186: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of']
+DEBUG: Line 187: Raw Stripped Line: 'Executive Officer, Director, or'
+DEBUG: Line 187: first_word='Executive', rest_of_line='Officer, Director, or'
+DEBUG: Line 187: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 187: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or']
+DEBUG: Line 188: Raw Stripped Line: 'Promoter.'
+DEBUG: Line 188: first_word='Promoter.', rest_of_line=''
+DEBUG: Line 188: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 188: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.']
+DEBUG: Line 190: Raw Stripped Line: 'Clarification of Response (if'
+DEBUG: Line 190: first_word='Clarification', rest_of_line='of Response (if'
+DEBUG: Line 190: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 190: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Clarification of Response (if']
+DEBUG: Line 191: Raw Stripped Line: 'Necessary)'
+DEBUG: Line 191: first_word='Necessary)', rest_of_line=''
+DEBUG: Line 191: Scenario 3 triggered. Appending to description of 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 191: current_description_parts for 'RELATIONSHIPCLARIFICATION' after appending stripped_line: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Clarification of Response (if', 'Necessary)']
+DEBUG: Line 193: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 193: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 193: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'RELATIONSHIPCLARIFICATION'.
+DEBUG: Line 193: Finalizing field: 'RELATIONSHIPCLARIFICATION' with description parts: ['Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Relationship of related person', 'to issuer consisting of', 'Executive Officer, Director, or', 'Promoter.', 'Clarification of Response (if', 'Necessary)']
+DEBUG: Line 193: Adding to section_fields (Scenario 2 - with desc): {'Section': 'RELATEDPERSONS', 'Field Name': 'RELATIONSHIPCLARIFICATION', 'Field Description': 'Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Clarification of Response (if Necessary)'}
+DEBUG: Line 195: Raw Stripped Line: '255'
+DEBUG: Line 195: first_word='255', rest_of_line=''
+DEBUG: Line 197: Raw Stripped Line: 'Yes'
+DEBUG: Line 197: first_word='Yes', rest_of_line=''
+DEBUG: Line 199: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 199: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 201: Raw Stripped Line: '255'
+DEBUG: Line 201: first_word='255', rest_of_line=''
+DEBUG: Line 203: Raw Stripped Line: 'Yes'
+DEBUG: Line 203: first_word='Yes', rest_of_line=''
+DEBUG: Line 205: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 205: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 207: Raw Stripped Line: '255'
+DEBUG: Line 207: first_word='255', rest_of_line=''
+DEBUG: Line 209: Raw Stripped Line: 'Yes'
+DEBUG: Line 209: first_word='Yes', rest_of_line=''
+DEBUG: Line 211: Raw Stripped Line: '5.6       SIGNATURES'
+DEBUG: Line 211: first_word='5.6', rest_of_line='SIGNATURES'
+DEBUG: Line 212: Raw Stripped Line: 'The SIGNATURES data file provides data for the submission person signature.'
+DEBUG: Line 212: first_word='The', rest_of_line='SIGNATURES data file provides data for the submission person signature.'
+DEBUG: Line 2: Raw Stripped Line: 'Format'
+DEBUG: Line 2: first_word='Format', rest_of_line=''
+DEBUG: Line 4: Raw Stripped Line: 'ACCESSIONNUMBER'
+DEBUG: Line 4: first_word='ACCESSIONNUMBER', rest_of_line=''
+DEBUG: Line 4: New current_field_name='ACCESSIONNUMBER'
+DEBUG: Line 6: Raw Stripped Line: 'The 20-character string formed'
+DEBUG: Line 6: first_word='The', rest_of_line='20-character string formed'
+DEBUG: Line 6: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 6: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed']
+DEBUG: Line 7: Raw Stripped Line: 'from the 18-digit number assigned'
+DEBUG: Line 7: first_word='from', rest_of_line='the 18-digit number assigned'
+DEBUG: Line 7: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 7: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned']
+DEBUG: Line 8: Raw Stripped Line: 'by the Commission to each EDGAR'
+DEBUG: Line 8: first_word='by', rest_of_line='the Commission to each EDGAR'
+DEBUG: Line 8: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 8: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR']
+DEBUG: Line 9: Raw Stripped Line: 'submission.'
+DEBUG: Line 9: first_word='submission.', rest_of_line=''
+DEBUG: Line 9: Scenario 3 triggered. Appending to description of 'ACCESSIONNUMBER'.
+DEBUG: Line 9: current_description_parts for 'ACCESSIONNUMBER' after appending stripped_line: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.']
+DEBUG: Line 11: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 11: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 11: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'ACCESSIONNUMBER'.
+DEBUG: Line 11: Finalizing field: 'ACCESSIONNUMBER' with description parts: ['The 20-character string formed', 'from the 18-digit number assigned', 'by the Commission to each EDGAR', 'submission.']
+DEBUG: Line 11: Adding to section_fields (Scenario 2 - with desc): {'Section': 'SIGNATURES', 'Field Name': 'ACCESSIONNUMBER', 'Field Description': 'The 20-character string formed from the 18-digit number assigned by the Commission to each EDGAR submission.'}
+DEBUG: Line 12: Raw Stripped Line: '(nnnnnnnnnn-nn-'
+DEBUG: Line 12: first_word='(nnnnnnnnnn-nn-', rest_of_line=''
+DEBUG: Line 13: Raw Stripped Line: 'nnnnnn)'
+DEBUG: Line 13: first_word='nnnnnn)', rest_of_line=''
+DEBUG: Line 15: Raw Stripped Line: 'Max'
+DEBUG: Line 15: first_word='Max', rest_of_line=''
+DEBUG: Line 16: Raw Stripped Line: 'Size'
+DEBUG: Line 16: first_word='Size', rest_of_line=''
+DEBUG: Line 18: Raw Stripped Line: '20'
+DEBUG: Line 18: first_word='20', rest_of_line=''
+DEBUG: Line 20: Raw Stripped Line: 'May be'
+DEBUG: Line 20: first_word='May', rest_of_line='be'
+DEBUG: Line 21: Raw Stripped Line: 'NULL'
+DEBUG: Line 21: first_word='NULL', rest_of_line=''
+DEBUG: Line 21: New current_field_name='NULL'
+DEBUG: Line 23: Raw Stripped Line: 'No'
+DEBUG: Line 23: first_word='No', rest_of_line=''
+DEBUG: Line 23: Scenario 2 triggered for line starting with 'No'. Finalizing field 'NULL'.
+DEBUG: Line 23: Finalizing field: 'NULL' with description parts: []
+DEBUG: Line 23: Adding to section_fields (Scenario 2 - no desc): {'Section': 'SIGNATURES', 'Field Name': 'NULL', 'Field Description': ''}
+DEBUG: Line 25: Raw Stripped Line: 'Key'
+DEBUG: Line 25: first_word='Key', rest_of_line=''
+DEBUG: Line 27: Raw Stripped Line: '*'
+DEBUG: Line 27: first_word='*', rest_of_line=''
+DEBUG: Line 29: Raw Stripped Line: 'SIGNATURE_SEQ_KEY  Signature index key.'
+DEBUG: Line 29: first_word='SIGNATURE_SEQ_KEY', rest_of_line='Signature index key.'
+DEBUG: Line 29: New current_field_name='SIGNATURE_SEQ_KEY'
+DEBUG: Line 29: Processing rest_of_line for field 'SIGNATURE_SEQ_KEY': 'Signature index key.'
+DEBUG: Line 29: earliest_keyword_index=-1, keyword_found='None'
+DEBUG: Line 29: description_segment from rest_of_line='Signature index key.'
+DEBUG: Line 29: current_description_parts for 'SIGNATURE_SEQ_KEY' after rest_of_line processing: ['Signature index key.']
+DEBUG: Line 31: Raw Stripped Line: 'NUMERIC'
+DEBUG: Line 31: first_word='NUMERIC', rest_of_line=''
+DEBUG: Line 31: Scenario 2 triggered for line starting with 'NUMERIC'. Finalizing field 'SIGNATURE_SEQ_KEY'.
+DEBUG: Line 31: Finalizing field: 'SIGNATURE_SEQ_KEY' with description parts: ['Signature index key.']
+DEBUG: Line 31: Adding to section_fields (Scenario 2 - with desc): {'Section': 'SIGNATURES', 'Field Name': 'SIGNATURE_SEQ_KEY', 'Field Description': 'Signature index key.'}
+DEBUG: Line 33: Raw Stripped Line: 'ISSUERNAME'
+DEBUG: Line 33: first_word='ISSUERNAME', rest_of_line=''
+DEBUG: Line 33: New current_field_name='ISSUERNAME'
+DEBUG: Line 35: Raw Stripped Line: 'Name of Issuer'
+DEBUG: Line 35: first_word='Name', rest_of_line='of Issuer'
+DEBUG: Line 35: Scenario 3 triggered. Appending to description of 'ISSUERNAME'.
+DEBUG: Line 35: current_description_parts for 'ISSUERNAME' after appending stripped_line: ['Name of Issuer']
+DEBUG: Line 37: Raw Stripped Line: 'SIGNATURENAME'
+DEBUG: Line 37: first_word='SIGNATURENAME', rest_of_line=''
+DEBUG: Line 37: Adding to section_fields (before new field): {'Section': 'SIGNATURES', 'Field Name': 'ISSUERNAME', 'Field Description': 'Name of Issuer'}
+DEBUG: Line 37: Finalizing previous field: 'ISSUERNAME' with description parts: ['Name of Issuer']
+DEBUG: Line 37: New current_field_name='SIGNATURENAME'
+DEBUG: Line 39: Raw Stripped Line: 'Name of signature'
+DEBUG: Line 39: first_word='Name', rest_of_line='of signature'
+DEBUG: Line 39: Scenario 3 triggered. Appending to description of 'SIGNATURENAME'.
+DEBUG: Line 39: current_description_parts for 'SIGNATURENAME' after appending stripped_line: ['Name of signature']
+DEBUG: Line 41: Raw Stripped Line: 'NAMEOFSIGNER'
+DEBUG: Line 41: first_word='NAMEOFSIGNER', rest_of_line=''
+DEBUG: Line 41: Adding to section_fields (before new field): {'Section': 'SIGNATURES', 'Field Name': 'SIGNATURENAME', 'Field Description': 'Name of signature'}
+DEBUG: Line 41: Finalizing previous field: 'SIGNATURENAME' with description parts: ['Name of signature']
+DEBUG: Line 41: New current_field_name='NAMEOFSIGNER'
+DEBUG: Line 43: Raw Stripped Line: 'Full name of person signing the'
+DEBUG: Line 43: first_word='Full', rest_of_line='name of person signing the'
+DEBUG: Line 43: Scenario 3 triggered. Appending to description of 'NAMEOFSIGNER'.
+DEBUG: Line 43: current_description_parts for 'NAMEOFSIGNER' after appending stripped_line: ['Full name of person signing the']
+DEBUG: Line 44: Raw Stripped Line: 'form.'
+DEBUG: Line 44: first_word='form.', rest_of_line=''
+DEBUG: Line 44: Scenario 3 triggered. Appending to description of 'NAMEOFSIGNER'.
+DEBUG: Line 44: current_description_parts for 'NAMEOFSIGNER' after appending stripped_line: ['Full name of person signing the', 'form.']
+DEBUG: Line 46: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 46: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 46: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'NAMEOFSIGNER'.
+DEBUG: Line 46: Finalizing field: 'NAMEOFSIGNER' with description parts: ['Full name of person signing the', 'form.']
+DEBUG: Line 46: Adding to section_fields (Scenario 2 - with desc): {'Section': 'SIGNATURES', 'Field Name': 'NAMEOFSIGNER', 'Field Description': 'Full name of person signing the form.'}
+DEBUG: Line 48: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 48: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 50: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 50: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 52: Raw Stripped Line: 'SIGNATURETITLE'
+DEBUG: Line 52: first_word='SIGNATURETITLE', rest_of_line=''
+DEBUG: Line 52: New current_field_name='SIGNATURETITLE'
+DEBUG: Line 54: Raw Stripped Line: 'Title of person signing the form.'
+DEBUG: Line 54: first_word='Title', rest_of_line='of person signing the form.'
+DEBUG: Line 54: Scenario 3 triggered. Appending to description of 'SIGNATURETITLE'.
+DEBUG: Line 54: current_description_parts for 'SIGNATURETITLE' after appending stripped_line: ['Title of person signing the form.']
+DEBUG: Line 56: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 56: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 56: Scenario 2 triggered for line starting with 'ALPHANUMERIC'. Finalizing field 'SIGNATURETITLE'.
+DEBUG: Line 56: Finalizing field: 'SIGNATURETITLE' with description parts: ['Title of person signing the form.']
+DEBUG: Line 56: Adding to section_fields (Scenario 2 - with desc): {'Section': 'SIGNATURES', 'Field Name': 'SIGNATURETITLE', 'Field Description': 'Title of person signing the form.'}
+DEBUG: Line 58: Raw Stripped Line: 'SIGNATUREDATE'
+DEBUG: Line 58: first_word='SIGNATUREDATE', rest_of_line=''
+DEBUG: Line 58: New current_field_name='SIGNATUREDATE'
+DEBUG: Line 60: Raw Stripped Line: 'Date of signature.'
+DEBUG: Line 60: first_word='Date', rest_of_line='of signature.'
+DEBUG: Line 60: Scenario 2 triggered for line starting with 'Date'. Finalizing field 'SIGNATUREDATE'.
+DEBUG: Line 60: Finalizing field: 'SIGNATUREDATE' with description parts: []
+DEBUG: Line 60: Adding to section_fields (Scenario 2 - no desc): {'Section': 'SIGNATURES', 'Field Name': 'SIGNATUREDATE', 'Field Description': ''}
+DEBUG: Line 62: Raw Stripped Line: 'ALPHANUMERIC'
+DEBUG: Line 62: first_word='ALPHANUMERIC', rest_of_line=''
+DEBUG: Line 64: Raw Stripped Line: '*'
+DEBUG: Line 64: first_word='*', rest_of_line=''
+DEBUG: Line 66: Raw Stripped Line: '38'
+DEBUG: Line 66: first_word='38', rest_of_line=''
+DEBUG: Line 68: Raw Stripped Line: '150'
+DEBUG: Line 68: first_word='150', rest_of_line=''
+DEBUG: Line 70: Raw Stripped Line: '30'
+DEBUG: Line 70: first_word='30', rest_of_line=''
+DEBUG: Line 72: Raw Stripped Line: '150'
+DEBUG: Line 72: first_word='150', rest_of_line=''
+DEBUG: Line 74: Raw Stripped Line: '60'
+DEBUG: Line 74: first_word='60', rest_of_line=''
+DEBUG: Line 76: Raw Stripped Line: '255'
+DEBUG: Line 76: first_word='255', rest_of_line=''
+DEBUG: Line 78: Raw Stripped Line: 'No'
+DEBUG: Line 78: first_word='No', rest_of_line=''
+DEBUG: Line 80: Raw Stripped Line: 'No'
+DEBUG: Line 80: first_word='No', rest_of_line=''
+DEBUG: Line 82: Raw Stripped Line: 'No'
+DEBUG: Line 82: first_word='No', rest_of_line=''
+DEBUG: Line 84: Raw Stripped Line: 'No'
+DEBUG: Line 84: first_word='No', rest_of_line=''
+DEBUG: Line 86: Raw Stripped Line: 'No'
+DEBUG: Line 86: first_word='No', rest_of_line=''
+DEBUG: Line 88: Raw Stripped Line: 'No'
+DEBUG: Line 88: first_word='No', rest_of_line=''
+
+Successfully parsed 72 fields and wrote them to output/form_d_1-9_debug_run.csv
