@@ -57,6 +57,21 @@ def parse_fields_from_text(text):
     common table values (e.g., "YES", "NO"), or another potential field name.
     """
     all_parsed_fields = []
+
+    # Keywords that usually indicate data type or format information.
+    # If a line's first word matches one of these (case-insensitively), it's likely not a new field name
+    # or continuation of a description, but the start of columns like "Format", "Data Type", etc.
+    format_keywords = {"ALPHANUMERIC", "DATE", "NUMERIC", "CHARACTER", "VARCHAR",
+                       "INTEGER", "TEXT", "BOOLEAN", "DECIMAL"}
+
+    # Stricter set for mid-line splitting to avoid truncating common words used in descriptions.
+    strict_format_keywords_for_splitting = {"ALPHANUMERIC", "NUMERIC", "DATE", "VARCHAR", "BOOLEAN", "INTEGER", "DECIMAL"}
+
+    # Other keywords or values that often appear in columns after the description,
+    # such as "Nullable" (YES/NO) or "Key" (*), or numeric values for "Max Size".
+    # These also help determine the end of a field's description.
+    # Matching is case-insensitive for "YES", "NO", "*".
+    other_column_keywords = {"YES", "NO", "*"}
     
     # Regex to identify section titles.
     # It looks for patterns like "Figure X. ... Fields in the SECTION_NAME data file".
@@ -112,6 +127,7 @@ def parse_fields_from_text(text):
         current_field_name = None          # Holds the name of the field currently being processed.
         current_description_parts = []     # Accumulates lines that form the description of the current field.
         section_fields = []                # Stores all fields found in the current section.
+        field_awaits_desc_on_next_line = False # Flag for fields with empty rest_of_line
         
         # Regex for validating a potential field name.
         # - `^`: Start of the string (applied to the first word of a line).
@@ -120,18 +136,6 @@ def parse_fields_from_text(text):
         # This regex is strict. Depending on the PDF's actual field naming conventions (e.g., shorter names,
         # case-insensitivity, other special characters), it might need adjustment.
         field_name_regex = r"^[A-Z0-9_]{3,}$" 
-        
-        # Keywords that usually indicate data type or format information.
-        # If a line's first word matches one of these (case-insensitively), it's likely not a new field name
-        # or continuation of a description, but the start of columns like "Format", "Data Type", etc.
-        format_keywords = {"ALPHANUMERIC", "DATE", "NUMERIC", "CHARACTER", "VARCHAR", 
-                           "INTEGER", "TEXT", "BOOLEAN", "DECIMAL"}
-                           
-        # Other keywords or values that often appear in columns after the description,
-        # such as "Nullable" (YES/NO) or "Key" (*), or numeric values for "Max Size".
-        # These also help determine the end of a field's description.
-        # Matching is case-insensitive for "YES", "NO", "*".
-        other_column_keywords = {"YES", "NO", "*"} 
 
         for line_num, line in enumerate(lines):
             stripped_line = line.strip()
@@ -163,104 +167,200 @@ def parse_fields_from_text(text):
             # AND it's NOT a format keyword AND it's NOT other column data (like "YES", "NO", or a number).
             # This aims to prevent misinterpreting parts of a description as new field names.
             if is_potential_field_name_token and not is_format_keyword_token and not is_other_data_token:
-                # If there's an active field being processed, finalize and save it before starting a new one.
-                if current_field_name and current_description_parts:
+                newly_identified_field = first_word
+
+                # Finalize Previous Field (Conditional)
+                if field_awaits_desc_on_next_line:
+                    # current_field_name was awaiting description, but new field found instead.
+                    print(f"DEBUG: Line {line_num}: Scenario 1: '{current_field_name}' was awaiting description, but new field '{newly_identified_field}' found. Finalizing '{current_field_name}' as empty. Desc parts: {current_description_parts}")
+                    # current_description_parts should be empty here if logic is correct
                     description = " ".join(current_description_parts).strip()
-                    if description: # Only add if the collected description is not empty.
+                    if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                        field_to_add = {
+                            'Section': section_name,
+                            'Field Name': current_field_name,
+                            'Field Description': description # Should be empty
+                        }
+                        print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 1 - prev field was awaiting desc): {field_to_add}")
+                        section_fields.append(field_to_add)
+                    field_awaits_desc_on_next_line = False # Reset flag
+                elif current_field_name is not None:
+                    # Normal finalization for a field that had content or wasn't specifically awaiting description on the *very next* line
+                    print(f"DEBUG: Line {line_num}: Scenario 1: Finalizing previous field '{current_field_name}' before starting new field '{newly_identified_field}'. Desc parts: {current_description_parts}")
+                    description = " ".join(current_description_parts).strip()
+                    if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
                         field_to_add = {
                             'Section': section_name,
                             'Field Name': current_field_name,
                             'Field Description': description
                         }
-                        print(f"DEBUG: Line {line_num}: Adding to section_fields (before new field): {field_to_add}")
+                        print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 1 - normal finalizing prev): {field_to_add}")
                         section_fields.append(field_to_add)
                 
-                if current_field_name is not None: # Check if it's not the first field
-                    print(f"DEBUG: Line {line_num}: Finalizing previous field: '{current_field_name}' with description parts: {current_description_parts}")
-                current_field_name = first_word
-                print(f"DEBUG: Line {line_num}: New current_field_name='{current_field_name}'")
-                current_description_parts = [] # Reset description parts for the new field
+                # Start New Field
+                current_field_name = newly_identified_field
+                current_description_parts = []
+                print(f"DEBUG: Line {line_num}: Scenario 1: New current_field_name='{current_field_name}'")
 
-                # Enhanced line analysis for rest_of_line
+                # Process rest_of_line for the new current_field_name
                 if rest_of_line:
-                    print(f"DEBUG: Line {line_num}: Processing rest_of_line for field '{current_field_name}': '{rest_of_line}'")
-                    # Scan rest_of_line for the earliest format_keyword
+                    field_awaits_desc_on_next_line = False # Description starts on this line
+                    print(f"DEBUG: Line {line_num}: Scenario 1: Processing rest_of_line for '{current_field_name}': '{rest_of_line}'")
                     earliest_keyword_index = -1
-                    keyword_to_split_by = None
-                    description_segment = rest_of_line # Default to full line if no keyword found
+                    keyword_found_in_rol = None
+                    description_segment_rol = rest_of_line
 
-                    for keyword in format_keywords:
-                        # Search for whole word keyword match, case-insensitive
+                    for keyword in strict_format_keywords_for_splitting: # Use stricter list here
                         match = re.search(r'\b' + re.escape(keyword) + r'\b', rest_of_line, re.IGNORECASE)
                         if match:
                             idx = match.start()
                             if earliest_keyword_index == -1 or idx < earliest_keyword_index:
                                 earliest_keyword_index = idx
-                                keyword_to_split_by = keyword # Keep track of which keyword was found
+                                keyword_found_in_rol = keyword
 
-                    print(f"DEBUG: Line {line_num}: earliest_keyword_index={earliest_keyword_index}, keyword_found='{keyword_to_split_by if earliest_keyword_index != -1 else 'None'}'")
+                    print(f"DEBUG: Line {line_num}: Scenario 1: earliest_keyword_index_rol={earliest_keyword_index}, keyword_found_rol='{keyword_found_in_rol if earliest_keyword_index != -1 else 'None'}'")
+
                     if earliest_keyword_index != -1:
-                        # A format keyword was found in rest_of_line
-                        description_segment = rest_of_line[:earliest_keyword_index].strip()
-                        if description_segment: # Append only if there's something before the keyword
-                            current_description_parts.append(description_segment)
-                        # The part from the keyword onwards is ignored for description on this line
+                        description_segment_rol = rest_of_line[:earliest_keyword_index].strip()
+                        if description_segment_rol:
+                            current_description_parts.append(description_segment_rol)
+                        print(f"DEBUG: Line {line_num}: Scenario 1: Found keyword '{keyword_found_in_rol}' in rest_of_line. Appended segment: '{description_segment_rol}'. Parts: {current_description_parts}")
+
+                        # Finalize current_field_name immediately
+                        final_description_rol = " ".join(current_description_parts).strip()
+                        # Check if description has content OR if field is entirely new (to allow empty descriptions if truly no text was captured)
+                        if final_description_rol or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                            field_to_add_rol = {
+                                'Section': section_name,
+                                'Field Name': current_field_name,
+                                'Field Description': final_description_rol
+                            }
+                            print(f"DEBUG: Line {line_num}: Scenario 1: Finalizing field '{current_field_name}' immediately due to keyword in rest_of_line. Adding: {field_to_add_rol}")
+                            section_fields.append(field_to_add_rol)
+                        current_field_name = None # Mark as no longer active
+                        field_awaits_desc_on_next_line = False # Finalized, so not awaiting
                     else:
-                        # No format keyword found in rest_of_line, so the whole line is description
                         current_description_parts.append(rest_of_line)
-                    print(f"DEBUG: Line {line_num}: description_segment from rest_of_line='{description_segment if earliest_keyword_index != -1 and description_segment else (rest_of_line if earliest_keyword_index == -1 else "")}'") # Adjusted print for clarity
-                    print(f"DEBUG: Line {line_num}: current_description_parts for '{current_field_name}' after rest_of_line processing: {current_description_parts}")
+                        print(f"DEBUG: Line {line_num}: Scenario 1: No keyword in rest_of_line. Appended full rest_of_line for '{current_field_name}'. Parts: {current_description_parts}")
+                        # field_awaits_desc_on_next_line remains False because desc started here
+                else: # rest_of_line is empty
+                    print(f"DEBUG: Line {line_num}: Scenario 1: rest_of_line is empty for '{current_field_name}'. Setting field_awaits_desc_on_next_line = True.")
+                    field_awaits_desc_on_next_line = True
 
             # Scenario 2: A format keyword or other column data is detected on the line.
             # This signals the end of the current field's description, as these tokens
             # are assumed to belong to subsequent columns in the table (e.g., "Format", "Nullable").
             # This logic only applies if a field is currently active (`current_field_name` is not None).
             elif (is_format_keyword_token or is_other_data_token) and current_field_name:
-                print(f"DEBUG: Line {line_num}: Scenario 2 triggered for line starting with '{first_word}'. Finalizing field '{current_field_name}'.")
+                print(f"DEBUG: Line {line_num}: Scenario 2 triggered for line starting with '{first_word}'. Finalizing field '{current_field_name if current_field_name else 'None'}'.")
+                # If a field was awaiting description on the next line, but we found a format keyword instead,
+                # it means the field awaiting description had no description.
+                if field_awaits_desc_on_next_line:
+                    print(f"DEBUG: Line {line_num}: Scenario 2: Field '{current_field_name}' was awaiting description, but found format keyword '{first_word}'. Finalizing '{current_field_name}' as likely empty.")
+                    # current_description_parts should be empty if it was truly awaiting first line of desc.
+
                 print(f"DEBUG: Line {line_num}: Finalizing field: '{current_field_name}' with description parts: {current_description_parts}")
-                # Finalize the current field being processed.
-                if current_description_parts: # If any description parts were collected...
-                    description = " ".join(current_description_parts).strip()
-                    if description: # ...and the resulting description is not empty.
-                        field_to_add = {
-                            'Section': section_name,
-                            'Field Name': current_field_name,
-                            'Field Description': description
-                        }
-                        print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 2 - with desc): {field_to_add}")
-                        section_fields.append(field_to_add)
-                # If no description parts were collected (e.g., field name was on a line by itself,
-                # followed immediately by a line with format info), add the field with an empty description,
-                # but only if it hasn't been added already (e.g. from a previous iteration).
+                description = " ".join(current_description_parts).strip()
+                if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                    field_to_add = {
+                        'Section': section_name,
+                        'Field Name': current_field_name,
+                        'Field Description': description
+                    }
+                    print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 2): {field_to_add}")
+                    section_fields.append(field_to_add)
                 elif not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
                     field_to_add = {
-                            'Section': section_name,
-                            'Field Name': current_field_name,
-                            'Field Description': ""  # Field exists but has no description text.
-                        }
-                    print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 2 - no desc): {field_to_add}")
+                        'Section': section_name,
+                        'Field Name': current_field_name,
+                        'Field Description': ""
+                    }
+                    print(f"DEBUG: Line {line_num}: Adding to section_fields (Scenario 2 - no desc, new field): {field_to_add}")
                     section_fields.append(field_to_add)
 
-                # Reset current field tracking, as this line's content is not part of any field's description.
-                # It belongs to other columns of the table.
                 current_field_name = None
                 current_description_parts = []
+                field_awaits_desc_on_next_line = False # This line type terminates any awaiting field.
             
             # Scenario 3: Continuation of the current field's description.
-            # This occurs if the line does not start a new field name (Scenario 1) and is not a
-            # format/other data token line (Scenario 2), AND a field is currently active.
             else:
-                if current_field_name:
-                    print(f"DEBUG: Line {line_num}: Scenario 3 triggered. Appending to description of '{current_field_name}'.")
-                    # Append the whole stripped line as part of the description.
-                    # This is important for multi-line descriptions. Using `stripped_line` (rather than `rest_of_line`)
-                    # ensures that if a description line happens to start with a word that could be a field name
-                    # but wasn't caught by Scenario 1 (e.g. too short, or matches a format keyword but contextually is description),
-                    # it's still appended correctly.
-                    current_description_parts.append(stripped_line)
-                    print(f"DEBUG: Line {line_num}: current_description_parts for '{current_field_name}' after appending stripped_line: {current_description_parts}")
+                print(f"DEBUG: Line {line_num}: Scenario 3 active.")
+                if field_awaits_desc_on_next_line and current_field_name:
+                    print(f"DEBUG: Line {line_num}: Scenario 3: Field '{current_field_name}' was awaiting description. Processing line: '{stripped_line}' as its first description line.")
+                    # This line is the first line of description for current_field_name
+                    earliest_keyword_index_sc3 = -1
+                    keyword_found_sc3 = None
+                    for keyword in strict_format_keywords_for_splitting:
+                        match = re.search(r'\b' + re.escape(keyword) + r'\b', stripped_line, re.IGNORECASE)
+                        if match:
+                            idx = match.start()
+                            if earliest_keyword_index_sc3 == -1 or idx < earliest_keyword_index_sc3:
+                                earliest_keyword_index_sc3 = idx
+                                keyword_found_sc3 = keyword
+
+                    if earliest_keyword_index_sc3 != -1:
+                        description_segment_sc3 = stripped_line[:earliest_keyword_index_sc3].strip()
+                        if description_segment_sc3:
+                            current_description_parts.append(description_segment_sc3)
+                        print(f"DEBUG: Line {line_num}: Scenario 3 (awaiting desc): Found keyword '{keyword_found_sc3}' in stripped_line. Appended segment: '{description_segment_sc3}'. Parts: {current_description_parts}")
+                        description = " ".join(current_description_parts).strip()
+                        if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                            field_to_add = {'Section': section_name, 'Field Name': current_field_name, 'Field Description': description}
+                            print(f"DEBUG: Line {line_num}: Scenario 3 (awaiting desc): Finalizing field '{current_field_name}' due to keyword. Adding: {field_to_add}")
+                            section_fields.append(field_to_add)
+                        current_field_name = None
+                    else:
+                        current_description_parts.append(stripped_line)
+                        print(f"DEBUG: Line {line_num}: Scenario 3 (awaiting desc): No keyword. Appending full line: '{stripped_line}'. Parts: {current_description_parts}")
+                    field_awaits_desc_on_next_line = False # The awaited line has been processed
+
+                elif current_field_name: # Normal continuation for a field that already started its description
+                    print(f"DEBUG: Line {line_num}: Scenario 3: current_field_name='{current_field_name}'. Analyzing stripped_line for continuation: '{stripped_line}'.")
+                    earliest_keyword_index_sc3 = -1
+                    keyword_found_sc3 = None
+                    for keyword in strict_format_keywords_for_splitting:
+                        match = re.search(r'\b' + re.escape(keyword) + r'\b', stripped_line, re.IGNORECASE)
+                        if match:
+                            idx = match.start()
+                            if earliest_keyword_index_sc3 == -1 or idx < earliest_keyword_index_sc3:
+                                earliest_keyword_index_sc3 = idx
+                                keyword_found_sc3 = keyword
+
+                    if earliest_keyword_index_sc3 != -1:
+                        description_segment_sc3 = stripped_line[:earliest_keyword_index_sc3].strip()
+                        if description_segment_sc3:
+                            current_description_parts.append(description_segment_sc3)
+                        print(f"DEBUG: Line {line_num}: Scenario 3 (continuation): Found keyword '{keyword_found_sc3}'. Appended segment: '{description_segment_sc3}'. Parts: {current_description_parts}")
+                        description = " ".join(current_description_parts).strip()
+                        if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                            field_to_add = {'Section': section_name, 'Field Name': current_field_name, 'Field Description': description}
+                            print(f"DEBUG: Line {line_num}: Scenario 3 (continuation): Finalizing field '{current_field_name}' due to keyword. Adding: {field_to_add}")
+                            section_fields.append(field_to_add)
+                        current_field_name = None
+                        current_description_parts = [] # Should be empty for next field
+                    else:
+                        current_description_parts.append(stripped_line)
+                        print(f"DEBUG: Line {line_num}: Scenario 3 (continuation): No keyword. Appending to desc of '{current_field_name}': '{stripped_line}'. Parts: {current_description_parts}")
+
+                else: # Scenario 3 but current_field_name is None and not awaiting_desc
+                    print(f"DEBUG: Line {line_num}: Scenario 3: No active field or awaited description. Line '{stripped_line}' is orphaned/ignored.")
         
         # After processing all lines in a section, finalize any pending field.
+        if field_awaits_desc_on_next_line and current_field_name:
+            # This means the last field name in the table had an empty rest_of_line and no subsequent lines came
+            print(f"DEBUG: End of Section '{section_name}': Field '{current_field_name}' was awaiting description but section ended. Finalizing as empty.")
+            description = " ".join(current_description_parts).strip() # Should be empty
+            if description or not any(d['Field Name'] == current_field_name and d['Section'] == section_name for d in section_fields):
+                field_to_add = {
+                    'Section': section_name,
+                    'Field Name': current_field_name,
+                    'Field Description': description
+                }
+                print(f"DEBUG: End of Section '{section_name}': Adding to section_fields (field was awaiting desc): {field_to_add}")
+                section_fields.append(field_to_add)
+            current_field_name = None # Handled
+            field_awaits_desc_on_next_line = False
+
         # This is crucial for capturing the very last field in the table for the current section.
         if current_field_name: 
             print(f"DEBUG: End of Section '{section_name}': Finalizing pending field '{current_field_name}' with description parts: {current_description_parts}")
