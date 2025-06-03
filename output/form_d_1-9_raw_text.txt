@@ -1,0 +1,1607 @@
+Contents
+Form D Data
+1       Overview
+2       Scope
+3       Organization
+4       File Formats
+5       File Header Definitions
+
+5.1        FORMDSUBMISSION
+5.2        ISSUERS
+5.3        OFFERING
+5.4        RECIPIENTS
+5.5        RELATEDPERSONS
+5.6        SIGNATURES
+
+Figure 1. Fields in the FORMDSUBMISSION data file
+Figure 2. Fields in the ISSUERS data file
+Figure 3. Fields in the OFFERING data file
+Figure 4. Fields in the RECIPIENTS data file
+Figure 5. Fields in the RELATEDPERSONS data file
+Figure 6. Fields in the SIGNATURES data file
+
+1         Overview
+The Form D data provides information extracted from Form D XML submissions in a flattened data format to
+assist users in more easily consuming the data for analysis. These data includes any amendments to those
+submissions. The data has been taken directly from submissions created by the registrants and provided as-
+filed. The data will be published quarterly. Data contained in documents filed after 5:30pm EST on the last
+business day of the quarter will be included in the next quarterly posting.
+
+DISCLAIMER: The Form D Data contains information derived from structured data filed with the Commission
+by individual registrants as well as Commission-generated filing identifiers. Because the data is derived from
+information provided by individual registrants, we cannot guarantee the accuracy of the data. In addition, it is
+possible inaccuracies or other errors were introduced into the data during the process of extracting the data
+and compiling. Finally, the data does not reflect all available information, including certain metadata
+associated with Commission filings. The data is intended to assist the public in analyzing data contained in
+Commission filings; however, it is not a substitute for such filings. Investors should review the full Commission
+filings before making any investment decision.
+
+The data extracted from the Form D XML submissions is organized into six tab-delimited TXT format files as
+follows:
+
+•         FORMDSUBMISSION
+
+
+
+
+•         ISSUERS
+
+•         OFFERING
+
+•         RECIPIENTS
+
+•         RELATEDPERSONS
+
+•         SIGNATURES
+
+2         Scope
+The Form D Data consists of XML data submitted from Jan 2008 through current period.
+
+The Form D Data publishing files do not include data from attachments or other optional information that may
+have been included in a submission.
+
+Note:  The EDGAR Form D XML Technical Specification provides additional information regarding the Form D
+submissions.
+
+3         Organization
+Note that the data includes Form D information "as filed" in EDGAR document submissions including
+amendments of prior submissions.  Data in this submitted form may contain redundancies, inconsistencies,
+and discrepancies relative to prior submissions and other publication formats.  There are six data files.  Each
+quarterly data is accompanied by a metadata file conforming to the W3C specification for tabular data
+(https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/ ) that encodes the following information
+about the data files and their relationships to each other.
+
+1.    FORMDSUBMISSION identifies the Form D EDGAR XML submissions, with each row having the
+
+primary key ACCESSIONNUMBER.
+
+2.    ISSUERS data is the issuer information for each submission, with each row having the primary key
+
+ACCESSIONNUMBER and ISSUER_SEQ_KEY.
+
+3.    OFFERING data is the offering information, with each row having the primary key
+
+ACCESSIONNUMBER.
+
+4.    RECIPIENTS data contains recipients’ information related to the submissions, with each row having
+
+the primary key ACCESSIONNUMBER and RECIPIENT_SEQ_KEY.
+
+5.    RELATEDPERSONS data contains information of related persons in a submission, with each row
+
+having the primary key ACCESSIONNUMBER and RELATEDPERSON_SEQ_KEY.
+
+6.    SIGNATURES data provides the data from the person signatures, with each row having the primary
+
+key ACCESSIONNUMBER and SIGNATURE_SEQ_KEY.
+
+ACCESSIONNUMBER can be used to retrieve information about a submission in the data
+files.  ACCESSIONNUMBER and XXX_SEQ_KEY can be used to obtain data reported on multiple lines in
+the submission.
+
+4         File Formats
+
+Each of the six data files provide text format, tab delimited, utf-8 encoding.
+
+5         File Header Definitions
+The fields in the figures below (figures 1 - 6) provide the following information: field name, description, data
+format, maximum field size, an indication of whether or not the field may be NULL (yes or no), and key.
+
+The Key field indicates whether the field is part of a unique index on the data.  There are two possible values
+for this field:
+
+•         "*"   Indicates the field is part of the unique key for the row.
+
+•         Empty (nothing in field)   the field is not part of the unique compound key.
+
+5.1       FORMDSUBMISSION
+The FORMDSUBMISSION data file contains summary information about the submission and filer.
+
+Figure 1. Fields in the FORMDSUBMISSION data file
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+FILE_NUM
+
+FILING_DATE
+
+SIC_CODE
+
+The 20-character string formed
+from the 18-digit number assigned
+by the Commission to each EDGAR
+submission.
+
+File Number provided by
+Commission for the submission. The
+File Number is sourced from
+EDGAR.
+
+Date filed with the Commission. The
+Filing Date is sourced from EDGAR.
+
+Standard Industrial Classification
+Codes. These codes are also used
+as a basis for assigning review
+responsibility for the company's
+filings.
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+No
+
+Key
+
+*
+
+ALPHANUMERIC
+(nnnnnnnnnn-nn-
+nnnnnn)
+
+ALPHANUMERIC
+
+30
+
+Yes
+
+DATE (DD-MMM-YY)
+
+ALPHANUMERIC
+
+8
+
+4
+
+Yes
+
+Yes
+
+SUBMISSIONTYPE
+
+Submission type
+
+ALPHANUMERIC
+
+255
+
+OVER100PERSONSFLAG  Yes, if over 100 persons.
+
+OVER100ISSUERFLAG
+
+Yes, if over 100 issuers.
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+5
+
+5
+
+No
+
+Yes
+
+Yes
+
+Note: To access the complete submission files for a given filing, please see the Commission EDGAR website.
+The Commission website folder https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/ will always
+contain all the data sets for a given submission. To assemble the folder address to any filing referenced in the
+FORMDSUBMISSION data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace
+{accession} with the ACCESSIONNUMBER field (after removing the dash character).
+
+5.2       ISSUERS
+
+
+
+
+
+
+
+
+
+The ISSUERS data file contains specified information for the issuer provided in the submission.
+
+Figure 2. Fields in the ISSUERS data file
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+The 20-character string formed
+from the 18-digit number
+assigned by the Commission to
+each EDGAR submission.
+
+ALPHANUMERIC
+(nnnnnnnnnn-
+nn-nnnnnn)
+
+IS_PRIMARYISSUER_FLAG
+
+Yes, if primary issuer; No if not  ALPHANUMERIC
+
+ISSUER_SEQ_KEY
+
+Issuer index key.
+
+NUMERIC
+
+CIK
+
+ENTITYNAME
+
+STREET1
+
+STREET2
+
+CITY
+
+Central index key (CIK) of
+issuer submitting the filing.
+
+ALPHANUMERIC
+
+Name of Issuer
+
+Street Address 1
+
+Street Address 2
+
+City
+
+ALPHANUMERIC
+
+150
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+40
+
+40
+
+30
+
+STATEORCOUNTRY
+
+State/Province/Country
+
+ALPHANUMERIC
+
+255
+
+STATEORCOUNTRYDESCRIPTION  Full name of the country or
+
+ALPHANUMERIC
+
+50
+
+Yes
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+Key
+
+No
+
+*
+
+3
+
+38
+
+10
+
+*
+
+No
+
+No
+
+No
+
+Yes
+
+No
+
+Yes
+
+No
+
+No
+
+10
+
+20
+
+50
+
+150
+
+150
+
+150
+
+150
+
+150
+
+150
+
+255
+
+255
+
+No
+
+No
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+No
+
+Yes
+
+ZIPCODE
+
+state
+
+Zip/Postal Code
+
+ISSUERPHONENUMBER
+
+Phone No. of Issuer
+
+JURISDICTIONOFINC
+
+Jurisdiction of
+Incorporation/Organization
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ISSUER_PREVIOUSNAME_1
+
+Issuer Previous Name 1
+
+ALPHANUMERIC
+
+ISSUER_PREVIOUSNAME_2
+
+Issuer Previous Name 2
+
+ALPHANUMERIC
+
+ISSUER_PREVIOUSNAME_3
+
+Issuer Previous Name 3
+
+ALPHANUMERIC
+
+EDGAR_PREVIOUSNAME_1
+
+EDGAR  Previous Name 1
+
+ALPHANUMERIC
+
+EDGAR_PREVIOUSNAME_2
+
+EDGAR  Previous Name 2
+
+ALPHANUMERIC
+
+EDGAR_PREVIOUSNAME_3
+
+EDGAR  Previous Name 3
+
+ALPHANUMERIC
+
+ENTITYTYPE
+
+Entity type
+
+ENTITYTYPEOTHERDESC
+
+YEAROFINC_TIMESPAN_CHOICE
+
+YEAROFINC_VALUE_ENTERED
+
+Description of Entity Type when
+indicated as 'Other' in Entity
+Type
+
+Year of
+Incorporation/Organization
+(Specify Year) Within Last Five
+Years (Specify Year)
+
+Year of Incorporation value
+entered
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+150
+
+No
+
+ALPHANUMERIC
+
+4
+
+Yes
+
+5.3       OFFERING
+The OFFERING data file contains information regarding the offering requirements.
+
+Figure 3. Fields in the OFFERING data file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+INDUSTRYGROUPTYPE
+
+INVESTMENTFUNDTYPE
+
+IS40ACT
+
+The 20-character string
+formed from the 18-
+digit number assigned
+by the Commission to
+each EDGAR
+submission.
+
+ALPHANUMERIC
+(nnnnnnnnnn-
+nn-nnnnnn)
+
+Type of Industry
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+Key
+
+No
+
+*
+
+255
+
+255
+
+No
+
+Yes
+
+ALPHANUMERIC
+
+5
+
+Yes
+
+REVENUERANGE
+
+Revenue Range
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+255
+
+255
+
+Yes
+
+Yes
+
+ALPHANUMERIC
+
+1000
+
+Yes
+
+ALPHANUMERIC
+
+5
+
+No
+
+ALPHANUMERIC
+
+20
+
+Yes
+
+Type of Securities
+Offered
+
+Flag to indicate
+whether the issuer
+registered as an
+investment
+company under the
+Investment Company
+Act of 1940
+
+Aggregate Net Asset
+Value Range
+
+List of exemptions
+under Securities Act
+
+New Notice
+/Amendment
+
+Previous Accession
+Number; The 20-
+character string formed
+from the 18-digit
+number assigned by
+the Commission to
+each EDGAR
+submission.
+
+Duration of offering
+more than one year
+
+Equity
+
+Debt
+
+Option, Warrant or
+Other Right to Acquire
+Another Security
+
+Security to be Acquired
+Upon Exercise of
+Option, Warrant or
+Other Right to Acquire
+Security
+
+Sale Date
+
+ALPHANUMERIC
+
+255
+
+First Sale Yet to Occur
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+Yes
+
+Yes
+
+No
+
+Yes
+
+Yes
+
+Yes
+
+5
+
+5
+
+5
+
+5
+
+5
+
+ALPHANUMERIC
+
+5
+
+Yes
+
+AGGREGATENETASSETVALUERANGE
+
+FEDERALEXEMPTIONS_ITEMS_LIST
+
+ISAMENDMENT
+
+PREVIOUSACCESSIONNUMBER
+
+SALE_DATE
+
+YETTOOCCUR
+
+MORETHANONEYEAR
+
+ISEQUITYTYPE
+
+ISDEBTTYPE
+
+ISOPTIONTOACQUIRETYPE
+
+ISSECURITYTOBEACQUIREDTYPE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Field Name
+
+Field Description
+
+Format
+
+Max
+Size
+
+May be
+NULL
+
+Key
+
+ISPOOLEDINVESTMENTFUNDTYPE
+
+ISTENANTINCOMMONTYPE
+
+ISMINERALPROPERTYTYPE
+
+Pooled Investment
+Fund Interests
+
+Tenant-in-Common
+Securities
+
+Mineral Property
+Securities
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ISOTHERTYPE
+
+Other (describe)
+
+ALPHANUMERIC
+
+5
+
+5
+
+5
+
+5
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+Yes
+
+DESCRIPTIONOFOTHERTYPE
+
+ISBUSINESSCOMBINATIONTRANS
+
+BUSCOMBCLARIFICATIONOFRESP
+
+MINIMUMINVESTMENTACCEPTED
+
+Description of Pooled
+Investment Type when
+indicated as 'Other' in
+'OtherType' as Pooled
+Investment Type
+
+Is this offering being
+made in connection
+with a business
+combination
+transaction, such as a
+merger, acquisition, or
+exchange offer?
+
+Clarification of
+Response (if
+Necessary)
+
+Minimum investment
+accepted from any
+outside investor
+
+ALPHANUMERIC
+
+5
+
+No
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+NUMERIC
+
+19
+
+No
+
+OVER100RECIPIENTFLAG
+
+Over 100 recipients
+
+ALPHANUMERIC
+
+TOTALOFFERINGAMOUNT
+
+Total offering amount
+
+ALPHANUMERIC
+
+TOTALAMOUNTSOLD
+
+TOTALREMAINING
+
+SALESAMTCLARIFICATIONOFRESP
+
+HASNONACCREDITEDINVESTORS
+
+NUMBERNONACCREDITEDINVESTORS
+
+5
+
+12
+
+12
+
+12
+
+Yes
+
+No
+
+No
+
+No
+
+Total amount sold
+
+NUMERIC
+
+Total remaining to be
+sold
+
+ALPHANUMERIC
+
+Clarification of
+Response (if
+Necessary)
+
+Select if securities in
+the offering have been
+or may be sold to
+persons who do not
+qualify as accredited
+investors
+
+Number of such non-
+accredited investors
+who already have
+invested in the offering
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+ALPHANUMERIC
+
+5
+
+No
+
+NUMERIC
+
+19
+
+Yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Field Name
+
+Field Description
+
+Format
+
+NUMERIC
+
+Max
+Size
+
+19
+
+May be
+NULL
+
+No
+
+Key
+
+SALESCOMM_ISESTIMATE
+
+Estimate
+
+ALPHANUMERIC
+
+FINDERSFEE_DOLLARAMOUNT
+
+Finders  Fee USD
+
+NUMERIC
+
+NUMERIC
+
+12
+
+No
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+255
+
+5
+
+12
+
+5
+
+Yes
+
+No
+
+Yes
+
+Yes
+
+NUMERIC
+
+12
+
+No
+
+TOTALNUMBERALREADYINVESTED
+
+SALESCOMM_DOLLARAMOUNT
+
+Regardless of whether
+securities in the
+offering have been or
+may be sold to persons
+who do not qualify as
+accredited investors,
+enter the total number
+of investors who
+already have invested
+in the offering.
+
+Sales Commissions,
+USD
+
+FINDERSFEE_ISESTIMATE
+
+FINDERFEECLARIFICATIONOFRESP
+
+Estimate
+
+Clarification of
+Response (if
+Necessary)
+
+GROSSPROCEEDSUSED_DOLLARAMOUNT  Provide the amount of
+the gross proceeds of
+the offering that has
+been or is proposed to
+be used for payments
+to any of the persons
+required to be named
+as executive officers,
+directors, or promoters
+in response to Item 3
+above. If the amount is
+unknown, provide an
+estimate and check the
+box next to the
+amount. USD
+
+GROSSPROCEEDSUSED_CLAROFRESP
+
+AUTHORIZEDREPRESENTATIVE
+
+Clarification of
+Response (if
+Necessary)
+
+I also am a duly
+authorized
+representative of the
+other Issuer(s) in Item
+1 above and authorized
+to sign on their behalf.
+
+5.4       RECIPIENTS
+
+GROSSPROCEEDSUSED_ISESTIMATE
+
+Estimate
+
+ALPHANUMERIC
+
+5
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+Yes
+
+ALPHANUMERIC
+
+5
+
+Yes
+
+
+
+
+
+
+
+
+
+
+
+
+The RECIPIENTS data file contains the recipients information.
+
+Figure 4. Fields in the RECIPIENTS data file
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+The 20-character string
+formed from the 18-digit
+number assigned by the
+Commission to each EDGAR
+submission.
+
+ALPHANUMERIC
+(nnnnnnnnnn-nn-
+nnnnnn)
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+Key
+
+No
+
+*
+
+RECIPIENT_SEQ_KEY
+
+Recipient index key.
+
+NUMERIC
+
+RECIPIENTNAME
+
+Recipient
+
+ALPHANUMERIC
+
+RECIPIENTCRDNUMBER
+
+Recipient CRD Number
+
+ALPHANUMERIC
+
+38
+
+150
+
+9
+
+ASSOCIATEDBDNAME
+
+(Associated) Broker or Dealer
+
+ALPHANUMERIC
+
+150
+
+ASSOCIATEDBDCRDNUMBER
+
+(Associated) Broker or Dealer
+CRD Number
+
+ALPHANUMERIC
+
+9
+
+STREET1
+
+STREET2
+
+CITY
+
+Street Address 1
+
+Street Address 2
+
+City
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+STATEORCOUNTRY
+
+State/Province/Country
+
+ALPHANUMERIC
+
+STATEORCOUNTRYDESCRIPTION  Full name of the country or
+
+ALPHANUMERIC
+
+state
+
+40
+
+40
+
+30
+
+255
+
+50
+
+ZIPCODE
+
+Zip/Postal Code
+
+ALPHANUMERIC
+
+10
+
+STATES_OR_VALUE_LIST
+
+DESCRIPTIONS_LIST
+
+FOREIGNSOLICITATION
+
+List of States or Countries of
+Recipients
+
+Full name of States or
+Countries of Recipients
+
+Selected if the recipient has
+solicited sales in foreign
+countries.
+
+ALPHANUMERIC
+
+1000
+
+ALPHANUMERIC
+
+1000
+
+Yes
+
+ALPHANUMERIC
+
+5
+
+Yes
+
+*
+
+No
+
+No
+
+No
+
+No
+
+No
+
+No
+
+Yes
+
+No
+
+No
+
+Yes
+
+No
+
+Yes
+
+5.5       RELATEDPERSONS
+The RELATEDPERSONS data file provides information of related persons with the submission.
+
+Figure 5. Fields in the RELATEDPERSONS data file
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+The 20-character string
+formed from the 18-digit
+number assigned by the
+Commission to each EDGAR
+submission.
+
+ALPHANUMERIC
+(nnnnnnnnnn-nn-
+nnnnnn)
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+Key
+
+No
+
+*
+
+RELATEDPERSON_SEQ_KEY
+
+Related person index key.
+
+NUMERIC
+
+FIRSTNAME
+
+MIDDLENAME
+
+First Name
+
+Middle Name
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+*
+
+38
+
+150
+
+150
+
+No
+
+No
+
+Yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Field Name
+
+Field Description
+
+Format
+
+LASTNAME
+
+STREET1
+
+STREET2
+
+CITY
+
+Last Name
+
+Street Address 1
+
+Street Address 2
+
+City
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+Max
+Size
+
+150
+
+40
+
+40
+
+30
+
+STATEORCOUNTRY
+
+State/Province/Country
+
+ALPHANUMERIC
+
+255
+
+May be
+NULL
+
+Key
+
+No
+
+No
+
+Yes
+
+No
+
+No
+
+STATEORCOUNTRYDESCRIPTION  Full name of the country or
+
+ALPHANUMERIC
+
+50
+
+Yes
+
+state
+
+Zip/Postal Code
+
+ALPHANUMERIC
+
+10
+
+ALPHANUMERIC
+
+255
+
+No
+
+Yes
+
+ZIPCODE
+
+RELATIONSHIP_1
+
+RELATIONSHIP_2
+
+RELATIONSHIP_3
+
+RELATIONSHIPCLARIFICATION
+
+Relationship of related person
+to issuer consisting of
+Executive Officer, Director, or
+Promoter.
+
+Relationship of related person
+to issuer consisting of
+Executive Officer, Director, or
+Promoter.
+
+Relationship of related person
+to issuer consisting of
+Executive Officer, Director, or
+Promoter.
+
+Clarification of Response (if
+Necessary)
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+ALPHANUMERIC
+
+255
+
+Yes
+
+5.6       SIGNATURES
+The SIGNATURES data file provides data for the submission person signature.
+
+Figure 6. Fields in the SIGNATURES data file
+
+Field Name
+
+Field Description
+
+Format
+
+ACCESSIONNUMBER
+
+The 20-character string formed
+from the 18-digit number assigned
+by the Commission to each EDGAR
+submission.
+
+ALPHANUMERIC
+(nnnnnnnnnn-nn-
+nnnnnn)
+
+Max
+Size
+
+20
+
+May be
+NULL
+
+No
+
+Key
+
+*
+
+SIGNATURE_SEQ_KEY  Signature index key.
+
+NUMERIC
+
+ISSUERNAME
+
+Name of Issuer
+
+SIGNATURENAME
+
+Name of signature
+
+NAMEOFSIGNER
+
+Full name of person signing the
+form.
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+ALPHANUMERIC
+
+SIGNATURETITLE
+
+Title of person signing the form.
+
+ALPHANUMERIC
+
+SIGNATUREDATE
+
+Date of signature.
+
+ALPHANUMERIC
+
+*
+
+38
+
+150
+
+30
+
+150
+
+60
+
+255
+
+No
+
+No
+
+No
+
+No
+
+No
+
+No
