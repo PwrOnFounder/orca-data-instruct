@@ -8,8 +8,13 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
-from pdfminer.pdfparser import PDFParser, PDFSyntaxError # For specific PDF errors
-# from pdfminer.psparser import PSError # PSError could not be reinstated due to ImportError
+from pdfminer.pdfparser import PDFParser, PDFSyntaxError
+try:
+    from pdfminer.psparser import PSSyntaxError as PSError  # compatibility alias
+except Exception:  # pragma: no cover
+    class PSError(Exception):
+        """Fallback when pdfminer does not expose PSError."""
+        pass
 
 def _finalize_and_add_field(field_name, description_parts, section_name, section_fields_list, line_num_debug, context_debug_msg):
     """Helper to finalize a field and add it to the section_fields_list."""
@@ -55,6 +60,9 @@ def extract_text_from_pdf(pdf_path):
     except PDFSyntaxError as e:
         print(f"Error processing PDF file '{pdf_path}': It might be corrupted or not a valid PDF. Details: {e}")
         return None
+    except PSError as e:
+        print(f"Error processing PDF file '{pdf_path}': It might be corrupted or not a valid PDF. Details: {e}")
+        return None
     except Exception as e:
         print(f"An unexpected error occurred while processing PDF '{pdf_path}': {e}")
         return None
@@ -67,19 +75,21 @@ def parse_fields_from_text(text):
     all_parsed_fields = []
 
     other_column_keywords_strict = {
-        "ALPHANUMERIC", "NUMERIC", "DATE", "BOOLEAN", "EDGAR", "XBRL"
+        "ALPHANUMERIC", "NUMERIC", "DATE", "BOOLEAN", "EDGAR", "XBRL", "TEXT",
+        "VARCHAR", "INTEGER"
     }
     other_potentially_column_start_keywords = {"YES", "NO", "*"}
 
     # Made more permissive for field names like 'series', 'total', 'verbose'
-    field_name_regex = r"^[a-zA-Z0-9_]+$"
+    field_name_regex = r"^[A-Z0-9_]{3,}$"
     # Keep known acronyms or specific case-sensitive names in a set to prevent lowercasing them.
     known_acronyms_or_case_sensitive_names = {"CIK", "XBRL", "EDGAR", "ABS", "CRS", "DEFRS", "MFRR"} # Add more if needed
 
     common_desc_start_words = {
         "THE", "A", "AN", "THIS", "IF", "FOR", "AND", "OF", "IN", "TO", "IS", "ARE", "AS", "FIELD",
         "MAX", "SIZE", "MAY", "BE", "NULL", "KEY", "SOURCE", "FORMAT", "DATA", "TYPE",
-        "LENGTH", "COMMENTS", "NAME", "DESCRIPTION", "FIELDNAME", "FIELDTYPE"
+        "LENGTH", "COMMENTS", "NAME", "DESCRIPTION", "FIELDNAME", "FIELDTYPE",
+        "NOTE", "CONTINUATION", "CODE"
     }
 
     section_start_pattern = re.compile(
@@ -112,10 +122,14 @@ def parse_fields_from_text(text):
         header_match = header_pattern.search(section_text_content)
 
         print(f"DEBUG: Processing Section: '{section_name}'. Text content length: {len(section_text_content)}. Header found: {'Yes' if header_match else 'No'}")
-        if not header_match: continue
-        
-        table_text_start_index = header_match.end()
-        table_text = section_text_content[table_text_start_index:]
+
+        if header_match:
+            table_text_start_index = header_match.end()
+            table_text = section_text_content[table_text_start_index:]
+        else:
+            # Fallback: treat entire section text as table when standard header is missing
+            table_text = section_text_content
+
         lines = table_text.split('\n')
         print(f"DEBUG: Section '{section_name}': table_text (first 200 chars) = '{table_text[:200].replace(chr(10), chr(92) + chr(110))}'")
         
@@ -150,7 +164,8 @@ def parse_fields_from_text(text):
                                          first_word.upper() not in common_desc_start_words and \
                                          not first_word.upper() in other_column_keywords_strict and \
                                          not first_word.upper() in other_potentially_column_start_keywords and \
-                                         not first_word.isdigit()
+                                         not first_word.isdigit() and \
+                                         not first_word.islower()
             rol_starts_with_col_keyword = any(rest_of_line.upper().startswith(kw) for kw in other_column_keywords_strict) if rest_of_line else False
 
             # --- Check 1: Scenario C Special (e.g. "verbose" on line N, then "Verbose label..." on line N+1) ---
@@ -170,7 +185,7 @@ def parse_fields_from_text(text):
                         m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
                         if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
                     if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                    if desc_seg: current_description_parts.append(desc_seg)
+                    if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
                     if found_kw:
                         _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "CSpecialSplitFinalize")
                         current_field_name = None; current_description_parts = []
@@ -207,7 +222,7 @@ def parse_fields_from_text(text):
                                 earliest_keyword_index_cc = idx_cc; keyword_in_cc = keyword_cc_loopvar
                     if keyword_in_cc:
                         description_segment = description_segment[:earliest_keyword_index_cc].strip()
-                    if description_segment: current_description_parts.append(description_segment)
+                    if description_segment: current_description_parts.append(" ".join(description_segment.split()))
                     if keyword_in_cc:
                         _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"CamelCaseKeywordFinalize for {current_field_name}")
                         current_field_name = None; current_description_parts = []
@@ -232,13 +247,23 @@ def parse_fields_from_text(text):
                     m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
                     if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
                 if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                if desc_seg: current_description_parts.append(desc_seg)
+                if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
                 if found_kw:
                     _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "StrongSignalSplit")
                     current_field_name = None; current_description_parts = []
                 continue
 
             # --- Check 3: General New Field (Scenario A/B) ---
+            if is_likely_field_name_start_original and rol_starts_with_col_keyword:
+                processed_field_name = first_word
+                print(f"DEBUG: Scenario B0: New field '{processed_field_name}' with no description")
+                if current_field_name:
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewFieldBeforeColumn")
+                _finalize_and_add_field(processed_field_name, [], section_name, section_fields, line_num, "NewFieldBeforeColumnAdd")
+                current_field_name = None
+                current_description_parts = []
+                continue
+
             if is_likely_field_name_start_original and not rol_starts_with_col_keyword:
                 # Field Name Casing: store lowercase if not an acronym or known mixed case.
                 processed_field_name = first_word
@@ -248,7 +273,7 @@ def parse_fields_from_text(text):
 
                 if len(first_word) <=2 and not rest_of_line and current_field_name: # Scenario A
                      print(f"DEBUG: Scenario A: Short cont for '{current_field_name}': '{first_word}'")
-                     current_description_parts.append(stripped_line)
+                     current_description_parts.append(" ".join(stripped_line.split()))
                 else: # Scenario B
                     print(f"DEBUG: Scenario B: New field '{processed_field_name}' (from '{first_word}'), ROL: '{rest_of_line[:30]}'")
                     if current_field_name: _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewField")
@@ -259,7 +284,7 @@ def parse_fields_from_text(text):
                         m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
                         if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
                     if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                    if desc_seg: current_description_parts.append(desc_seg)
+                    if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
                     if found_kw:
                         _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "ROLSplit")
                         current_field_name = None; current_description_parts = []
@@ -281,7 +306,8 @@ def parse_fields_from_text(text):
                     if current_description_parts and current_description_parts[-1].strip().endswith(".") and \
                        stripped_line and stripped_line[0].isupper() and \
                        first_word.upper() not in common_desc_start_words and \
-                       not (is_likely_field_name_start_original and not rol_starts_with_col_keyword) :
+                       not (is_likely_field_name_start_original and not rol_starts_with_col_keyword) and \
+                       first_word.isalpha():
                         if len(stripped_line.split()) > 2 :
                             print(f"DEBUG:   NewSentenceHeuristic: Finalizing '{current_field_name}' before appending '{stripped_line[:30]}...'")
                             _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewSentenceHeuristic")
@@ -293,7 +319,7 @@ def parse_fields_from_text(text):
                             m = re.search(r'\s+\b' + re.escape(kw_c) + r'\b', desc_seg, re.IGNORECASE)
                             if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw_c
                         if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                        if desc_seg: current_description_parts.append(desc_seg)
+                        if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
                         print(f"DEBUG:   Appended to '{current_field_name}': '{desc_seg[:50]}...' (orig: '{stripped_line[:50]}...')")
                         if found_kw:
                             print(f"DEBUG:   MidLineKeyword Finalizing '{current_field_name}'")
