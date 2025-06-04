@@ -1,0 +1,58 @@
+Section,Field Name,Field Description
+LAB,verbose,
+LAB,Verbose,label as provided in the submission
+LAB,total,
+LAB,Total,label as provided in the submission
+LAB,negated,
+LAB,Negated,label as provided in the submission
+LAB,Terse,"Negated, Terse label as provided in the submission"
+LAB,Max,
+LAB,Size,
+LAB,May,be
+LAB,NULL,
+LAB,Key,
+LAB,element,"to have more than one distinct set of arcs for a given parent element, thus the rationale for distinct"
+LAB,fields,"for the group and the arc.  The source for the table is the ""as filed"""
+LAB,May,be
+TXT,class,
+TXT,Series,identifier to which the fact applies
+TXT,measure,
+TXT,Performance,measure qualifier for the fact
+TXT,document,Prospectus to which the fact applies
+TXT,otherdims,Other qualifiers provided by the filer to
+TXT,distinguish,otherwise identical facts.
+TXT,Max,
+TXT,Size,
+TXT,May,be
+TXT,NULL,Key
+TXT,iprx,
+TXT,dcml,
+TXT,dimn,A positive integer to distinguish different
+TXT,reported,facts that otherwise would have the
+TXT,same,"primary key.  For most purposes, data"
+TXT,with,iprx greater than 1 are not needed.  The
+TXT,priority,"for the fact based on higher precision. The value of the fact ""xml:lang"" attribute, en-US represented by 32767, other ""en"""
+TXT,dialects,"having lower values, and other"
+TXT,languages,lower still.
+TXT,Small,"integer representing the number of dimensions, useful for sorting.  Note that this"
+TXT,value,is function of the dimension segments.
+TXT,escaped,
+TXT,Flag,indicating whether the value has had HTML
+TXT,tags,removed.
+TXT,srclen,
+TXT,txtlen,
+TXT,footnote,
+TXT,footlen,
+TXT,context,
+TXT,Number,"of bytes in the original, unprocessed value.  Zero indicates a NULL value. The original length of the whitespace"
+TXT,normalized,"value, which may have been greater"
+TXT,than,"2048. The plain text of any superscripted footnotes on the value, as shown on the page, truncated to 512 characters, or if there is no footnote, then this field will be blank."
+TXT,Number,of bytes in the plain text of the
+TXT,footnote,prior to truncation. The value of the contextRef attribute in the source
+TXT,recover,"the original HTML tagging if desired. The value, with all whitespace normalized, that is, all sequences of line feeds, carriage returns, tabs, non-breaking spaces, and spaces having"
+TXT,been,"collapsed to a single space, and no leading"
+TXT,or,trailing spaces.  Escaped XML that appears in
+TXT,remove,"all mark-up (comments, processing instructions, elements, attributes).  The value is"
+TXT,truncated,to a maximum number of bytes.  The
+TXT,resulting,text is not intended for end user
+TXT,display,but only for text analysis applications.
