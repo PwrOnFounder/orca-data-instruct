@@ -70,185 +70,354 @@ def parse_fields_from_text(text):
     format_keywords = {"ALPHANUMERIC", "DATE", "NUMERIC", "CHARACTER", "VARCHAR",
                        "INTEGER", "TEXT", "BOOLEAN", "DECIMAL"}
     # Define a stricter set of keywords for splitting descriptions mid-line
-    # This was the version from Turn 25 / v7
-    # Modified in Turn 22 (Subtask 17) to be more restrictive
-    strict_format_keywords_for_splitting = {"ALPHANUMERIC", "NUMERIC"}
+    other_column_keywords_strict = {
+        "ALPHANUMERIC", "NUMERIC", "DATE", "BOOLEAN", # Format column
+        "EDGAR", "XBRL", # Source column
+        # "YES", "NO" for "May be NULL" are tricky as they can be in descriptions
+        # Max Size is usually a number, also tricky.
+        # Key is usually "*" - also tricky.
+    }
+    # Regex for these, ensuring they are whole words and not at the start of the line for description splitting.
+    # We'll use re.search(r'\b' + keyword + r'\b', ...) later
 
-    other_column_keywords = {"YES", "NO", "*"} # Keywords that might appear in other columns
+    other_potentially_column_start_keywords = {"YES", "NO", "*"} # Keywords that might appear in other columns, less reliable for splitting description
 
     # Regex to find sections like "Figure 1. Fields in the FORMD SUBMISSION data file"
-    # It captures the section name like "FORMD SUBMISSION"
-    section_pattern = re.compile(r"Figure \d+\..*?Fields in the\s+(.+?)\s+data file", re.IGNORECASE | re.DOTALL)
-    all_figure_matches = list(section_pattern.finditer(text)) # Use list to allow indexing
-    print(f"DEBUG: Found {len(all_figure_matches)} 'Figure X...' section matches.")
+    # Captures the specific dataset name like "SUB" or "TAG"
+    section_start_pattern = re.compile(
+        r"Figure \d+\.[^\n]*?Fields in the\s+([A-Z0-9_]+(?:\s+[A-Z0-9_]+)*)\s+data (?:file|set)",
+        re.IGNORECASE | re.DOTALL
+    )
 
-    if not all_figure_matches:
-        print("DEBUG: No 'Figure X...' patterns found. Returning empty list.")
+    # Regex to find the beginning of *any* "Figure X." line, to delimit the end of a section's text.
+    any_figure_line_pattern = re.compile(r"^\s*Figure \d+\.", re.MULTILINE | re.IGNORECASE)
+
+    all_section_start_matches = list(section_start_pattern.finditer(text))
+    print(f"DEBUG: Found {len(all_section_start_matches)} 'Fields in the...' section start matches.")
+
+    if not all_section_start_matches:
+        print("DEBUG: No 'Fields in the...' patterns found. Returning empty list.")
         return all_parsed_fields
 
-    for i, current_figure_match in enumerate(all_figure_matches):
-        section_name_raw = current_figure_match.group(1)
-        # Clean up section name: remove extra whitespace, newlines
-        section_name = ' '.join(section_name_raw.split()).strip()
+    for i, current_section_start_match in enumerate(all_section_start_matches):
+        section_name_raw = current_section_start_match.group(1)
+        section_name = ' '.join(section_name_raw.split()).strip() # Clean up section name
 
-        current_section_text_start = current_figure_match.end()
-        # Determine end of current section: start of next section or end of text
-        current_section_text_end = all_figure_matches[i+1].start() if i + 1 < len(all_figure_matches) else len(text)
-        section_text = text[current_section_text_start:current_section_text_end]
+        current_section_body_start_offset = current_section_start_match.end()
+
+        # Determine end of current section's text:
+        # Find the next "Figure \d+." line *after* the current section's definition.
+        next_figure_line_match = None
+        if i + 1 < len(all_section_start_matches):
+            # If there's another "Fields in the..." match, use its start as a primary boundary
+            next_section_start_offset = all_section_start_matches[i+1].start()
+            # Look for any "Figure d." between current section's body start and next "Fields in the..."
+            temp_next_figure_match = any_figure_line_pattern.search(text, current_section_body_start_offset, next_section_start_offset)
+            if temp_next_figure_match:
+                next_figure_line_match = temp_next_figure_match
+            else: # Fallback if no "Figure d." found before next "Fields in the..."
+                current_section_text_end = next_section_start_offset
+        else:
+            # This is the last "Fields in the..." section, search till end of text for any "Figure d."
+            next_figure_line_match = any_figure_line_pattern.search(text, current_section_body_start_offset)
+            current_section_text_end = len(text) # Default to end of text
+
+        if next_figure_line_match:
+            current_section_text_end = next_figure_line_match.start()
+
+        section_text_content = text[current_section_body_start_offset:current_section_text_end]
 
         # Regex for the header row of the table within each section
         header_pattern = re.compile(
-            r"Field\s+Name\s+Field\s+Description(?:\s+Format\s+Max\s+Size\s+May\s+be\s+NULL\s+Key|\s+Data\s+Type\s+Length\s+Nullable\s+Comments)?", 
-            re.IGNORECASE | re.DOTALL # DOTALL because description might span lines
+            r"Field\s+Name\s+Field\s+Description", # Simplified, as other columns are less reliable
+            re.IGNORECASE | re.DOTALL
         )
-        header_match = header_pattern.search(section_text)
+        header_match = header_pattern.search(section_text_content)
 
-        print(f"DEBUG: Processing Section: '{section_name}'. Header found: {'Yes' if header_match else 'No'}")
+        print(f"DEBUG: Processing Section: '{section_name}'. Text content length: {len(section_text_content)}. Header found: {'Yes' if header_match else 'No'}")
 
         if not header_match:
             print(f"DEBUG: Header not found in section '{section_name}'. Skipping to next section.")
             continue
         
         table_text_start_index = header_match.end()
-        table_text = section_text[table_text_start_index:]
+        table_text = section_text_content[table_text_start_index:]
         lines = table_text.split('\n')
-        print(f"DEBUG: Section '{section_name}': table_text (first 200 chars) = '{table_text[:200]}'")
+        print(f"DEBUG: Section '{section_name}': table_text (first 200 chars) = '{table_text[:200].replace(chr(10), chr(92) + chr(110))}'") # Escape newlines for print
         
         current_field_name = None
         current_description_parts = []
         section_fields = [] # Holds dicts for fields in the current section
-        pending_fields_queue = [] # Holds field dicts {'name': str, 'description_parts': list} for fields awaiting description lines
         
-        field_name_regex = r"^[A-Z0-9_]{3,}$" # Field names are typically uppercase, numbers, underscores, min 3 chars
+        # Field names are typically uppercase, numbers, underscores.
+        # Let's make it more specific to avoid common words.
+        # Field names usually don't contain lowercase letters, except perhaps as part of an acronym like 'effDate'.
+        # For MFRR.pdf, names like 'adsh', 'cik', 'name' are lowercase.
+        # Let's assume a field name is a single word, possibly with underscores or numbers,
+        # and not excessively long.
+        field_name_regex = r"^[a-zA-Z0-9_]{2,30}$" # Adjusted for MFRR.pdf
+        # Common words that might start a description but could be mistaken for field names
+        # Expanded with typical table header terms to prevent them from becoming fields
+        common_desc_start_words = {
+            "THE", "A", "AN", "THIS", "IF", "FOR", "AND", "OF", "IN", "TO", "IS", "ARE", "AS", "FIELD",
+            "MAX", "SIZE", "MAY", "BE", "NULL", "KEY", "SOURCE", "FORMAT", "DATA", "TYPE",
+            "LENGTH", "COMMENTS", "NAME", "DESCRIPTION" # Added Name, Description
+        }
+
+        # Helper function to check for non-descriptive column data
+        def is_likely_column_data(line_text, strict_kws, potential_kws):
+            line_upper = line_text.upper()
+            # Check if the entire line is just one of these keywords or a number
+            if line_upper in strict_kws: return True
+            if line_upper in potential_kws: return True
+            if line_text.isdigit(): return True
+            # Add more checks if needed, e.g. simple date patterns, CUSIP, etc.
+            # Check if line primarily consists of such tokens (e.g. "NO * YES") - more complex
+            tokens = line_text.split()
+            if not tokens: return False
+            # If all tokens are from these sets or are digits
+            # This is a basic check; could be more sophisticated
+            all_tokens_are_data = True
+            for token in tokens:
+                token_upper = token.upper()
+                if not (token.isdigit() or token_upper in strict_kws or token_upper in potential_kws):
+                    all_tokens_are_data = False
+                    break
+            if all_tokens_are_data: return True
+
+            return False
+
+        processed_lines = []
+        for line_idx, line_content in enumerate(lines):
+            # Pre-filter lines that are part of a *next* section's title/description appearing before its own table header
+            # This is to prevent "Key No No No 5.4 CAL (Calculations)..."
+            # if any_figure_line_pattern.match(line_content.strip()) and line_idx > 0: # Heuristic: if "Figure X." appears mid-table text
+            #     # Check if this line is too far from what looks like field data
+            #     # This is complex; for now, rely on the section end marker (any_figure_line_pattern) for section_text_content
+            #     # A simpler check: if the line starts with "Figure X." and does not contain "Field Name Field Description"
+            #     # it's likely a title for something else.
+            if any_figure_line_pattern.match(line_content.strip()) and not header_pattern.search(line_content): # Corrected indentation
+                print(f"DEBUG: Truncating lines at line {line_idx} due to new Figure line: '{line_content[:100]}'")
+                break
+            processed_lines.append(line_content) # Corrected indentation relative to the if
+
+        lines = processed_lines # Use the potentially truncated list of lines
+
 
         for line_num, line in enumerate(lines):
             stripped_line = line.strip()
-            if not stripped_line: # Skip empty lines
+            if not stripped_line:
                 continue
 
-            # Try to identify the first token as a potential field name
             parts = stripped_line.split(maxsplit=1)
             first_word = parts[0] if parts else ""
             rest_of_line = parts[1].strip() if len(parts) > 1 else ""
 
             print(f"DEBUG: Line {line_num}: Raw Stripped Line: '{stripped_line}'")
-            print(f"DEBUG: Line {line_num}: first_word='{first_word}', rest_of_line='{rest_of_line}', Queue: {[f['name'] for f in pending_fields_queue]}")
+            print(f"DEBUG: Line {line_num}: first_word='{first_word}', rest_of_line='{rest_of_line}'")
 
-            is_potential_field_name_token = bool(re.match(field_name_regex, first_word))
-            is_format_keyword_token = first_word.upper() in format_keywords
-            is_other_data_token = (first_word.upper() in other_column_keywords) or first_word.isdigit()
+            is_likely_field_name_start = bool(re.match(field_name_regex, first_word)) and \
+                                         first_word.upper() not in common_desc_start_words and \
+                                         not first_word.upper() in other_column_keywords_strict and \
+                                         not first_word.upper() in other_potentially_column_start_keywords and \
+                                         not first_word.isdigit()
 
+            # Check if rest_of_line starts with a description or another column's data
+            rol_starts_with_col_keyword = False
+            if rest_of_line:
+                for kw in other_column_keywords_strict:
+                    if rest_of_line.upper().startswith(kw):
+                        rol_starts_with_col_keyword = True
+                        break
 
-            # Scenario 1: A new field name is identified
-            if is_potential_field_name_token and not is_format_keyword_token and not is_other_data_token:
-                newly_found_field_name = first_word
-                print(f"DEBUG: Line {line_num}: Scenario 1: New field '{newly_found_field_name}' found. ROL: '{rest_of_line}'")
-
-                # If there was a pending field in the queue, and this new field has ROL, finalize all pending.
-                if rest_of_line and pending_fields_queue:
-                    print(f"DEBUG: Line {line_num}:   New field '{newly_found_field_name}' has ROL. Finalizing ALL {len(pending_fields_queue)} in queue.")
-                    for pf_to_finalize in pending_fields_queue:
-                         _finalize_and_add_field(pf_to_finalize['name'], pf_to_finalize['description_parts'], section_name, section_fields, line_num, f"PendingQ for {pf_to_finalize['name']} (due to new field with ROL)")
-                    pending_fields_queue = []
-
-                # Finalize the previous field (if any) before starting a new one
-                if current_field_name:
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ActiveField for {current_field_name} (new field found)")
+            # --- Check 1: Scenario C Special (e.g. "verbose" followed by "Verbose label...") ---
+            # This handles the case where a field name (e.g. "verbose") is on one line,
+            # and its description starts on the *next* line with a capitalized version of the field name.
+            if current_field_name and not current_description_parts and \
+               first_word.capitalize() == current_field_name.capitalize() and \
+               bool(re.match(field_name_regex, first_word)) and \
+               first_word.upper() not in common_desc_start_words:
                 
-                current_field_name = newly_found_field_name
-                current_description_parts = []
+                if first_word.upper() in other_column_keywords_strict: # e.g. current_field="format", line="Format Max..."
+                     print(f"DEBUG: Line {line_num}: Scenario C Special candidate '{first_word}' is a strict keyword. Not merging. Finalizing '{current_field_name}'.")
+                     _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"CSpecialKeywordFinalize for {current_field_name}")
+                     current_field_name = None
+                     current_description_parts = []
+                     # Line is not consumed by 'continue', will be re-evaluated by subsequent rules (likely Scenario B or D)
+                else:
+                    print(f"DEBUG: Line {line_num}: Scenario C Special: Merging '{stripped_line}' into description of '{current_field_name}'.")
 
-                if rest_of_line:
-                    earliest_keyword_index = -1
-                    keyword_found_in_rol = None
-                    for keyword in strict_format_keywords_for_splitting: # Use strict list for ROL splitting
-                        match = re.search(r'\b' + re.escape(keyword) + r'\b', rest_of_line, re.IGNORECASE)
+                    description_segment = stripped_line
+                    earliest_keyword_index_special = -1
+                    keyword_in_special = None
+                    for keyword in other_column_keywords_strict:
+                        match = re.search(r'\s+\b' + re.escape(keyword) + r'\b', description_segment, re.IGNORECASE)
                         if match:
                             idx = match.start()
-                            if earliest_keyword_index == -1 or idx < earliest_keyword_index:
-                                earliest_keyword_index = idx
-                                keyword_found_in_rol = keyword
+                            if earliest_keyword_index_special == -1 or idx < earliest_keyword_index_special:
+                                earliest_keyword_index_special = idx
+                                keyword_in_special = keyword
 
-                    if earliest_keyword_index != -1: # Keyword found in ROL
-                        description_segment = rest_of_line[:earliest_keyword_index].strip()
-                        if description_segment: #Only append if there's actual text
-                            current_description_parts.append(description_segment)
-                        print(f"DEBUG: Line {line_num}:   ROL for '{current_field_name}' contains keyword '{keyword_found_in_rol}'. Appended: '{description_segment}'. Finalizing.")
-                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ROL Keyword for {current_field_name}")
-                        current_field_name = None # Field is done
-                    else: # No keyword in ROL, ROL is pure description
-                        current_description_parts.append(rest_of_line)
-                        print(f"DEBUG: Line {line_num}:   No keyword in ROL for '{current_field_name}'. Appended ROL. Parts: {current_description_parts}")
-                else: # No rest_of_line, so add this new field to pending_fields_queue
-                    print(f"DEBUG: Line {line_num}:   '{current_field_name}' has empty ROL. Adding to pending_fields_queue.")
-                    # If current_field_name was already processed and added (e.g. from ROL), this might lead to duplicates if not handled by _finalize_and_add_field
-                    pending_fields_queue.append({'name': current_field_name, 'description_parts': []})
-                    current_field_name = None # It's in the queue, not the active non-queued field
+                    if keyword_in_special:
+                        description_segment = description_segment[:earliest_keyword_index_special].strip()
+                        print(f"DEBUG: Line {line_num}:   CSpecial Desc for '{current_field_name}' split by strict keyword '{keyword_in_special}'. Desc: '{description_segment}'")
 
-            # Scenario 2: Line starts with a format keyword or other data token (not a field name)
-            elif is_format_keyword_token or is_other_data_token:
-                print(f"DEBUG: Line {line_num}: Scenario 2: Line starts with keyword/data '{first_word}'.")
-                if pending_fields_queue: # This keyword/data applies to the field at the head of the queue
-                    field_from_queue = pending_fields_queue.pop(0) # Get and remove first item
-                    print(f"DEBUG: Line {line_num}:   Finalizing '{field_from_queue['name']}' from queue due to keyword line. Desc parts: {field_from_queue['description_parts']}")
-                    _finalize_and_add_field(field_from_queue['name'], field_from_queue['description_parts'], section_name, section_fields, line_num, f"PendingQ Keyword for {field_from_queue['name']}")
-                elif current_field_name: # Or it applies to the current non-queued field
-                    print(f"DEBUG: Line {line_num}:   Finalizing active non-queued field '{current_field_name}' due to keyword line. Desc parts: {current_description_parts}")
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ActiveField Keyword for {current_field_name}")
-                current_field_name = None # Field is finalized
+                    if description_segment:
+                        current_description_parts.append(description_segment)
+
+                    if keyword_in_special:
+                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"CSpecialKeywordSplitFinalize for {current_field_name}")
+                        current_field_name = None
+                        current_description_parts = []
+                    continue # Line consumed by Scenario C Special
+
+
+            # --- Check 2: Strong Signal (e.g. "fieldkey Fielddescription" on the same line) ---
+            is_strong_signal_line = False
+            if first_word.islower() and len(rest_of_line.split()) > 0 and rest_of_line.split()[0][0].isupper() \
+               and bool(re.match(field_name_regex, first_word)) \
+               and first_word.upper() not in common_desc_start_words:
+                first_rol_word = rest_of_line.split()[0].upper() if rest_of_line else ""
+                if first_rol_word not in other_column_keywords_strict:
+                    is_strong_signal_line = True
+
+            if is_strong_signal_line:
+                print(f"DEBUG: Line {line_num}: Strong signal interpreted: '{first_word}' as field, '{rest_of_line}' as its description start.")
+                if current_field_name:
+                     _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"StrongSignalNewField for {current_field_name}")
+
+                current_field_name = first_word
                 current_description_parts = []
-            
-            # Scenario 3: Line is a continuation of a description
-            else: # Not a new field name, not starting with a strong keyword
-                print(f"DEBUG: Line {line_num}: Scenario 3 active for line: '{stripped_line}'")
-                target_description_parts = None
-                target_field_name_debug = None
-                is_for_queued_field = False
+                description_segment = rest_of_line
 
-                if pending_fields_queue: # If queue has items, this description belongs to Q[0]
-                    target_description_parts = pending_fields_queue[0]['description_parts']
-                    target_field_name_debug = pending_fields_queue[0]['name']
-                    is_for_queued_field = True
-                    print(f"DEBUG: Line {line_num}:   Line is for queued field '{target_field_name_debug}'.")
-                elif current_field_name: # Otherwise, it belongs to the current non-queued field
-                    target_description_parts = current_description_parts
-                    target_field_name_debug = current_field_name
-                    print(f"DEBUG: Line {line_num}:   Line is for active non-queued field '{target_field_name_debug}'.")
+                earliest_keyword_index_rol = -1
+                keyword_in_rol = None # Important to reset this for each line analysis
+                for keyword in other_column_keywords_strict:
+                    match = re.search(r'\s+\b' + re.escape(keyword) + r'\b', description_segment, re.IGNORECASE)
+                    if match:
+                        idx = match.start()
+                        if earliest_keyword_index_rol == -1 or idx < earliest_keyword_index_rol:
+                            earliest_keyword_index_rol = idx
+                            keyword_in_rol = keyword
 
-                if target_description_parts is not None:
-                    earliest_keyword_index_sc3 = -1
-                    keyword_found_sc3 = None
-                    for keyword in strict_format_keywords_for_splitting: # Use strict list for mid-line splitting
-                        match = re.search(r'\b' + re.escape(keyword) + r'\b', stripped_line, re.IGNORECASE)
-                        if match and match.start() > 0: # Ensure keyword is not at the very beginning
+                if keyword_in_rol:
+                    description_segment = description_segment[:earliest_keyword_index_rol].strip()
+                    print(f"DEBUG: Line {line_num}:   Strong signal ROL for '{current_field_name}' split by strict keyword '{keyword_in_rol}'. Desc: '{description_segment}'")
+
+                if description_segment:
+                    current_description_parts.append(description_segment)
+
+                if keyword_in_rol:
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"StrongSignalROLKeywordFinalize for {current_field_name}")
+                    current_field_name = None
+                    current_description_parts = []
+                continue
+
+            # --- Check 3: General New Field (Scenario A/B) ---
+            # (is_likely_field_name_start was calculated before C Special and Strong Signal checks)
+            if is_likely_field_name_start and not rol_starts_with_col_keyword:
+                potential_field_name_on_line = first_word # Use original first_word from line
+                potential_description_start_on_line = rest_of_line # Use original rest_of_line
+
+                if len(potential_field_name_on_line) <=2 and not potential_description_start_on_line and current_field_name: # Scenario A
+                     print(f"DEBUG: Line {line_num}: Scenario A: Short first word '{potential_field_name_on_line}' with no ROL, treated as continuation for '{current_field_name}'.")
+                     current_description_parts.append(stripped_line)
+                else: # Scenario B proper
+                    print(f"DEBUG: Line {line_num}: Scenario B: New field '{potential_field_name_on_line}' detected. Description starts with: '{potential_description_start_on_line[:50]}'")
+                    if current_field_name:
+                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"NewFieldFound for {current_field_name}")
+
+                    current_field_name = potential_field_name_on_line
+                    current_description_parts = []
+                    description_segment = potential_description_start_on_line
+
+                    earliest_keyword_index_rol_b = -1 # Use distinct var name
+                    keyword_in_rol_b = None          # Use distinct var name
+                    for keyword in other_column_keywords_strict:
+                        match = re.search(r'\s+\b' + re.escape(keyword) + r'\b', description_segment, re.IGNORECASE)
+                        if match:
                             idx = match.start()
-                            if earliest_keyword_index_sc3 == -1 or idx < earliest_keyword_index_sc3:
-                                earliest_keyword_index_sc3 = idx
-                                keyword_found_sc3 = keyword
+                            if earliest_keyword_index_rol_b == -1 or idx < earliest_keyword_index_rol_b:
+                                earliest_keyword_index_rol_b = idx
+                                keyword_in_rol_b = keyword
 
-                    if earliest_keyword_index_sc3 != -1: # Mid-line keyword found
-                        description_segment = stripped_line[:earliest_keyword_index_sc3].strip()
-                        if description_segment:
-                             target_description_parts.append(description_segment)
-                        print(f"DEBUG: Line {line_num}:   Found mid-line keyword '{keyword_found_sc3}' for '{target_field_name_debug}'. Appended: '{description_segment}'. Finalizing.")
-                        if is_for_queued_field:
-                            field_to_finalize = pending_fields_queue.pop(0)
-                            _finalize_and_add_field(field_to_finalize['name'], field_to_finalize['description_parts'], section_name, section_fields, line_num, f"PendingQ KeywordInDesc for {field_to_finalize['name']}")
-                        elif current_field_name: # Should be true if not for queued field
-                             _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ActiveField KeywordInDesc for {current_field_name}")
-                             current_field_name = None
-                             current_description_parts = []
-                    else: # No mid-line keyword, append whole line
-                        target_description_parts.append(stripped_line)
-                        print(f"DEBUG: Line {line_num}:   No mid-line keyword. Appended line to '{target_field_name_debug}'. Parts: {target_description_parts}")
+                    if keyword_in_rol_b:
+                        description_segment = description_segment[:earliest_keyword_index_rol_b].strip()
+                        print(f"DEBUG: Line {line_num}:   ROL for '{current_field_name}' split by strict keyword '{keyword_in_rol_b}'. Desc: '{description_segment}'")
+
+                    if description_segment:
+                        current_description_parts.append(description_segment)
+
+                    if keyword_in_rol_b:
+                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ROLStrictKeywordFinalize for {current_field_name}")
+                        current_field_name = None
+                        current_description_parts = []
+                continue
+
+            # --- Check 4: Scenario C (Main - if field active and line not consumed by above) ---
+            if current_field_name:
+                # Note: Scenario C Special (capitalized version) is handled as Check 1
+                print(f"DEBUG: Line {line_num}: Scenario C (Main): Continuation or terminator for '{current_field_name}'. Line: '{stripped_line}'")
+                line_starts_with_strict_keyword = False
+                found_strict_keyword_at_start = None
+                for keyword in other_column_keywords_strict:
+                    if stripped_line.upper().startswith(keyword):
+                         line_starts_with_strict_keyword = True
+                         found_strict_keyword_at_start = keyword
+                         break
+
+                if line_starts_with_strict_keyword:
+                    print(f"DEBUG: Line {line_num}:   Line starts with strict keyword '{found_strict_keyword_at_start}'. Finalizing '{current_field_name}'.")
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"StrictKeywordStart for {current_field_name}")
+                    current_field_name = None
+                    current_description_parts = []
+                elif is_likely_column_data(stripped_line, other_column_keywords_strict, other_potentially_column_start_keywords):
+                    print(f"DEBUG: Line {line_num}:   Line '{stripped_line}' identified as column data. Finalizing '{current_field_name}'.")
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"ColumnDataFinalize for {current_field_name}")
+                    current_field_name = None
+                    current_description_parts = []
                 else:
-                    print(f"DEBUG: Line {line_num}:   Orphaned description line (no active field or queue): '{stripped_line}'")
+                    if current_description_parts and current_description_parts[-1].strip().endswith(".") and stripped_line and stripped_line[0].isupper():
+                        if len(stripped_line.split()) > 3 :
+                            print(f"DEBUG: Line {line_num}:   Possible new sentence detected after period for '{current_field_name}'. Line: '{stripped_line[:60]}...'. Finalizing.")
+                            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"NewSentenceHeuristic for {current_field_name}")
+                            current_field_name = None
+                            current_description_parts = []
+                            # This line might become an orphan if it doesn't match other rules after this.
 
-        # End of section: finalize any remaining field or queued fields
+                    if current_field_name:
+                        description_segment = stripped_line
+                        earliest_keyword_index_cont = -1
+                        keyword_in_cont = None
+                        for keyword in other_column_keywords_strict:
+                            match = re.search(r'\s+\b' + re.escape(keyword) + r'\b', stripped_line, re.IGNORECASE)
+                            if match:
+                                idx = match.start()
+                                if earliest_keyword_index_cont == -1 or idx < earliest_keyword_index_cont:
+                                    earliest_keyword_index_cont = idx
+                                    keyword_in_cont = keyword
+
+                        if keyword_in_cont:
+                            description_segment = stripped_line[:earliest_keyword_index_cont].strip()
+                            print(f"DEBUG: Line {line_num}:   Continuation for '{current_field_name}' split by mid-line strict keyword '{keyword_in_cont}'. Desc: '{description_segment}'")
+
+                        if description_segment:
+                            current_description_parts.append(description_segment)
+
+                        if keyword_in_cont:
+                            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"MidLineStrictKeywordFinalize for {current_field_name}")
+                            current_field_name = None
+                            current_description_parts = []
+            
+            # --- Check 5: Orphaned line (Scenario D) ---
+            # This is reached if the line was not consumed by 'continue' and current_field_name is None
+            # (either never set for this line, or set to None by Scenario C finalization).
+            if not current_field_name:
+                 print(f"DEBUG: Line {line_num}: Scenario D: Orphaned line: '{stripped_line}'")
+
+        # End of section: finalize any remaining field
         if current_field_name:
-            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"EndOfSection ActiveField for {current_field_name}")
-        for pf_to_finalize in pending_fields_queue: # Finalize any remaining in queue
-            _finalize_and_add_field(pf_to_finalize['name'], pf_to_finalize['description_parts'], section_name, section_fields, line_num, f"EndOfSection PendingQ for {pf_to_finalize['name']}")
+            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"EndOfSection for {current_field_name}")
 
         all_parsed_fields.extend(section_fields)
     return all_parsed_fields
