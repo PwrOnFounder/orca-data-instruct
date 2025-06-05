@@ -2,6 +2,7 @@ import re
 import csv # Import the csv module
 import argparse # Import the argparse module
 import sys # Import sys for sys.exit()
+import logging
 from io import StringIO
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -16,19 +17,76 @@ except Exception:  # pragma: no cover
         """Fallback when pdfminer does not expose PSError."""
         pass
 
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 def _finalize_and_add_field(field_name, description_parts, section_name, section_fields_list, line_num_debug, context_debug_msg):
     """Helper to finalize a field and add it to the section_fields_list."""
     description = " ".join(description_parts).strip()
-    if description or not any(d['Field Name'] == field_name and d['Section'] == section_name for d in section_fields_list):
+    
+    # Normalize field name
+    normalized_field_name = _normalize_field_name(field_name)
+    
+    # Check for duplicates more robustly
+    if not any(d['Field Name'] == normalized_field_name and d['Section'] == section_name for d in section_fields_list):
         field_to_add = {
             'Section': section_name,
-            'Field Name': field_name,
+            'Field Name': normalized_field_name,
             'Field Description': description
         }
-        print(f"DEBUG: Line ~{line_num_debug} ({context_debug_msg}): Finalizing and Adding to section_fields: {field_to_add}")
+        logger.debug(f"Line ~{line_num_debug} ({context_debug_msg}): Adding field: {field_to_add}")
         section_fields_list.append(field_to_add)
     else:
-        print(f"DEBUG: Line ~{line_num_debug} ({context_debug_msg}): Field '{field_name}' already added or empty description not needed. Skipping.")
+        logger.debug(f"Line ~{line_num_debug} ({context_debug_msg}): Field '{normalized_field_name}' already exists. Skipping.")
+
+def _normalize_field_name(field_name):
+    """Normalize field names for consistency."""
+    if not field_name:
+        return ""
+    
+    # Remove trailing digits and parenthetical content
+    normalized = re.sub(r'\(\w+\)', '', field_name)  # Remove (Primary Issuer) etc.
+    normalized = re.sub(r'\d+$', '', normalized)     # Remove trailing digits
+    normalized = normalized.rstrip('_').strip()      # Remove trailing underscores and whitespace
+    
+    # Handle camelCase to UPPER_CASE conversion for consistency
+    if any(c.islower() for c in normalized) and any(c.isupper() for c in normalized):
+        # Convert camelCase to UPPER_CASE
+        normalized = re.sub(r'([a-z])([A-Z])', r'\1_\2', normalized).upper()
+    
+    return normalized
+
+def _is_valid_field_name(field_name):
+    """Enhanced field name validation."""
+    if not field_name or len(field_name) < 3:  # Changed from 2 to 3 to be more strict
+        return False
+    
+    # Check for valid field name patterns
+    patterns = [
+        r'^[A-Z][A-Z0-9_]*$',          # Traditional uppercase (minimum 3 chars)
+        r'^[a-z][a-zA-Z0-9_]{2,}$',    # camelCase starting with lowercase (minimum 3 chars total)
+        r'^[A-Z][a-z]+[A-Z][a-zA-Z0-9_]*$'  # Mixed case (minimum 3 chars)
+    ]
+    
+    return any(re.match(pattern, field_name) for pattern in patterns)
+
+def _clean_description(description_parts):
+    """Clean and normalize description text."""
+    if not description_parts:
+        return ""
+    
+    # Join and clean up the description
+    description = " ".join(description_parts)
+    
+    # Remove excessive whitespace
+    description = re.sub(r'\s+', ' ', description).strip()
+    
+    # Remove common formatting artifacts
+    description = re.sub(r'\s*\.\s*$', '.', description)  # Fix spacing before period
+    description = re.sub(r'\s*,\s*', ', ', description)   # Fix spacing around commas
+    
+    return description
 
 def extract_text_from_pdf(pdf_path):
     """
@@ -53,62 +111,76 @@ def extract_text_from_pdf(pdf_path):
                 interpreter.process_page(page)
         full_text = output_string.getvalue()
         full_text = full_text.replace('\f', '') 
+        logger.info(f"Successfully extracted {len(full_text)} characters from PDF")
         return full_text
     except FileNotFoundError:
-        print(f"Error: Input PDF file not found: {pdf_path}")
+        logger.error(f"Input PDF file not found: {pdf_path}")
         return None
     except PDFSyntaxError as e:
-        print(f"Error processing PDF file '{pdf_path}': It might be corrupted or not a valid PDF. Details: {e}")
+        logger.error(f"PDF syntax error in '{pdf_path}': {e}")
         return None
     except PSError as e:
-        print(f"Error processing PDF file '{pdf_path}': It might be corrupted or not a valid PDF. Details: {e}")
+        logger.error(f"PostScript error in '{pdf_path}': {e}")
         return None
     except Exception as e:
-        print(f"An unexpected error occurred while processing PDF '{pdf_path}': {e}")
+        logger.error(f"Unexpected error processing PDF '{pdf_path}': {e}")
         return None
 
 def parse_fields_from_text(text):
-    print(f"DEBUG: Entered parse_fields_from_text. Text length: {len(text) if text else 'None'}")
+    """Enhanced field parsing with improved accuracy."""
+    logger.info(f"Starting field parsing. Text length: {len(text) if text else 'None'}")
     if not text:
-        print("DEBUG: Text is empty or None. Returning empty list.")
+        logger.warning("Text is empty or None. Returning empty list.")
         return []
+    
     all_parsed_fields = []
 
+    # Enhanced keyword sets for better detection
     other_column_keywords_strict = {
         "ALPHANUMERIC", "NUMERIC", "DATE", "BOOLEAN", "EDGAR", "XBRL", "TEXT",
-        "VARCHAR", "INTEGER"
+        "VARCHAR", "INTEGER", "DECIMAL", "CHAR", "TIMESTAMP"
     }
-    other_potentially_column_start_keywords = {"YES", "NO", "*"}
+    other_potentially_column_start_keywords = {"YES", "NO", "*", "NULL"}
 
-    # Made more permissive for field names like 'series', 'total', 'verbose'
-    field_name_regex = r"^[A-Z0-9_]{3,}$"
-    # Keep known acronyms or specific case-sensitive names in a set to prevent lowercasing them.
-    known_acronyms_or_case_sensitive_names = {"CIK", "XBRL", "EDGAR", "ABS", "CRS", "DEFRS", "MFRR"} # Add more if needed
+    # More flexible field name patterns
+    field_name_patterns = [
+        r"^[A-Z0-9_]{3,}$",              # Traditional uppercase
+        r"^[a-z][a-zA-Z0-9_]{2,}$",      # camelCase starting with lowercase
+        r"^[A-Z][a-z]+[A-Z][a-zA-Z0-9_]*$"  # Mixed case
+    ]
+    
+    # Keep known acronyms or specific case-sensitive names
+    known_acronyms_or_case_sensitive_names = {
+        "CIK", "XBRL", "EDGAR", "ABS", "CRS", "DEFRS", "MFRR", "SEC", "USD", "API"
+    }
 
     common_desc_start_words = {
         "THE", "A", "AN", "THIS", "IF", "FOR", "AND", "OF", "IN", "TO", "IS", "ARE", "AS", "FIELD",
         "MAX", "SIZE", "MAY", "BE", "NULL", "KEY", "SOURCE", "FORMAT", "DATA", "TYPE",
         "LENGTH", "COMMENTS", "NAME", "DESCRIPTION", "FIELDNAME", "FIELDTYPE",
-        "NOTE", "CONTINUATION", "CODE"
+        "NOTE", "CONTINUATION", "CODE", "VALUE", "INDICATES", "PROVIDES", "CONTAINS"
     }
 
+    # Enhanced section detection pattern
     section_start_pattern = re.compile(
-        r"Figure \d+\.[^\n]*?Fields in the\s+([A-Z0-9_]+(?:\s+[A-Z0-9_]+)*)\s+data (?:file|set)",
+        r"Figure\s+\d+\.\s*Fields\s+in\s+the\s+([A-Z0-9_]+(?:\s+[A-Z0-9_]+)*)\s+data\s+(?:file|set)",
         re.IGNORECASE | re.DOTALL
     )
-    any_figure_line_pattern = re.compile(r"^\s*Figure \d+\.", re.MULTILINE | re.IGNORECASE)
+    any_figure_line_pattern = re.compile(r"^\s*Figure\s+\d+\.", re.MULTILINE | re.IGNORECASE)
 
     all_section_start_matches = list(section_start_pattern.finditer(text))
-    print(f"DEBUG: Found {len(all_section_start_matches)} 'Fields in the...' section start matches.")
+    logger.info(f"Found {len(all_section_start_matches)} section start matches")
 
     if not all_section_start_matches:
+        logger.warning("No section start patterns found")
         return all_parsed_fields
 
     for i, current_section_start_match in enumerate(all_section_start_matches):
         section_name_raw = current_section_start_match.group(1)
         section_name = ' '.join(section_name_raw.split()).strip()
         current_section_body_start_offset = current_section_start_match.end()
-        next_figure_line_match = None
+        
+        # Determine section end
         if i + 1 < len(all_section_start_matches):
             next_section_start_offset = all_section_start_matches[i+1].start()
             temp_next_figure_match = any_figure_line_pattern.search(text, current_section_body_start_offset, next_section_start_offset)
@@ -118,20 +190,30 @@ def parse_fields_from_text(text):
             current_section_text_end = next_figure_line_match.start() if next_figure_line_match else len(text)
 
         section_text_content = text[current_section_body_start_offset:current_section_text_end]
-        header_pattern = re.compile(r"Field\s+Name\s+Field\s+Description", re.IGNORECASE | re.DOTALL)
-        header_match = header_pattern.search(section_text_content)
+        
+        # Enhanced header detection
+        header_patterns = [
+            re.compile(r"Field\s+Name\s+Field\s+Description", re.IGNORECASE | re.DOTALL),
+            re.compile(r"Field\s+Name\s+.*?Description", re.IGNORECASE | re.DOTALL),
+            re.compile(r"Name\s+Description", re.IGNORECASE | re.DOTALL)
+        ]
+        
+        header_match = None
+        for pattern in header_patterns:
+            header_match = pattern.search(section_text_content)
+            if header_match:
+                break
 
-        print(f"DEBUG: Processing Section: '{section_name}'. Text content length: {len(section_text_content)}. Header found: {'Yes' if header_match else 'No'}")
+        logger.info(f"Processing Section: '{section_name}'. Content length: {len(section_text_content)}. Header found: {'Yes' if header_match else 'No'}")
 
         if header_match:
             table_text_start_index = header_match.end()
             table_text = section_text_content[table_text_start_index:]
         else:
-            # Fallback: treat entire section text as table when standard header is missing
             table_text = section_text_content
 
         lines = table_text.split('\n')
-        print(f"DEBUG: Section '{section_name}': table_text (first 200 chars) = '{table_text[:200].replace(chr(10), chr(92) + chr(110))}'")
+        logger.debug(f"Section '{section_name}': processing {len(lines)} lines")
         
         current_field_name = None
         current_description_parts = []
@@ -139,220 +221,173 @@ def parse_fields_from_text(text):
         
         def is_likely_column_data(line_text, strict_kws, potential_kws):
             line_upper = line_text.upper()
-            if line_upper in strict_kws or line_upper in potential_kws or line_text.isdigit(): return True
+            if line_upper in strict_kws or line_upper in potential_kws or line_text.isdigit(): 
+                return True
             tokens = line_text.split()
-            if not tokens: return False
+            if not tokens: 
+                return False
             return all(t.isdigit() or t.upper() in strict_kws or t.upper() in potential_kws for t in tokens)
 
-        processed_lines = []
-        for line_idx, line_content in enumerate(lines):
-            if any_figure_line_pattern.match(line_content.strip()) and not header_pattern.search(line_content):
-                print(f"DEBUG: Truncating lines at line {line_idx} due to new Figure line: '{line_content[:100]}'")
-                break
-            processed_lines.append(line_content)
+        # Process lines with improved logic
         for line_num, line in enumerate(lines):
             stripped_line = line.strip()
-            if not stripped_line: continue
+            if not stripped_line: 
+                continue
+
+            # Skip obvious non-data lines
+            if any_figure_line_pattern.match(stripped_line) or '----' in stripped_line or '...' in stripped_line:
+                continue
 
             parts = stripped_line.split(maxsplit=1)
             first_word = parts[0] if parts else ""
             rest_of_line = parts[1].strip() if len(parts) > 1 else ""
-            print(f"DEBUG: Line {line_num}: Raw: '{stripped_line}' | FW: '{first_word}' | ROL: '{rest_of_line}'")
+            
+            logger.debug(f"Line {line_num}: '{stripped_line[:50]}...' | FW: '{first_word}' | ROL: '{rest_of_line[:30]}...'")
 
-            # Calculate this once, based on original first_word
-            is_likely_field_name_start_original = bool(re.match(field_name_regex, first_word)) and \
-                                         first_word.upper() not in common_desc_start_words and \
-                                         not first_word.upper() in other_column_keywords_strict and \
-                                         not first_word.upper() in other_potentially_column_start_keywords and \
-                                         not first_word.isdigit() and \
-                                         not first_word.islower()
+            # Enhanced field name detection
+            is_likely_field_name = any(re.match(pattern, first_word) for pattern in field_name_patterns) and \
+                                 first_word.upper() not in common_desc_start_words and \
+                                 first_word.upper() not in other_column_keywords_strict and \
+                                 not first_word.isdigit()
+
             rol_starts_with_col_keyword = any(rest_of_line.upper().startswith(kw) for kw in other_column_keywords_strict) if rest_of_line else False
 
-            # --- Check 1: Scenario C Special (e.g. "verbose" on line N, then "Verbose label..." on line N+1) ---
+            # Handle camelCase field continuation (e.g., "negated" + "Terse" = "negatedTerse")
             if current_field_name and not current_description_parts and \
                first_word and current_field_name.islower() and first_word[0].isupper() and \
-               first_word.lower() == current_field_name and \
-               bool(re.match(field_name_regex, first_word)) and first_word.upper() not in common_desc_start_words:
-                if first_word.upper() in other_column_keywords_strict:
-                     print(f"DEBUG: CSpecial Finalize: '{current_field_name}' (keyword '{first_word}')")
-                     _finalize_and_add_field(current_field_name, [], section_name, section_fields, line_num, "CSpecialKeywordFinalize")
-                     current_field_name = None; current_description_parts = []
-                     # Fall through to re-evaluate this line.
-                else:
-                    print(f"DEBUG: CSpecial Merge: '{stripped_line}' to '{current_field_name}'")
-                    desc_seg = stripped_line; earliest_idx = -1; found_kw = None
-                    for kw in other_column_keywords_strict:
-                        m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
-                        if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
-                    if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                    if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
-                    if found_kw:
-                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "CSpecialSplitFinalize")
-                        current_field_name = None; current_description_parts = []
-                    continue
-
-            # --- Check 1.5: Camel Case Field Name Construction (e.g., "negated" then "Terse") ---
-            if current_field_name and current_field_name.islower() and not current_description_parts and \
-               first_word and first_word[0].isupper() and first_word.lower() != current_field_name and \
-               first_word.upper() not in common_desc_start_words and first_word.upper() not in other_column_keywords_strict and \
-               not is_likely_column_data(first_word, [], []) and bool(re.match(r"^[A-Z][a-zA-Z0-9_]*$", first_word)):
-
-                combined_name_cand = current_field_name + first_word
-                if bool(re.match(r"^[a-z]+[A-Z][a-zA-Z0-9_]*$", combined_name_cand)):
-                    print(f"DEBUG: CamelCase: Form '{combined_name_cand}' from '{current_field_name}' + '{first_word}'")
-
-                    original_field_found_idx = -1
-                    for i_f, field_f in enumerate(section_fields):
-                        if field_f['Field Name'] == current_field_name and field_f['Section'] == section_name and not field_f['Field Description']:
-                            original_field_found_idx = i_f; break
-                    if original_field_found_idx != -1:
-                        print(f"DEBUG:   Removing previously added short field '{current_field_name}'.")
-                        section_fields.pop(original_field_found_idx)
-
-                    current_field_name = combined_name_cand
+               _is_valid_field_name(first_word) and first_word.upper() not in common_desc_start_words:
+                
+                combined_name = current_field_name + first_word
+                if _is_valid_field_name(combined_name):
+                    logger.debug(f"CamelCase combination: '{current_field_name}' + '{first_word}' = '{combined_name}'")
+                    
+                    # Remove previous short field if it was added
+                    section_fields = [f for f in section_fields if not (f['Field Name'] == current_field_name and f['Section'] == section_name and not f['Field Description'])]
+                    
+                    current_field_name = combined_name
                     current_description_parts = []
-                    description_segment = rest_of_line
-
-                    earliest_keyword_index_cc = -1; keyword_in_cc = None
-                    for keyword_cc_loopvar in other_column_keywords_strict:
-                        match_cc = re.search(r'\s+\b' + re.escape(keyword_cc_loopvar) + r'\b', description_segment, re.IGNORECASE)
-                        if match_cc:
-                            idx_cc = match_cc.start()
-                            if earliest_keyword_index_cc == -1 or idx_cc < earliest_keyword_index_cc:
-                                earliest_keyword_index_cc = idx_cc; keyword_in_cc = keyword_cc_loopvar
-                    if keyword_in_cc:
-                        description_segment = description_segment[:earliest_keyword_index_cc].strip()
-                    if description_segment: current_description_parts.append(" ".join(description_segment.split()))
-                    if keyword_in_cc:
-                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"CamelCaseKeywordFinalize for {current_field_name}")
-                        current_field_name = None; current_description_parts = []
+                    
+                    # Process rest of line as description
+                    if rest_of_line:
+                        desc_text = _extract_description_before_keywords(rest_of_line, other_column_keywords_strict)
+                        if desc_text:
+                            current_description_parts.append(desc_text)
                     continue
 
-            # --- Check 2: Strong Signal (lowercase field, uppercase description on same line) ---
-            is_strong_signal_line = False
-            if first_word.islower() and bool(re.match(field_name_regex, first_word)) and \
-               first_word.upper() not in common_desc_start_words and \
+            # Strong signal detection (lowercase field + uppercase description)
+            if first_word.islower() and _is_valid_field_name(first_word) and \
                rest_of_line and rest_of_line[0].isupper() and \
-               (len(rest_of_line.split()) > 0 and rest_of_line.split()[0].upper() not in other_column_keywords_strict):
-                 is_strong_signal_line = True
-
-            if is_strong_signal_line:
-                print(f"DEBUG: StrongSignal: Field='{first_word}', Desc='{rest_of_line}'")
-                if current_field_name: _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "StrongSignalNew")
-
-                current_field_name = first_word # Preserve case from strong signal
-                current_description_parts = []
-                desc_seg = rest_of_line; earliest_idx = -1; found_kw = None
-                for kw in other_column_keywords_strict:
-                    m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
-                    if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
-                if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
-                if found_kw:
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "StrongSignalSplit")
-                    current_field_name = None; current_description_parts = []
-                continue
-
-            # --- Check 3: General New Field (Scenario A/B) ---
-            if is_likely_field_name_start_original and rol_starts_with_col_keyword:
-                processed_field_name = first_word
-                print(f"DEBUG: Scenario B0: New field '{processed_field_name}' with no description")
+               first_word.upper() not in common_desc_start_words:
+                
+                logger.debug(f"Strong signal detected: Field='{first_word}', Desc='{rest_of_line[:30]}...'")
+                
                 if current_field_name:
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewFieldBeforeColumn")
-                _finalize_and_add_field(processed_field_name, [], section_name, section_fields, line_num, "NewFieldBeforeColumnAdd")
-                current_field_name = None
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "StrongSignalNew")
+
+                current_field_name = first_word
                 current_description_parts = []
+                
+                desc_text = _extract_description_before_keywords(rest_of_line, other_column_keywords_strict)
+                if desc_text:
+                    current_description_parts.append(desc_text)
                 continue
 
-            if is_likely_field_name_start_original and not rol_starts_with_col_keyword:
-                # Field Name Casing: store lowercase if not an acronym or known mixed case.
-                processed_field_name = first_word
-                if first_word.upper() not in known_acronyms_or_case_sensitive_names and not (any(c.islower() for c in first_word) and any(c.isupper() for c in first_word)):
-                    if not first_word.isupper(): # Don't lowercase if all UPPER (likely acronym)
-                        processed_field_name = first_word.lower()
-
-                if len(first_word) <=2 and not rest_of_line and current_field_name: # Scenario A
-                     print(f"DEBUG: Scenario A: Short cont for '{current_field_name}': '{first_word}'")
-                     current_description_parts.append(" ".join(stripped_line.split()))
-                else: # Scenario B
-                    print(f"DEBUG: Scenario B: New field '{processed_field_name}' (from '{first_word}'), ROL: '{rest_of_line[:30]}'")
-                    if current_field_name: _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewField")
-                    current_field_name = processed_field_name
+            # Regular field name detection
+            if is_likely_field_name:
+                if rol_starts_with_col_keyword:
+                    # Field with no description
+                    logger.debug(f"Field with no description: '{first_word}'")
+                    if current_field_name:
+                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewFieldNoDesc")
+                    _finalize_and_add_field(first_word, [], section_name, section_fields, line_num, "FieldNoDesc")
+                    current_field_name = None
                     current_description_parts = []
-                    desc_seg = rest_of_line; earliest_idx = -1; found_kw = None
-                    for kw in other_column_keywords_strict:
-                        m = re.search(r'\s+\b' + re.escape(kw) + r'\b', desc_seg, re.IGNORECASE)
-                        if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw
-                    if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                    if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
-                    if found_kw:
-                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "ROLSplit")
-                        current_field_name = None; current_description_parts = []
+                else:
+                    # New field with potential description
+                    logger.debug(f"New field detected: '{first_word}'")
+                    if current_field_name:
+                        _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewField")
+                    
+                    current_field_name = first_word
+                    current_description_parts = []
+                    
+                    if rest_of_line:
+                        desc_text = _extract_description_before_keywords(rest_of_line, other_column_keywords_strict)
+                        if desc_text:
+                            current_description_parts.append(desc_text)
                 continue
 
-            # --- Check 4: Scenario C (Main continuation/termination) ---
+            # Handle continuation lines
             if current_field_name:
-                print(f"DEBUG: Scenario C: Cont/Term for '{current_field_name}', Line: '{stripped_line}'")
-                if stripped_line.upper().startswith(tuple(other_column_keywords_strict)):
-                    print(f"DEBUG:   StrictKeyword Start: Finalizing '{current_field_name}'")
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "StrictKeywordStart")
-                    current_field_name = None; current_description_parts = []
-                elif is_likely_column_data(stripped_line, other_column_keywords_strict, other_potentially_column_start_keywords):
-                    print(f"DEBUG:   Column Data Line: Finalizing '{current_field_name}'")
-                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "ColumnDataFinalize")
-                    current_field_name = None; current_description_parts = []
+                if stripped_line.upper().startswith(tuple(other_column_keywords_strict)) or \
+                   is_likely_column_data(stripped_line, other_column_keywords_strict, other_potentially_column_start_keywords):
+                    # End of current field
+                    logger.debug(f"End of field '{current_field_name}' due to column data")
+                    _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "ColumnDataEnd")
+                    current_field_name = None
+                    current_description_parts = []
                 else:
-                    # Restore NewSentenceHeuristic
-                    if current_description_parts and current_description_parts[-1].strip().endswith(".") and \
-                       stripped_line and stripped_line[0].isupper() and \
-                       first_word.upper() not in common_desc_start_words and \
-                       not (is_likely_field_name_start_original and not rol_starts_with_col_keyword) and \
-                       first_word.isalpha():
-                        if len(stripped_line.split()) > 2 :
-                            print(f"DEBUG:   NewSentenceHeuristic: Finalizing '{current_field_name}' before appending '{stripped_line[:30]}...'")
-                            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "NewSentenceHeuristic")
-                            current_field_name = None ; current_description_parts = []
+                    # Continuation of description
+                    desc_text = _extract_description_before_keywords(stripped_line, other_column_keywords_strict)
+                    if desc_text:
+                        current_description_parts.append(desc_text)
+                        logger.debug(f"Added to '{current_field_name}': '{desc_text[:30]}...'")
 
-                    if current_field_name: # If not finalized by heuristic
-                        desc_seg = stripped_line; earliest_idx = -1; found_kw = None
-                        for kw_c in other_column_keywords_strict:
-                            m = re.search(r'\s+\b' + re.escape(kw_c) + r'\b', desc_seg, re.IGNORECASE)
-                            if m and (earliest_idx == -1 or m.start() < earliest_idx): earliest_idx, found_kw = m.start(), kw_c
-                        if found_kw: desc_seg = desc_seg[:earliest_idx].strip()
-                        if desc_seg: current_description_parts.append(" ".join(desc_seg.split()))
-                        print(f"DEBUG:   Appended to '{current_field_name}': '{desc_seg[:50]}...' (orig: '{stripped_line[:50]}...')")
-                        if found_kw:
-                            print(f"DEBUG:   MidLineKeyword Finalizing '{current_field_name}'")
-                            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "MidLineSplitFinalize")
-                            current_field_name = None; current_description_parts = []
-
-            # --- Check 5: Orphaned line (Scenario D) ---
-            if not current_field_name:
-                 print(f"DEBUG: Scenario D: Orphaned line: '{stripped_line}'")
-
-        # End of section: finalize any remaining field
+        # Finalize any remaining field
         if current_field_name:
-            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, f"EndOfSection for {current_field_name}")
+            _finalize_and_add_field(current_field_name, current_description_parts, section_name, section_fields, line_num, "EndOfSection")
 
         all_parsed_fields.extend(section_fields)
+        logger.info(f"Section '{section_name}' processed: {len(section_fields)} fields found")
+
+    logger.info(f"Total fields parsed: {len(all_parsed_fields)}")
     return all_parsed_fields
 
+def _extract_description_before_keywords(text, keywords):
+    """Extract description text before any format keywords."""
+    if not text:
+        return ""
+    
+    earliest_idx = len(text)
+    for keyword in keywords:
+        # Look for keyword boundaries
+        pattern = r'\s+\b' + re.escape(keyword) + r'\b'
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match and match.start() < earliest_idx:
+            earliest_idx = match.start()
+    
+    result = text[:earliest_idx].strip()
+    return " ".join(result.split()) if result else ""
+
 def write_to_csv(parsed_data, csv_filepath):
+    """Enhanced CSV writing with validation."""
     if not parsed_data:
-        print("No data to write to CSV.")
+        logger.warning("No data to write to CSV.")
         return True
+    
+    # Validate data structure
+    required_fields = {'Section', 'Field Name', 'Field Description'}
+    for i, record in enumerate(parsed_data):
+        if not isinstance(record, dict):
+            logger.error(f"Record {i} is not a dictionary: {type(record)}")
+            return False
+        if not required_fields.issubset(record.keys()):
+            logger.error(f"Record {i} missing required fields. Has: {record.keys()}, Needs: {required_fields}")
+            return False
+    
     fieldnames = ['Section', 'Field Name', 'Field Description']
     try:
         with open(csv_filepath, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(parsed_data)
+        logger.info(f"Successfully wrote {len(parsed_data)} records to {csv_filepath}")
         return True
     except IOError as e:
-        print(f"Error: Could not write to CSV file '{csv_filepath}'. Details: {e}")
+        logger.error(f"Could not write to CSV file '{csv_filepath}': {e}")
         return False
     except Exception as e:
-        print(f"An unexpected error occurred while writing to CSV '{csv_filepath}': {e}")
+        logger.error(f"Unexpected error writing to CSV '{csv_filepath}': {e}")
         return False
 
 if __name__ == "__main__":

@@ -1,0 +1,171 @@
+Section,Field Name,Field Description
+SIGNATURES,assist,users in more easily consuming the data for analysis. These data includes any amendments to those submissions. The data has been taken directly from submissions created by the registrants and provided as- filed. The data will be published quarterly. Data contained in documents filed after 5:30pm EST on the last
+SIGNATURES,business,day of the quarter will be included in the next quarterly posting. DISCLAIMER: The Form D Data contains information derived from structured data filed with the Commission by individual registrants as well as Commission-generated filing identifiers. Because the data is derived from
+SIGNATURES,information,"provided by individual registrants, we cannot guarantee the accuracy of the data. In addition, it is"
+SIGNATURES,possible,"inaccuracies or other errors were introduced into the data during the process of extracting the data and compiling. Finally, the data does not reflect all available information, including certain metadata"
+SIGNATURES,associated,"with Commission filings. The data is intended to assist the public in analyzing data contained in Commission filings; however, it is not a substitute for such filings. Investors should review the full Commission"
+SIGNATURES,filings,before making any investment decision. The data extracted from the Form D XML submissions is organized into six tab-delimited TXT format files as follows: • FORMDSUBMISSION • ISSUERS • OFFERING • RECIPIENTS • RELATEDPERSONS • SIGNATURES 2 Scope The Form D Data consists of XML data submitted from Jan 2008 through current period. The Form D Data publishing files do not include data from attachments or other optional information that may
+SIGNATURES,have,"been included in a submission. Note: The submissions. 3 Organization Note that the data includes Form D information ""as filed"" in"
+SIGNATURES,amendments,"of prior submissions. Data in this submitted form may contain redundancies, inconsistencies, and discrepancies relative to prior submissions and other publication formats. There are six data files. Each"
+SIGNATURES,quarterly,data is accompanied by a metadata file conforming to the W3C specification for tabular data (https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/ ) that encodes the following information
+SIGNATURES,about,the data files and their relationships to each other. 1. FORMDSUBMISSION identifies the Form D
+SIGNATURES,primary,"key ACCESSIONNUMBER. 2. ISSUERS data is the issuer information for each submission, with each row having the primary key"
+SIGNATURES,ACCESSIONNUMBER,"and ISSUER_SEQ_KEY. 3. OFFERING data is the offering information, with each row having the primary key ACCESSIONNUMBER. 4. RECIPIENTS data contains recipients’ information related to the submissions, with each row having the primary key ACCESSIONNUMBER and RECIPIENT_SEQ_KEY. 5. RELATEDPERSONS data contains information of related persons in a submission, with each row"
+SIGNATURES,having,"the primary key ACCESSIONNUMBER and RELATEDPERSON_SEQ_KEY. 6. SIGNATURES data provides the data from the person signatures, with each row having the primary key ACCESSIONNUMBER and SIGNATURE_SEQ_KEY."
+FORMDSUBMISSION,ACCESSIONNUMBER,
+FORMDSUBMISSION,FILE_NUM,
+FORMDSUBMISSION,FILING_DATE,
+FORMDSUBMISSION,SIC_CODE,The 20-character string formed
+FORMDSUBMISSION,from,the 18-digit number assigned by the Commission to each submission. File Number provided by Commission for the submission. The File Number is sourced from
+FORMDSUBMISSION,responsibility,for the company's filings. Max Size
+FORMDSUBMISSION,SUBMISSIONTYPE,Submission type
+FORMDSUBMISSION,OVER100PERSONSFLAG,"Yes, if over 100 persons."
+FORMDSUBMISSION,OVER100ISSUERFLAG,"Yes, if over 100 issuers."
+FORMDSUBMISSION,contain,all the data sets for a given submission. To assemble the folder address to any filing referenced in the
+FORMDSUBMISSION,FORMDSUBMISSION,"data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace {accession} with the ACCESSIONNUMBER field (after removing the dash character). 5.2 ISSUERS The ISSUERS data file contains specified information for the issuer provided in the submission."
+ISSUERS,ACCESSIONNUMBER,The 20-character string formed
+ISSUERS,from,the 18-digit number
+ISSUERS,assigned,by the Commission to
+ISSUERS,each,EDGAR submission.
+ISSUERS,IS_PRIMARYISSUER_FLAG,"Yes, if primary issuer; No if not"
+ISSUERS,ISSUER_SEQ_KEY,Issuer index key.
+ISSUERS,CIK,
+ISSUERS,ENTITYNAME,
+ISSUERS,STREET,
+ISSUERS,CITY,Central index key (CIK) of
+ISSUERS,issuer,submitting the filing.
+ISSUERS,STATEORCOUNTRY,State/Province/Country
+ISSUERS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+ISSUERS,ZIPCODE,
+ISSUERS,state,Zip/Postal Code
+ISSUERS,ISSUERPHONENUMBER,Phone No. of Issuer
+ISSUERS,JURISDICTIONOFINC,Jurisdiction of Incorporation/Organization
+ISSUERS,ISSUER_PREVIOUSNAME,Issuer Previous Name 1
+ISSUERS,EDGAR_PREVIOUSNAME,
+ISSUERS,ENTITYTYPE,Entity type
+ISSUERS,ENTITYTYPEOTHERDESC,
+ISSUERS,YEAROFINC_TIMESPAN_CHOICE,
+ISSUERS,YEAROFINC_VALUE_ENTERED,Description of Entity Type when
+ISSUERS,indicated,as 'Other' in Entity Type Year of Incorporation/Organization (Specify Year) Within Last Five Years (Specify Year) Year of Incorporation value
+ISSUERS,ENTERED_ALPHANUMERIC,
+OFFERING,ACCESSIONNUMBER,
+OFFERING,INDUSTRYGROUPTYPE,
+OFFERING,INVESTMENTFUNDTYPE,
+OFFERING,IS40ACT,The 20-character string
+OFFERING,formed,from the 18-
+OFFERING,digit,number assigned by the Commission to
+OFFERING,each,EDGAR submission.
+OFFERING,REVENUERANGE,Revenue Range
+OFFERING,whether,the issuer
+OFFERING,registered,as an
+OFFERING,investment,
+OFFERING,company,under the Investment Company Act of 1940 Aggregate Net Asset Value Range List of exemptions
+OFFERING,under,Securities Act New Notice /Amendment Previous Accession Number; The 20-
+OFFERING,character,string formed
+OFFERING,from,the 18-digit
+OFFERING,number,assigned by the Commission to
+OFFERING,more,"than one year Equity Debt Option, Warrant or Other Right to Acquire Another Security Security to be Acquired Upon Exercise of Option, Warrant or Other Right to Acquire Security Sale"
+OFFERING,AGGREGATENETASSETVALUERANGE,
+OFFERING,FEDERALEXEMPTIONS_ITEMS_LIST,
+OFFERING,ISAMENDMENT,
+OFFERING,PREVIOUSACCESSIONNUMBER,
+OFFERING,SALE_DATE,
+OFFERING,YETTOOCCUR,
+OFFERING,MORETHANONEYEAR,
+OFFERING,ISEQUITYTYPE,
+OFFERING,ISDEBTTYPE,
+OFFERING,ISOPTIONTOACQUIRETYPE,
+OFFERING,ISSECURITYTOBEACQUIREDTYPE,Field Name Field Description Format Max Size May be
+OFFERING,ISPOOLEDINVESTMENTFUNDTYPE,
+OFFERING,ISTENANTINCOMMONTYPE,
+OFFERING,ISMINERALPROPERTYTYPE,Pooled Investment Fund Interests Tenant-in-Common Securities Mineral Property Securities
+OFFERING,ISOTHERTYPE,Other (describe)
+OFFERING,DESCRIPTIONOFOTHERTYPE,
+OFFERING,ISBUSINESSCOMBINATIONTRANS,
+OFFERING,BUSCOMBCLARIFICATIONOFRESP,
+OFFERING,MINIMUMINVESTMENTACCEPTED,Description of Pooled Investment Type when
+OFFERING,indicated,as 'Other' in 'OtherType' as Pooled Investment Type Is this offering being
+OFFERING,made,in connection
+OFFERING,with,a business
+OFFERING,combination,"transaction, such as a merger, acquisition, or"
+OFFERING,exchange,offer? Clarification of Response (if Necessary) Minimum investment
+OFFERING,accepted,from any
+OFFERING,outside,investor
+OFFERING,OVER100RECIPIENTFLAG,Over 100 recipients
+OFFERING,TOTALOFFERINGAMOUNT,Total offering amount
+OFFERING,TOTALAMOUNTSOLD,
+OFFERING,TOTALREMAINING,
+OFFERING,SALESAMTCLARIFICATIONOFRESP,
+OFFERING,HASNONACCREDITEDINVESTORS,
+OFFERING,NUMBERNONACCREDITEDINVESTORS,
+OFFERING,SOLD_ALPHANUMERIC,Clarification of Response (if Necessary) Select if securities in the offering have been or may be sold to
+OFFERING,persons,who do not
+OFFERING,qualify,as accredited
+OFFERING,investors,Number of such non-
+OFFERING,accredited,investors
+OFFERING,who,already have
+OFFERING,invested,in the offering
+OFFERING,SALESCOMM_ISESTIMATE,Estimate
+OFFERING,FINDERSFEE_DOLLARAMOUNT,Finders Fee USD
+OFFERING,TOTALNUMBERALREADYINVESTED,
+OFFERING,SALESCOMM_DOLLARAMOUNT,Regardless of whether
+OFFERING,securities,in the
+OFFERING,offering,have been or may be sold to persons
+OFFERING,enter,the total number of investors who
+OFFERING,already,"have invested in the offering. Sales Commissions,"
+OFFERING,USD,
+OFFERING,FINDERSFEE_ISESTIMATE,
+OFFERING,FINDERFEECLARIFICATIONOFRESP,Estimate Clarification of Response (if Necessary)
+OFFERING,GROSSPROCEEDSUSED_DOLLARAMOUNT,Provide the amount of the gross proceeds of the offering that has
+OFFERING,been,or is proposed to be used for payments to any of the persons
+OFFERING,required,"to be named as executive officers, directors, or promoters in response to Item 3 above. If the amount is unknown, provide an"
+OFFERING,estimate,and check the
+OFFERING,box,next to the amount. USD
+OFFERING,GROSSPROCEEDSUSED_CLAROFRESP,
+OFFERING,AUTHORIZEDREPRESENTATIVE,Clarification of Response (if Necessary) I also am a duly
+OFFERING,authorized,
+OFFERING,representative,of the
+OFFERING,other,Issuer(s) in Item 1 above and authorized to sign on their behalf. 5.4 RECIPIENTS
+OFFERING,GROSSPROCEEDSUSED_ISESTIMATE,Estimate
+RECIPIENTS,ACCESSIONNUMBER,The 20-character string
+RECIPIENTS,formed,from the 18-digit
+RECIPIENTS,number,assigned by the Commission to each submission.
+RECIPIENTS,RECIPIENT_SEQ_KEY,Recipient index key.
+RECIPIENTS,RECIPIENTNAME,Recipient
+RECIPIENTS,RECIPIENTCRDNUMBER,Recipient CRD Number
+RECIPIENTS,ASSOCIATEDBDNAME,(Associated) Broker or Dealer
+RECIPIENTS,ASSOCIATEDBDCRDNUMBER,(Associated) Broker or Dealer
+RECIPIENTS,CRD,Number
+RECIPIENTS,STREET,
+RECIPIENTS,CITY,Street Address 1 Street Address 2 City
+RECIPIENTS,STATEORCOUNTRY,State/Province/Country
+RECIPIENTS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+RECIPIENTS,state,
+RECIPIENTS,ZIPCODE,Zip/Postal Code
+RECIPIENTS,STATES_OR_VALUE_LIST,
+RECIPIENTS,DESCRIPTIONS_LIST,
+RECIPIENTS,FOREIGNSOLICITATION,List of States or Countries of Recipients Full name of States or Countries of Recipients Selected if the recipient has
+RECIPIENTS,solicited,sales in foreign countries.
+RELATEDPERSONS,ACCESSIONNUMBER,The 20-character string
+RELATEDPERSONS,formed,from the 18-digit
+RELATEDPERSONS,number,assigned by the Commission to each submission.
+RELATEDPERSONS,RELATEDPERSON_SEQ_KEY,Related person index key.
+RELATEDPERSONS,FIRSTNAME,
+RELATEDPERSONS,MIDDLENAME,First Name Middle Name
+RELATEDPERSONS,LASTNAME,
+RELATEDPERSONS,STREET,
+RELATEDPERSONS,CITY,Last Name Street Address 1 Street Address 2 City
+RELATEDPERSONS,STATEORCOUNTRY,State/Province/Country
+RELATEDPERSONS,STATEORCOUNTRYDESCRIPTION,Full name of the country or
+RELATEDPERSONS,state,Zip/Postal Code
+RELATEDPERSONS,ZIPCODE,
+RELATEDPERSONS,RELATIONSHIP,
+RELATEDPERSONS,RELATIONSHIPCLARIFICATION,"Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Relationship of related person to issuer consisting of Executive Officer, Director, or Promoter. Clarification of Response (if Necessary)"
+SIGNATURES,ACCESSIONNUMBER,The 20-character string formed
+SIGNATURES,from,the 18-digit number assigned by the Commission to each submission.
+SIGNATURES,SIGNATURE_SEQ_KEY,Signature index key.
+SIGNATURES,ISSUERNAME,Name of Issuer
+SIGNATURES,SIGNATURENAME,Name of signature
+SIGNATURES,NAMEOFSIGNER,Full name of person signing the form.
+SIGNATURES,SIGNATURETITLE,Title of person signing the form.
+SIGNATURES,SIGNATUREDATE,
