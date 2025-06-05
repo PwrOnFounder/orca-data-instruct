@@ -1,1640 +1,1626 @@
-Mutual Fund Prospectus Risk/Return
-Contents
-Summary Data Sets
-1  Overview .......................................................................................................................... 1
-Scope ............................................................................................................................... 2
-2
-3  Organization ..................................................................................................................... 2
-File Formats ...................................................................................................................... 4
-4
-Table Definitions ................................................................................................................ 4
-5
-SUB (Submissions)...................................................................................................... 4
-TAG (Tags) ................................................................................................................ 6
-LAB (Labels) ............................................................................................................... 7
-CAL (Calculations) ....................................................................................................... 8
-NUM (Numbers) .......................................................................................................... 8
-TXT (Plain Text) .......................................................................................................... 9
-
-5.1
-5.2
-5.3
-5.4
-5.5
-5.6
+Contents 
+Form D Data
+1       Overview 
+2       Scope 
+3       Organization 
+4       File Formats 
+5       File Header Definitions 
 
-Figure 1. Data relationships .................................................................................................................. 3
-Figure 2. Fields in the SUB data set ....................................................................................................... 4
-Figure 3. Fields in the TAG data set ....................................................................................................... 7
-Figure 4. Fields in the LAB data set ........................................................................................................ 7
-Figure 5. Fields in the CAL data set ........................................................................................................ 8
-Figure 6. Fields in the NUM data set ....................................................................................................... 8
-Figure 7. Fields in the TXT data set ........................................................................................................ 9
-
-1  Overview
-The following data sets provide information extracted from EX-101 exhibits submitted to the Commission in a
-flattened data format to assist users in more easily consuming the data for analysis. The data is sourced from
-selected information found in the XBRL tagged mutual fund prospectuses submitted by filers to the
-Commission.  Certain additional fields used in the Commission's EDGAR system are also included to help in
-supporting the use of the data.  The information has been taken directly from submissions created by each
-registrant, and the data is "as filed" by the registrant.  The information will be updated quarterly. Data
-contained in documents filed after 5:30pm EST on the last business day of the quarter will be included in the
-next quarterly posting.
+5.1        FORMDSUBMISSION 
+5.2        ISSUERS 
+5.3        OFFERING 
+5.4        RECIPIENTS 
+5.5        RELATEDPERSONS 
+5.6        SIGNATURES 
 
-DISCLAIMER: The Mutual Fund Prospectus Risk/Return Summary Data Sets contain information derived from
-structured data filed with the Commission by individual registrants as well as Commission-generated filing
-identifiers. Because the data sets are derived from information provided by individual registrants, we cannot
-guarantee the accuracy of the data sets. In addition, it is possible inaccuracies or other errors were introduced
-into the data sets during the process of extracting the data and compiling the data sets. Finally, the data sets
-do not reflect all available information, including certain metadata associated with Commission filings. The
-data sets are intended to assist the public in analyzing data contained in Commission filings; however, they
-are not a substitute for such filings. Investors should review the full Commission filings before making any
-investment decision.
-
-
-
-
-The data extracted from the XBRL submissions is organized into data sets containing information about
-submissions, numbers, taxonomy tags, and more.  Each data set consists of rows and fields, and is provided
-as a tab-delimited TXT format file.  The data sets are as follows:
+Figure 1. Fields in the FORMDSUBMISSION data file 
+Figure 2. Fields in the ISSUERS data file 
+Figure 3. Fields in the OFFERING data file 
+Figure 4. Fields in the RECIPIENTS data file 
+Figure 5. Fields in the RELATEDPERSONS data file 
+Figure 6. Fields in the SIGNATURES data file 
 
-•  SUB – Submission data set; this includes one record for each submission having an XBRL exhibit. The
-
-set includes fields of information pertinent to the submission and the filing entity.
-
-•  TAG – Tag data set; includes defining information about each tag.  Information includes tag
-descriptions (documentation labels), taxonomy version information and other tag attributes.
+1         Overview 
+The Form D data provides information extracted from Form D XML submissions in a flattened data format to 
+assist users in more easily consuming the data for analysis. These data includes any amendments to those 
+submissions. The data has been taken directly from submissions created by the registrants and provided as-
+filed. The data will be published quarterly. Data contained in documents filed after 5:30pm EST on the last 
+business day of the quarter will be included in the next quarterly posting. 
 
-•  LAB – Label data set; this contains additional information about each tag as it was used in a specific
+DISCLAIMER: The Form D Data contains information derived from structured data filed with the Commission 
+by individual registrants as well as Commission-generated filing identifiers. Because the data is derived from 
+information provided by individual registrants, we cannot guarantee the accuracy of the data. In addition, it is 
+possible inaccuracies or other errors were introduced into the data during the process of extracting the data 
+and compiling. Finally, the data does not reflect all available information, including certain metadata 
+associated with Commission filings. The data is intended to assist the public in analyzing data contained in 
+Commission filings; however, it is not a substitute for such filings. Investors should review the full Commission 
+filings before making any investment decision. 
 
-exhibit.
+The data extracted from the Form D XML submissions is organized into six tab-delimited TXT format files as 
+follows: 
 
-•  NUM – Number data set; this includes one row for each distinct amount from each exhibit included in
+•         FORMDSUBMISSION 
 
-the SUB data set. The Number data set includes, for every exhibit, all line item values.
-•  CAL – Calculation data set; provides information to arithmetically relate tags in a filing.
-•  TXT – Text data set; this is the plain text of all the non-numeric tagged items in the exhibit.
+ 
+  
+  
+•         ISSUERS 
 
-2  Scope
-The scope of the data in the mutual fund prospectus risk/return summary data sets consists of:
+•         OFFERING 
 
-•  Numeric data and non-numeric "plain text" from the risk/return summary
-•
-From Interactive Data exhibits (XBRL) to forms 485BPOS an 497;
-•  Submitted from 12/20/2010 through the "Data Cutoff Date" inclusive
+•         RECIPIENTS 
 
-All data values are "as filed."
-
-3  Organization
-Note that this data set represents quarterly and annual uncorrected and "as filed" EDGAR document
-submissions containing multiple reporting periods (including amendments of prior submissions). Data in this
-submitted form may contain redundancies, inconsistencies, and discrepancies relative to other publication
-formats. Each quarterly data set is accompanied by a metadata file conforming to the W3C specification for
-tabular data (https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/ ) that encodes the following
-information about the data sets and their relationships to each other.
-
-1.  SUB is identifies all the EDGAR submissions in the data set, with each row having the unique
-
-(primary) key adsh,  a 20 character EDGAR Accession Number with dashes in positions 11 and 14.
-
-2.  TAG is a data set of all tags used in the submissions, both standard and custom.  These fields
-
-comprise a unique compound key:
-1)  tag – tag used by the filer
-2)  version – if a standard tag, the taxonomy of origin, otherwise equal to adsh.
+•         RELATEDPERSONS 
 
-3.  LAB is a data set of all tag labels appearing in the submission, both standard and custom.  These
-
-fields comprise a unique compound key:
-
-1)  adsh – EDGAR accession number
-2)  tag – tag used by the filer
-3)  version – if a standard tag, the taxonomy of origin, otherwise equal to adsh.
-4.  CAL is a data set that provides arithmetic relationships among the tags in a filing.  These fields
+•         SIGNATURES 
 
-comprise a unique compound key:
+2         Scope 
+The Form D Data consists of XML data submitted from Jan 2008 through current period. 
 
-1)  adsh - EDGAR accession number
-2)  grp - sequential number of a group of relationships within the submission
-3)  arc - sequential number of relationship within the group of relationships
+The Form D Data publishing files do not include data from attachments or other optional information that may 
+have been included in a submission. 
 
+Note:  The EDGAR Form D XML Technical Specification provides additional information regarding the Form D 
+submissions. 
 
-5.  NUM is a data set of all numeric XBRL facts presented on the primary financial statements. These
+3         Organization 
+Note that the data includes Form D information "as filed" in EDGAR document submissions including 
+amendments of prior submissions.  Data in this submitted form may contain redundancies, inconsistencies, 
+and discrepancies relative to prior submissions and other publication formats.  There are six data files.  Each 
+quarterly data is accompanied by a metadata file conforming to the W3C specification for tabular data 
+(https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/ ) that encodes the following information 
+about the data files and their relationships to each other.  
 
-fields comprise a unique compound key:
+1.    FORMDSUBMISSION identifies the Form D EDGAR XML submissions, with each row having the 
 
-1)  adsh - EDGAR accession number
-2)  tag - tag used by the filer
-3)  version – if a standard tag, the taxonomy of origin, otherwise equal to adsh.
-4)  ddate - document date
-5)  uom - unit of measure
-6)  series – the 10-character series identifier, if any
-7)  class – the 10-character class identifier, if any
-8)  measure – a token to qualify which performance measure the fact represents, if any
-9)  document – a token to distinguish between the same fact appearing in different prospectuses
+primary key ACCESSIONNUMBER. 
 
-within a single submission, if needed
+2.    ISSUERS data is the issuer information for each submission, with each row having the primary key 
 
-10) otherdims – other tokens with information provided by the filer
-11) iprx – a sequential integer used to distinguish otherwise identical facts
+ACCESSIONNUMBER and ISSUER_SEQ_KEY. 
 
-6.  TXT is a data set that contains the plain (no HTML) text of each non-numeric XBRL fact.  These fields
+3.    OFFERING data is the offering information, with each row having the primary key 
 
-comprise a unique compound key:
+ACCESSIONNUMBER. 
 
-1)  adsh - EDGAR accession number
-2)  tag – tag used by the filer
-3)  version – if a standard tag, the taxonomy of origin, otherwise equal to adsh
-4)  ddate - period end date
-5)  lang – the language (usually US English) of the text
-6)  series – the 10-character series identifier, if any
-7)  class – the 10-character class identifier, if any
-8)  measure – a token to qualify which performance measure the fact represents, if any
-9)  document – a token to distinguish between the same fact appearing in different prospectuses
+4.    RECIPIENTS data contains recipients’ information related to the submissions, with each row having 
 
-within a single submission, if needed
+the primary key ACCESSIONNUMBER and RECIPIENT_SEQ_KEY. 
 
-10) otherdims – other tokens with information provided by the filer
-11) iprx – a sequential integer used to distinguish otherwise identical facts
+5.    RELATEDPERSONS data contains information of related persons in a submission, with each row 
 
-The relationship of the data sets is as shown in Figure 1. The Accession Number (adsh) found in the NUM
-data set can be used to retrieve information about the submission in SUB.  Each row of data in NUM or TXT
-was tagged by the filer using a tag. Information about the tag used can be found in TAG.  Each row of data in
-NUM or TXT appears on one or more lines of reports detailed in PRE.
+having the primary key ACCESSIONNUMBER and RELATEDPERSON_SEQ_KEY. 
 
-Figure 1. Data relationships
+6.    SIGNATURES data provides the data from the person signatures, with each row having the primary 
 
-Data set
-NUM
+key ACCESSIONNUMBER and SIGNATURE_SEQ_KEY. 
 
-TXT
+ACCESSIONNUMBER can be used to retrieve information about a submission in the data 
+files.  ACCESSIONNUMBER and XXX_SEQ_KEY can be used to obtain data reported on multiple lines in 
+the submission. 
 
-LAB
+4         File Formats 
 
-CAL
+Each of the six data files provide text format, tab delimited, utf-8 encoding. 
 
-Fields
-referencing
-other datasets
-adsh
-tag, version
-adsh
-tag, version
-adsh
-tag, version
-adsh
-ptag, pversion
-ctag, cversion
+5         File Header Definitions 
+The fields in the figures below (figures 1 - 6) provide the following information: field name, description, data 
+format, maximum field size, an indication of whether or not the field may be NULL (yes or no), and key.   
 
-Referenced
-dataset
-SUB
-TAG
-SUB
-TAG
-SUB
-TAG
-SUB
-TAG
-TAG
+The Key field indicates whether the field is part of a unique index on the data.  There are two possible values 
+for this field: 
 
-Referenced fields
-adsh
-tag, version
-adsh
-tag, version
-adsh
-tag, version
-adsh
-tag, version
-tag, version
+•         "*"   Indicates the field is part of the unique key for the row.  
 
+•         Empty (nothing in field)   the field is not part of the unique compound key. 
 
+5.1       FORMDSUBMISSION 
+The FORMDSUBMISSION data file contains summary information about the submission and filer. 
 
+Figure 1. Fields in the FORMDSUBMISSION data file 
 
-4  File Formats
-Each of the data sets is provided in a single encoding, as follows:
+Field Name 
 
-Tab Separated Value (.tsv): utf-8, tab-delimited, \n- terminated lines, with the first line containing the
-field names in lowercase.
+Field Description 
 
-5  Table Definitions
-The fields in the figures below provide the following information: field name, description, source, data format,
-maximum field size, an indication of whether or not the field may be NULL (yes or no), and key.
+Format 
 
-The Source field has two possible values:
+ACCESSIONNUMBER 
 
-EDGAR indicates that the source of the data is the filer's EDGAR submission header.
+FILE_NUM 
 
-•
-•  XBRL indicates that the source of the data is the filer's EX-101 (XBRL) exhibits.
+FILING_DATE 
 
-The Key field indicates whether the field is part of a unique index on the data.  There are two possible values
-for this field:
+SIC_CODE 
 
-•
-•
+The 20-character string formed 
+from the 18-digit number assigned 
+by the Commission to each EDGAR 
+submission. 
 
-"*" – Indicates the field is part of the unique key for the row.
-Empty (nothing in field) – the field is not part of the unique compound key.
+File Number provided by 
+Commission for the submission. The 
+File Number is sourced from 
+EDGAR. 
 
-5.1  SUB (Submissions)
-The submissions data set contains summary information about an entire EDGAR submission. Some fields were
-sourced directly from EDGAR submission information, while other fields of data were sourced from the
-Interactive Data exhibits of the submission. Note: EDGAR derived fields represent the most recent EDGAR
-assignment as of a given filing's submission date and do not necessarily represent the most current
-assignments.
+Date filed with the Commission. The 
+Filing Date is sourced from EDGAR. 
 
-Figure 2. Fields in the SUB data set
+Standard Industrial Classification 
+Codes. These codes are also used 
+as a basis for assigning review 
+responsibility for the company's 
+filings. 
 
-Field Description
+Max 
+Size 
 
-Source
+20 
 
-Format
+May be 
+NULL 
 
-EDGAR  ALPHANUMERIC
+No 
 
-(nnnnnnnnnn-nn-nnnnnn)
+Key 
 
-Max
-Size
+* 
 
-20
+ALPHANUMERIC 
+(nnnnnnnnnn-nn-
+nnnnnn) 
 
-May be
+ALPHANUMERIC 
 
-NULL  Key
+30 
 
-No
+Yes 
 
-*
+DATE (DD-MMM-YY) 
 
-Field
-Name
+ALPHANUMERIC 
 
-adsh
+8 
 
-cik
+4 
 
-name
+Yes 
 
-Accession Number. The 20-
-character string formed from
-the 18-digit number assigned
-by the Commission to each
-EDGAR submission.
+Yes 
 
-Central Index Key (CIK). Ten
-digit number assigned by the
-Commission to each registrant
-that submits filings.
+SUBMISSIONTYPE 
 
-Name of registrant. This
-corresponds to the name of the
-legal entity as recorded in
-EDGAR as of the filing date.
+Submission type 
 
-EDGAR  NUMERIC
+ALPHANUMERIC 
 
-10
+255 
 
-No
+OVER100PERSONSFLAG  Yes, if over 100 persons. 
 
-EDGAR  ALPHANUMERIC
+OVER100ISSUERFLAG 
 
-150
+Yes, if over 100 issuers. 
 
-No
+ALPHANUMERIC 
 
-countryba
+ALPHANUMERIC 
 
-The ISO 3166-1 country of the
-registrant's business address.
+5 
 
-EDGAR  ALPHANUMERIC
+5 
 
-stprba
+No 
 
-The state or province of the
-registrant's business address, if
-field countryba is US or CA.
+Yes 
 
-EDGAR  ALPHANUMERIC
+Yes 
 
-2
+Note: To access the complete submission files for a given filing, please see the Commission EDGAR website.  
+The Commission website folder https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/ will always 
+contain all the data sets for a given submission. To assemble the folder address to any filing referenced in the 
+FORMDSUBMISSION data set, simply substitute {cik} with the CIK (see ISSUERS) field and replace 
+{accession} with the ACCESSIONNUMBER field (after removing the dash character). 
 
-2
+5.2       ISSUERS 
 
-No
+  
+  
+  
+  
+  
+  
+  
+ 
+The ISSUERS data file contains specified information for the issuer provided in the submission. 
 
-Yes
+Figure 2. Fields in the ISSUERS data file 
 
+Field Name 
 
+Field Description 
 
+Format 
 
+ACCESSIONNUMBER 
 
+The 20-character string formed 
+from the 18-digit number 
+assigned by the Commission to 
+each EDGAR submission. 
 
-countryma  The ISO 3166-1 country of the
+ALPHANUMERIC 
+(nnnnnnnnnn-
+nn-nnnnnn) 
 
-EDGAR  ALPHANUMERIC
+IS_PRIMARYISSUER_FLAG 
 
-Field Description
+Yes, if primary issuer; No if not  ALPHANUMERIC 
 
-Source
+ISSUER_SEQ_KEY 
 
-Format
+Issuer index key. 
 
-EDGAR  ALPHANUMERIC
+NUMERIC 
 
-Max
-Size
+CIK 
 
-30
+ENTITYNAME 
 
-May be
+STREET1 
 
-NULL  Key
+STREET2 
 
-No
+CITY 
 
-EDGAR  ALPHANUMERIC
+Central index key (CIK) of 
+issuer submitting the filing. 
 
-10
+ALPHANUMERIC 
 
-Yes
+Name of Issuer 
 
-EDGAR  ALPHANUMERIC
+Street Address 1 
 
-40
+Street Address 2 
 
-Yes
+City 
 
-EDGAR  ALPHANUMERIC
+ALPHANUMERIC 
 
-40
+150 
 
-Yes
+ALPHANUMERIC 
 
-EDGAR  ALPHANUMERIC
+ALPHANUMERIC 
 
-12
+ALPHANUMERIC 
 
-Yes
+40 
 
-EDGAR  ALPHANUMERIC
+40 
 
-2
+30 
 
-2
+STATEORCOUNTRY 
 
-Yes
+State/Province/Country 
 
-Yes
+ALPHANUMERIC 
 
-EDGAR  ALPHANUMERIC
+255 
 
-30
+STATEORCOUNTRYDESCRIPTION  Full name of the country or 
 
-Yes
+ALPHANUMERIC 
 
-EDGAR  ALPHANUMERIC
+50 
 
-10
+Yes 
 
-Yes
+Max 
+Size 
 
-EDGAR  ALPHANUMERIC
+20 
 
-40
+May be 
+NULL 
 
-Yes
+Key 
 
-EDGAR  ALPHANUMERIC
+No 
 
-40
+* 
 
-Yes
+3 
 
-Field
-Name
+38 
 
-cityba
+10 
 
-zipba
+* 
 
-bas1
+No 
 
-bas2
+No 
 
-baph
+No 
 
-The city of the registrant's
-business address.
+Yes 
 
-The zip code of the registrant's
-business address.
+No 
 
-The first line of the street of
-the registrant's business
-address.
+Yes 
 
-The second line of the street of
-the registrant's business
-address.
+No 
 
-The phone number of the
-registrant's business address.
+No 
 
-stprma
+10 
 
-cityma
+20 
 
-zipma
+50 
 
-mas1
+150 
 
-mas2
+150 
 
-registrant's mailing address.
+150 
 
-The state or province of the
-registrant's mailing address, if
-field countryma is US or CA.
+150 
 
-The city of the registrant's
-mailing address.
+150 
 
-The zip code of the registrant's
-mailing address.
+150 
 
-The first line of the street of
-the registrant's mailing
-address.
+255 
 
-The second line of the street of
-the registrant's mailing
-address.
+255 
 
-stprinc
+No 
 
-ein
+No 
 
-The state or province of
-incorporation for the registrant,
-if countryinc is US or CA,
-otherwise NULL.
+Yes 
 
-Employee Identification
-Number, 9 digit identification
-number assigned by the
-Internal Revenue Service to
-business entities operating in
-the United States.
+Yes 
 
-countryinc  The country of incorporation for
+Yes 
 
-EDGAR  ALPHANUMERIC,
+Yes 
 
-the registrant.
+Yes 
 
-ISO 3166-1 ALPHA 2
+Yes 
 
-EDGAR  ALPHANUMERIC
+Yes 
 
-2
+No 
 
-2
+Yes 
 
-No
+ZIPCODE 
 
-Yes
+state 
 
-EDGAR  NUMERIC
+Zip/Postal Code 
 
-10
+ISSUERPHONENUMBER 
 
-Yes
+Phone No. of Issuer 
 
-former
+JURISDICTIONOFINC 
 
-changed
+Jurisdiction of 
+Incorporation/Organization 
 
-Most recent former name of the
-registrant, if any.
+ALPHANUMERIC 
 
-Date of change from the former
-name, if any.
+ALPHANUMERIC 
 
-fye
+ALPHANUMERIC 
 
-pdate
+ISSUER_PREVIOUSNAME_1 
 
-Fiscal Year End Date.
+Issuer Previous Name 1 
 
-Prospectus date
+ALPHANUMERIC 
 
-effdate
+ISSUER_PREVIOUSNAME_2 
 
-Document Effective Date
+Issuer Previous Name 2 
 
-form
+ALPHANUMERIC 
 
-The submission type of the
-registrant's filing.
+ISSUER_PREVIOUSNAME_3 
 
-EDGAR  ALPHANUMERIC
+Issuer Previous Name 3 
 
-150
+ALPHANUMERIC 
 
-Yes
+EDGAR_PREVIOUSNAME_1 
 
-EDGAR  ALPHANUMERIC
+EDGAR  Previous Name 1 
 
-XBRL
+ALPHANUMERIC 
 
-XBRL
+EDGAR_PREVIOUSNAME_2 
 
-XBRL
+EDGAR  Previous Name 2 
 
-ALPHANUMERIC (mmdd)
+ALPHANUMERIC 
 
-DATE (yyymmdd)
+EDGAR_PREVIOUSNAME_3 
 
-DATE (yyymmdd)
+EDGAR  Previous Name 3 
 
-EDGAR  ALPHANUMERIC
+ALPHANUMERIC 
 
-8
+ENTITYTYPE 
 
-4
+Entity type 
 
-8
+ENTITYTYPEOTHERDESC 
 
-8
+YEAROFINC_TIMESPAN_CHOICE 
 
-20
+YEAROFINC_VALUE_ENTERED 
 
-Yes
+Description of Entity Type when 
+indicated as 'Other' in Entity 
+Type 
 
-No
+Year of 
+Incorporation/Organization 
+(Specify Year) Within Last Five 
+Years (Specify Year) 
 
-Yes
+Year of Incorporation value 
+entered 
 
-Yes
+ALPHANUMERIC 
 
-No
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
+150 
 
+No 
 
+ALPHANUMERIC 
 
+4 
 
+Yes 
 
+5.3       OFFERING 
+The OFFERING data file contains information regarding the offering requirements. 
 
+Figure 3. Fields in the OFFERING data file 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Field Name 
 
+Field Description 
 
+Format 
 
+ACCESSIONNUMBER 
 
+INDUSTRYGROUPTYPE 
 
+INVESTMENTFUNDTYPE 
 
+IS40ACT 
 
+The 20-character string 
+formed from the 18-
+digit number assigned 
+by the Commission to 
+each EDGAR 
+submission. 
 
+ALPHANUMERIC 
+(nnnnnnnnnn-
+nn-nnnnnn) 
 
+Type of Industry 
 
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
+Max 
+Size 
 
-Field
-Name
+20 
 
-filed
+May be 
+NULL 
 
-accepted
+Key 
 
-instance
+No 
 
-nciks
+* 
 
-aciks
+255 
 
-Field Description
+255 
 
-Source
+No 
 
-Format
+Yes 
 
-Max
-Size
+ALPHANUMERIC 
 
-May be
+5 
 
-NULL  Key
+Yes 
 
-EDGAR  DATE (yymmdd)
+REVENUERANGE 
 
-8
+Revenue Range 
 
-No
+ALPHANUMERIC 
 
-EDGAR  DATETIME
+ALPHANUMERIC 
 
-19
+255 
 
-No
+255 
 
-(yyyy-mm-dd hh:mm:ss)
+Yes 
 
-EDGAR  ALPHANUMERIC (example:
+Yes 
 
-32
+ALPHANUMERIC 
 
-No
+1000 
 
-abcd-yyyymmdd.xml)
+Yes 
 
-EDGAR  NUMERIC
+ALPHANUMERIC 
 
-4
+5 
 
-No
+No 
 
-EDGAR  ALPHANUMERIC (space
+ALPHANUMERIC 
 
-120
+20 
 
-Yes
+Yes 
 
-delimited)
+Type of Securities 
+Offered 
 
-The date of the registrant's
-filing with the Commission.
+Flag to indicate 
+whether the issuer 
+registered as an 
+investment 
+company under the 
+Investment Company 
+Act of 1940 
 
-The acceptance date and time
-of the registrant's filing with
-the Commission. Filings
-accepted after 5:30pm EST are
-considered filed on the
-following business day.
+Aggregate Net Asset 
+Value Range 
 
-The name of the submitted
-XBRL Instance Document (EX-
-101.INS) type data file. The
-name often begins with the
-company ticker symbol.
+List of exemptions 
+under Securities Act 
 
-Number of Central Index Keys
-(CIK) of registrants (i.e.,
-business units) included in the
-consolidating entity's submitted
-filing.
+New Notice 
+/Amendment 
 
-Additional CIKs of co-
-registrants included in a
-consolidating entity's EDGAR
-submission, separated by
-spaces. If there are no other
-co-registrants (i.e., nciks = 1),
-the value of aciks is NULL.  For
-a very small number of filers,
-the list of co-registrants is too
-long to fit in the field.  Where
-this is the case, PARTIAL will
-appear at the end of the list
-indicating that not all co-
-registrants' CIKs are included in
-the field; users should refer to
-the complete submission file for
-all CIK information.
+Previous Accession 
+Number; The 20-
+character string formed 
+from the 18-digit 
+number assigned by 
+the Commission to 
+each EDGAR 
+submission. 
 
-Note: To access the complete submission files for a given filing, please see the Commission EDGAR website.
-The Commission website folder https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/ will always
-contain all the data sets for a given submission.  To assemble the folder address to any filing referenced in the
-SUB data set, simply substitute {cik} with the cik field and replace {accession} with the adsh field (after
-removing the dash character).  The following sample SQL Query provides an example of how to generate a list
-of addresses for filings contained in the SUB data set:
+Duration of offering 
+more than one year 
 
-•
+Equity 
 
-select name,form,period, 'https://www.sec.gov/Archives/edgar/data/' +
-ltrim(str(cik,10))+'/' + replace(adsh,'-','')+'/'+instance as url from sub order by
-period desc, name
+Debt 
 
-5.2  TAG (Tags)
-The TAG data set contains all standard taxonomy tags, not just those appearing in submissions to date, and
-also includes all custom taxonomy tags defined in the submissions.  The source is the "as filed" XBRL filer
+Option, Warrant or 
+Other Right to Acquire 
+Another Security 
 
+Security to be Acquired 
+Upon Exercise of 
+Option, Warrant or 
+Other Right to Acquire 
+Security 
 
+Sale Date 
 
+ALPHANUMERIC 
 
+255 
 
+First Sale Yet to Occur 
 
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
-submissions.  The standard tags are derived from taxonomies in
-https://www.sec.gov/info/edgar/edgartaxonomies.shtml as of the date of the original submission.
+ALPHANUMERIC 
 
-Figure 3. Fields in the TAG data set
+ALPHANUMERIC 
 
-Field
-Name
+Yes 
 
-tag
+Yes 
 
-version
+No 
 
-custom
+Yes 
 
-Field Description
+Yes 
 
-The unique identifier (name) for a tag in a specific
-taxonomy release.
+Yes 
 
-For a standard tag, an identifier for the
-taxonomy; otherwise the accession number
-where the tag was defined.
+5 
 
-Field Type
+5 
 
-ALPHANUMERIC
+5 
 
-Max
-Size
+5 
 
-256
+5 
 
-ALPHANUMERIC
+ALPHANUMERIC 
 
-20
+5 
 
-1 if tag is custom (version=adsh), 0 if it is
-standard. Note: This flag is technically redundant
-with the version and adsh fields.
+Yes 
 
-BOOLEAN (1 if
-true and 0 if false)
+AGGREGATENETASSETVALUERANGE 
 
-abstract
+FEDERALEXEMPTIONS_ITEMS_LIST 
 
-1 if the tag is not used to represent a numeric
-fact.
+ISAMENDMENT 
 
-BOOLEAN (1 if
-true and 0 if false)
+PREVIOUSACCESSIONNUMBER 
 
-1
+SALE_DATE 
 
-1
+YETTOOCCUR 
 
-May be
-NULL
+MORETHANONEYEAR 
 
-Key
+ISEQUITYTYPE 
 
-*
+ISDEBTTYPE 
 
-*
+ISOPTIONTOACQUIRETYPE 
 
-No
+ISSECURITYTOBEACQUIREDTYPE 
 
-No
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Field Name 
 
-No
+Field Description 
 
-No
+Format 
 
-datatype
+Max 
+Size 
 
-If abstract=1, then NULL, otherwise the data type
-(e.g., monetary) for the tag.
+May be 
+NULL 
 
-ALPHANUMERIC
+Key 
 
-20
+ISPOOLEDINVESTMENTFUNDTYPE 
 
-Yes
+ISTENANTINCOMMONTYPE 
 
-iord
+ISMINERALPROPERTYTYPE 
 
-tlabel
+Pooled Investment 
+Fund Interests 
 
-doc
+Tenant-in-Common 
+Securities 
 
-If abstract=1, then NULL; otherwise, "I" if the
-value is a point in time, or "D" if the value is a
-duration.
+Mineral Property 
+Securities 
 
-If a standard tag, then the label text provided by
-the taxonomy, otherwise the text provided by the
-filer.  A tag which had neither would have a NULL
-value here.
+ALPHANUMERIC 
 
-The detailed definition for the tag, truncated to
-2048 characters. If a standard tag, then the text
-provided by the taxonomy, otherwise the text
-assigned by the filer.  Some tags have neither, in
-which case this field is NULL.
+ALPHANUMERIC 
 
-ALPHANUMERIC
+ALPHANUMERIC 
 
-1
+ISOTHERTYPE 
 
-No
+Other (describe) 
 
-ALPHANUMERIC
+ALPHANUMERIC 
 
-512
+5 
 
-Yes
+5 
 
-ALPHANUMERIC
+5 
 
-2048
+5 
 
-Yes
+ALPHANUMERIC 
 
-5.3  LAB (Labels)
-The LAB data set contains all standard taxonomy tags, not just those appearing in submissions to date, and
-also includes all custom taxonomy tags defined in the submissions.  The source is the "as filed" XBRL filer
-submissions.  The standard tags are derived from taxonomies in
-https://www.sec.gov/info/edgar/edgartaxonomies.shtml as of the date of the original submission.
+255 
 
-Figure 4. Fields in the LAB data set
+Yes 
 
-Field
-Name
+Yes 
 
-adsh
+Yes 
 
-tag
+Yes 
 
-version
+Yes 
 
-std
+DESCRIPTIONOFOTHERTYPE 
 
-terse
+ISBUSINESSCOMBINATIONTRANS 
 
-Field Description
+BUSCOMBCLARIFICATIONOFRESP 
 
-Field Type
+MINIMUMINVESTMENTACCEPTED 
 
-Max
-Size
+Description of Pooled 
+Investment Type when 
+indicated as 'Other' in 
+'OtherType' as Pooled 
+Investment Type 
 
-May be
-NULL
+Is this offering being 
+made in connection 
+with a business 
+combination 
+transaction, such as a 
+merger, acquisition, or 
+exchange offer? 
 
-ALPHANUMERIC
+Clarification of 
+Response (if 
+Necessary) 
 
-20
+Minimum investment 
+accepted from any 
+outside investor 
 
-No
+ALPHANUMERIC 
 
-Accession Number. The 20-character string formed
-from the 18-digit number assigned by the
-Commission to each EDGAR submission.
+5 
 
-The unique identifier (name) for a tag in a specific
-taxonomy release.
+No 
 
-For a standard tag, an identifier for the taxonomy;
-otherwise the accession number where the tag
-was defined.
+ALPHANUMERIC 
 
-ALPHANUMERIC   256
+255 
 
-ALPHANUMERIC
+Yes 
 
-20
+NUMERIC 
 
-Standard label as provided in the submission
+19 
 
-ALPHANUMERIC
+No 
 
-Terse label as provided in the submission
+OVER100RECIPIENTFLAG 
 
-ALPHANUMERIC
+Over 100 recipients 
 
-256
+ALPHANUMERIC 
 
-256
+TOTALOFFERINGAMOUNT 
 
-Key
+Total offering amount 
 
-*
+ALPHANUMERIC 
 
-*
+TOTALAMOUNTSOLD 
 
-*
+TOTALREMAINING 
 
-No
+SALESAMTCLARIFICATIONOFRESP 
 
-No
+HASNONACCREDITEDINVESTORS 
 
-No
+NUMBERNONACCREDITEDINVESTORS 
 
-No
+5 
 
+12 
 
+12 
 
+12 
 
+Yes 
 
+No 
 
+No 
 
+No 
 
+Total amount sold 
 
+NUMERIC 
 
-Field
-Name
+Total remaining to be 
+sold 
 
-Field Description
+ALPHANUMERIC 
 
-Field Type
+Clarification of 
+Response (if 
+Necessary) 
 
-verbose
+Select if securities in 
+the offering have been 
+or may be sold to 
+persons who do not 
+qualify as accredited 
+investors 
 
-Verbose label as provided in the submission
+Number of such non-
+accredited investors 
+who already have 
+invested in the offering 
 
-ALPHANUMERIC
+ALPHANUMERIC 
 
-total
+255 
 
-Total label as provided in the submission
+Yes 
 
-negated
+ALPHANUMERIC 
 
-Negated label as provided in the submission
+5 
 
-ALPHANUMERIC
+No 
 
-negated
-Terse
+NUMERIC 
 
-Negated, Terse label as provided in the submission  ALPHANUMERIC
+19 
 
-Max
-Size
+Yes 
 
-256
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Field Name 
 
-256
+Field Description 
 
-256
+Format 
 
-256
+NUMERIC 
 
-May be
-NULL
+Max 
+Size 
 
-Key
+19 
 
-No
+May be 
+NULL 
 
-No
+No 
 
-No
+Key 
 
-5.4  CAL (Calculations)
-The CAL data set contains one row for each calculation relationship ("arc").  Note that XBRL allows a parent
-element to have more than one distinct set of arcs for a given parent element, thus the rationale for distinct
-fields for the group and the arc.  The source for the table is the "as filed" XBRL filer submissions.
+SALESCOMM_ISESTIMATE 
 
-Field Type
-(format)
+Estimate 
 
-Max
-Size
+ALPHANUMERIC 
 
-May be
-NULL
+FINDERSFEE_DOLLARAMOUNT 
 
-ALPHANUMERIC
+Finders  Fee USD 
 
-20
+NUMERIC 
 
-No
+NUMERIC 
 
-Figure 5. Fields in the CAL data set
+12 
 
-Field
-Name
+No 
 
-adsh
+ALPHANUMERIC 
 
-grp
+ALPHANUMERIC 
 
-arc
+255 
 
-Field Description
+5 
 
-Accession Number. The 20-character string
-formed from the 18-digit number assigned by the
-Commission to each EDGAR submission.
+12 
 
-Sequential number for grouping arcs in a
-submission.
+5 
 
-Sequential number for arcs within a group in a
-submission.
+Yes 
 
-negative
+No 
 
-Indicates a weight of -1 (TRUE if the arc is
-negative), but typically +1 (FALSE).
+Yes 
 
-NUMERIC(1,0)
+Yes 
 
-NUMERIC(1,0)
+NUMERIC 
 
-BOOLEAN
+12 
 
-ptag
+No 
 
-The tag for the parent of the arc
+TOTALNUMBERALREADYINVESTED 
 
-ALPHANUMERIC
+SALESCOMM_DOLLARAMOUNT 
 
-pversion   The version of the tag for the parent of the arc
+Regardless of whether 
+securities in the 
+offering have been or 
+may be sold to persons 
+who do not qualify as 
+accredited investors, 
+enter the total number 
+of investors who 
+already have invested 
+in the offering. 
 
-ALPHANUMERIC
+Sales Commissions, 
+USD 
 
-ctag
+FINDERSFEE_ISESTIMATE 
 
-The tag for the child of the arc
+FINDERFEECLARIFICATIONOFRESP 
 
-ALPHANUMERIC
+Estimate 
 
-cversion
+Clarification of 
+Response (if 
+Necessary) 
 
-The version of the tag for the child of the arc
+GROSSPROCEEDSUSED_DOLLARAMOUNT  Provide the amount of 
+the gross proceeds of 
+the offering that has 
+been or is proposed to 
+be used for payments 
+to any of the persons 
+required to be named 
+as executive officers, 
+directors, or promoters 
+in response to Item 3 
+above. If the amount is 
+unknown, provide an 
+estimate and check the 
+box next to the 
+amount. USD 
 
-ALPHANUMERIC
+GROSSPROCEEDSUSED_CLAROFRESP 
 
-Key
+AUTHORIZEDREPRESENTATIVE 
 
-*
+Clarification of 
+Response (if 
+Necessary) 
 
-*
+I also am a duly 
+authorized 
+representative of the 
+other Issuer(s) in Item 
+1 above and authorized 
+to sign on their behalf. 
 
-*
+5.4       RECIPIENTS 
 
-1
+GROSSPROCEEDSUSED_ISESTIMATE 
 
-1
+Estimate 
 
-1
+ALPHANUMERIC 
 
-256
+5 
 
-20
+ALPHANUMERIC 
 
-256
+255 
 
-20
+Yes 
 
-No
+Yes 
 
-No
+ALPHANUMERIC 
 
-No
+5 
 
-No
+Yes 
 
-No
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+The RECIPIENTS data file contains the recipients information. 
 
-No
+Figure 4. Fields in the RECIPIENTS data file 
 
-No
+Field Name 
 
-5.5  NUM (Numbers)
-The NUM data set contains numeric data, one row per data point in the financial statements. The source for
-the table is the "as filed" XBRL filer submissions.
+Field Description 
 
-Figure 6. Fields in the NUM data set
+Format 
 
-Field
-Name
+ACCESSIONNUMBER 
 
-adsh
+The 20-character string 
+formed from the 18-digit 
+number assigned by the 
+Commission to each EDGAR 
+submission. 
 
-tag
+ALPHANUMERIC 
+(nnnnnnnnnn-nn-
+nnnnnn) 
 
-version
+Max 
+Size 
 
-Field Description
+20 
 
-Accession Number. The 20-character string formed
-from the 18-digit number assigned by the
-Commission to each EDGAR submission.
+May be 
+NULL 
 
-The unique identifier (name) for a tag in a specific
-taxonomy release.
+Key 
 
-For a standard tag, an identifier for the taxonomy;
-otherwise the accession number where the tag was
-defined.
+No 
 
-Field Type
-(format)
+* 
 
-Max
-Size
+RECIPIENT_SEQ_KEY 
 
-May be
+Recipient index key. 
 
-NULL  Key
+NUMERIC 
 
-ALPHANUMERIC   20
+RECIPIENTNAME 
 
-No
+Recipient 
 
-*
+ALPHANUMERIC 
 
-ALPHANUMERIC  256
+RECIPIENTCRDNUMBER 
 
-No
+Recipient CRD Number 
 
-ALPHANUMERIC   20
+ALPHANUMERIC 
 
-No
+38 
 
-*
+150 
 
-*
+9 
 
-ddate
+ASSOCIATEDBDNAME 
 
-The end date for the data value, rounded to the
-nearest month end.
+(Associated) Broker or Dealer 
 
-DATE
-(yyyymmdd)
+ALPHANUMERIC 
 
-8
+150 
 
-No
+ASSOCIATEDBDCRDNUMBER 
 
-*
+(Associated) Broker or Dealer 
+CRD Number 
 
+ALPHANUMERIC 
 
+9 
 
+STREET1 
 
+STREET2 
 
+CITY 
 
+Street Address 1 
 
+Street Address 2 
 
+City 
 
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
+ALPHANUMERIC 
 
+STATEORCOUNTRY 
 
+State/Province/Country 
 
-Field
-Name
+ALPHANUMERIC 
 
-uom
+STATEORCOUNTRYDESCRIPTION  Full name of the country or 
 
-series
+ALPHANUMERIC 
 
-class
+state 
 
-Field Description
+40 
 
-The unit of measure for the value.
+40 
 
-Series identifier to which the fact applies
+30 
 
-Series identifier to which the fact applies
+255 
 
-Field Type
-(format)
+50 
 
-Max
-Size
+ZIPCODE 
 
-May be
+Zip/Postal Code 
 
-NULL  Key
+ALPHANUMERIC 
 
-ALPHANUMERIC
+10 
 
-ALPHANUMERIC
+STATES_OR_VALUE_LIST 
 
-ALPHANUMERIC
+DESCRIPTIONS_LIST 
 
-20
+FOREIGNSOLICITATION 
 
-10
+List of States or Countries of 
+Recipients 
 
-10
+Full name of States or 
+Countries of Recipients 
 
-measure
+Selected if the recipient has 
+solicited sales in foreign 
+countries. 
 
-Performance measure qualifier for the fact
+ALPHANUMERIC 
 
-ALPHANUMERIC  256
+1000 
 
-document  Prospectus to which the fact applies
+ALPHANUMERIC 
 
-ALPHANUMERIC  256
+1000 
 
-otherdims  Other qualifiers provided by the filer to distinguish
+Yes 
 
-ALPHANUMERIC  256
+ALPHANUMERIC 
 
-No
+5 
 
-No
+Yes 
 
-No
+* 
 
-No
+No 
 
-No
+No 
 
-No
+No 
 
-*
+No 
 
-*
+No 
 
-*
+No 
 
-*
+Yes 
 
-*
+No 
 
-*
+No 
 
-*
+Yes 
 
-otherwise identical facts.
+No 
 
-A positive integer to distinguish different reported
-facts that otherwise would have the same primary
-key.  For most purposes, data with iprx greater than
-1 are not needed.  The priority for the fact is based
-on higher precision.
+Yes 
 
-The value. This is not scaled, it is as found in the
-Interactive Data file, but is rounded to four digits to
-the right of the decimal point.
+5.5       RELATEDPERSONS 
+The RELATEDPERSONS data file provides information of related persons with the submission. 
 
-The plain text of any superscripted footnotes on the
-value, if any, as shown on the statement page,
-truncated to 512 characters.
+Figure 5. Fields in the RELATEDPERSONS data file 
 
-NUMERIC
+Field Name 
 
-2
+Field Description 
 
-No
+Format 
 
-NUMERIC
+ACCESSIONNUMBER 
 
-16
+The 20-character string 
+formed from the 18-digit 
+number assigned by the 
+Commission to each EDGAR 
+submission. 
 
-Yes
+ALPHANUMERIC 
+(nnnnnnnnnn-nn-
+nnnnnn) 
 
-ALPHANUMERIC  512
+Max 
+Size 
 
-Yes
+20 
 
-Number of bytes in the plain text of the footnote prior
-to truncation; zero if no footnote.
+May be 
+NULL 
 
-NUMERIC
+Key 
 
-Small integer representing the number of dimensions.
-Note that this value is a function of the dimension
-segments.
+No 
 
-NUMERIC
+* 
 
-dcml
+RELATEDPERSON_SEQ_KEY 
 
-The value of the fact "decimals" attribute, with INF
-represented by 32767.
+Related person index key. 
 
-NUMERIC
+NUMERIC 
 
-4
+FIRSTNAME 
 
-1
+MIDDLENAME 
 
-2
+First Name 
 
-No
+Middle Name 
 
-No
+ALPHANUMERIC 
 
-No
+ALPHANUMERIC 
 
-iprx
+* 
 
-value
+38 
 
-footnote
+150 
 
-footlen
+150 
 
-dimn
+No 
 
-5.6  TXT (Plain Text)
-The TXT data set contains non-numeric data, one row per data point in the financial statements. The source
-for the table is the "as filed" XBRL filer submissions.
+No 
 
-Figure 7. Fields in the TXT data set
+Yes 
 
-Field
-Name
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Field Name 
 
-adsh
+Field Description 
 
-tag
+Format 
 
-version
+LASTNAME 
 
-Field Description
+STREET1 
 
-Accession Number. The 20-character string
-formed from the 18-digit number assigned by
-the Commission to each EDGAR submission.
+STREET2 
 
-The unique identifier (name) for a tag in a
-specific taxonomy release.
+CITY 
 
-For a standard tag, an identifier for the
-taxonomy; otherwise the accession number
-where the tag was defined.  For example,
-"invest/2013" indicates that the tag is defined
-in the 2013 INVEST taxonomy.
+Last Name 
 
-Field Type
-(format)
+Street Address 1 
 
-ALPHANUMERIC
+Street Address 2 
 
-Max
-Size
+City 
 
-20
+ALPHANUMERIC 
 
-May be
+ALPHANUMERIC 
 
-NULL  Key
+ALPHANUMERIC 
 
-No
+ALPHANUMERIC 
 
-*
+Max 
+Size 
 
-ALPHANUMERIC
+150 
 
-256
+40 
 
-No
+40 
 
-ALPHANUMERIC
+30 
 
-20
+STATEORCOUNTRY 
 
-No
+State/Province/Country 
 
-*
+ALPHANUMERIC 
 
-*
+255 
 
-ddate
+May be 
+NULL 
 
-The end date for the data value, rounded to the
-nearest month end.
+Key 
 
-DATE (yyyymmdd)
+No 
 
-8
+No 
 
-No
+Yes 
 
-*
+No 
 
-lang
+No 
 
-The ISO language code of the fact content.
+STATEORCOUNTRYDESCRIPTION  Full name of the country or 
 
-ALPHANUMERIC
+ALPHANUMERIC 
 
-series
+50 
 
-Series identifier to which the fact applies
+Yes 
 
-ALPHANUMERIC
+state 
 
-5
+Zip/Postal Code 
 
-10
+ALPHANUMERIC 
 
-No
+10 
 
-No
+ALPHANUMERIC 
 
-*
+255 
 
+No 
 
+Yes 
 
+ZIPCODE 
 
+RELATIONSHIP_1 
 
+RELATIONSHIP_2 
 
+RELATIONSHIP_3 
 
+RELATIONSHIPCLARIFICATION 
 
-Field
-Name
+Relationship of related person 
+to issuer consisting of 
+Executive Officer, Director, or 
+Promoter.  
 
-Field Description
+Relationship of related person 
+to issuer consisting of 
+Executive Officer, Director, or 
+Promoter. 
 
-Field Type
-(format)
+Relationship of related person 
+to issuer consisting of 
+Executive Officer, Director, or 
+Promoter. 
 
-class
+Clarification of Response (if 
+Necessary) 
 
-Series identifier to which the fact applies
+ALPHANUMERIC 
 
-ALPHANUMERIC
+255 
 
-measure
+Yes 
 
-Performance measure qualifier for the fact
+ALPHANUMERIC 
 
-ALPHANUMERIC
+255 
 
-document  Prospectus to which the fact applies
+Yes 
 
-otherdims  Other qualifiers provided by the filer to
+ALPHANUMERIC 
 
-distinguish otherwise identical facts.
+255 
 
-ALPHANUMERIC
+Yes 
 
-ALPHANUMERIC
+5.6       SIGNATURES 
+The SIGNATURES data file provides data for the submission person signature. 
 
-Max
-Size
+Figure 6. Fields in the SIGNATURES data file 
 
-10
+Field Name 
 
-256
+Field Description 
 
-256
+Format 
 
-256
+ACCESSIONNUMBER 
 
-No
+The 20-character string formed 
+from the 18-digit number assigned 
+by the Commission to each EDGAR 
+submission. 
 
-No
+ALPHANUMERIC 
+(nnnnnnnnnn-nn-
+nnnnnn) 
 
-No
+Max 
+Size 
 
-No
+20 
 
-May be
+May be 
+NULL 
 
-NULL  Key
+No 
 
-*
+Key 
 
-*
+* 
 
-*
+SIGNATURE_SEQ_KEY  Signature index key. 
 
-*
+NUMERIC 
 
-*
+ISSUERNAME 
 
-iprx
+Name of Issuer 
 
-dcml
+SIGNATURENAME 
 
-dimn
+Name of signature 
 
-A positive integer to distinguish different
-reported facts that otherwise would have the
-same primary key.  For most purposes, data
-with iprx greater than 1 are not needed.  The
-priority for the fact based on higher precision.
+NAMEOFSIGNER 
 
-The value of the fact "xml:lang" attribute,
-en-US represented by 32767, other "en"
-dialects having lower values, and other
-languages lower still.
+Full name of person signing the 
+form. 
 
-Small integer representing the number of
-dimensions, useful for sorting.  Note that this
-value is function of the dimension segments.
+ALPHANUMERIC 
 
-NUMERIC
+ALPHANUMERIC 
 
-2
+ALPHANUMERIC 
 
-No
+SIGNATURETITLE 
 
-NUMERIC
+Title of person signing the form. 
 
-2
+ALPHANUMERIC 
 
-No
+SIGNATUREDATE 
 
-NUMERIC(1,0)
+Date of signature. 
 
-1
+ALPHANUMERIC 
 
-Yes
+* 
 
-escaped
+38 
 
-Flag indicating whether the value has had HTML
-tags removed.
+150 
 
-BOOLEAN
+30 
 
-NUMERIC(4,0)
+150 
 
-NUMERIC(4,0)
+60 
 
-1
+255 
 
-4
+No 
 
-4
+No 
 
-No
+No 
 
-No
+No 
 
-Yes
+No 
 
-ALPHANUMERIC
+No 
 
-512
-
-Yes
-
-NUMERIC(4,0)
-
-4
-
-Yes
-
-ALPHANUMERIC(255)  255
-
-No
-
-ALPHANUMERIC
-
-2048
-
-Yes
-
-srclen
-
-txtlen
-
-footnote
-
-footlen
-
-context
-
-value
-
-Number of bytes in the original, unprocessed
-value.  Zero indicates a NULL value.
-
-The original length of the whitespace
-normalized value, which may have been greater
-than 2048.
-
-The plain text of any superscripted footnotes on
-the value, as shown on the page, truncated to
-512 characters, or if there is no footnote, then
-this field will be blank.
-
-Number of bytes in the plain text of the
-footnote prior to truncation.
-
-The value of the contextRef attribute in the
-source XBRL document, which can be used to
-recover the original HTML tagging if desired.
-
-The value, with all whitespace normalized, that
-is, all sequences of line feeds, carriage returns,
-tabs, non-breaking spaces, and spaces having
-been collapsed to a single space, and no leading
-or trailing spaces.  Escaped XML that appears in
-EDGAR "Text Block" tags is processed to
-remove all mark-up (comments, processing
-instructions, elements, attributes).  The value is
-truncated to a maximum number of bytes.  The
-resulting text is not intended for end user
-display but only for text analysis applications.
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
